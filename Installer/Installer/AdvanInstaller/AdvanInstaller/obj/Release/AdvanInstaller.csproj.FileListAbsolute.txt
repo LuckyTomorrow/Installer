@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\bin\Release\AdvanInstaller.exe.config
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\bin\Release\AdvanInstaller.exe
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\bin\Release\AdvanInstaller.pdb
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.Form1.resources
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.Properties.Resources.resources
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.exe
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.pdb
