@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="gbk" standalone="yes"?>
-<Project>
-  <Name>
-  </Name>
-  <Path>
-  </Path>
-  <OperateMode>Disconnected</OperateMode>
-  <Connection Type="Ethernet" IP="127.0.0.1" Port="6000" Simulator="MAS-324X Simulator" />
-</Project>

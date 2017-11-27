@@ -1,9 +1,0 @@
-F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\bin\Release\CSharpModBusExample.exe
-F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\x86\Release\MSTest.FixedPointMotion02.resources
-F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\x86\Release\MSTest.FixedPointMotion01.resources
-F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\x86\Release\MSTest.FixedPointMotion03.resources
-F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\x86\Release\CSharpModBusExample.Properties.Resources.resources
-F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\x86\Release\CSharpModBusExample.csproj.GenerateResource.Cache
-F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\x86\Release\CSharpModBusExample.exe
-F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\x86\Release\CSharpModBusExample.pdb
-F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\bin\Release\CSharpModBusExample.pdb
