@@ -1,0 +1,109 @@
+;
+;File Name:
+;    Bio1756s.INF
+;Abstract:
+;    INF file for the PCI-1756 driver.
+;$Support:PCI-1756,MIC-3756$
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Advantech
+ClassGuid={63B1F11D-C727-4d95-8338-A3D7E3F40416}
+Provider=%MSFT%
+DriverVer=04/08/2016,14.59.10.241
+CatalogFile=Bio1756s.cat
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=AdvantechClassReg     
+
+[AdvantechClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+; Use same security checks on relative opens
+HKR,,DeviceCharacteristics,0x10001,0x100
+; Allow generic all access to system, built-in Admin, and Everyone.
+HKR,,Security,,"D:P(A;;GA;;;SY)(A;;GA;;;BA)(A;;GA;;;WD)" 
+
+; ================= Device Install section =====================
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer]
+%MSFT%=MSFT,NTx86
+
+[SourceDisksNames]
+1=%DISK_NAME%,
+
+[SourceDisksFiles]
+Bio1756.dll=1
+Bio1756s.sys=1
+wdfcoinstaller01005.dll=1 ; make sure the number matches with SourceDisksNames
+
+[DestinationDirs]
+DefaultDestDir = 12        ;%windir%\system32\drivers 
+PCI1756.CopyFiles.sys = 12 ;%windir%\system32\drivers 
+PCI1756.CopyFiles.dll = 11 ;%windir%\system32 
+CoInstaller_CopyFiles = 11 ;%windir%\system32 
+
+; For XP and later
+[MSFT.NTx86]
+; DisplayName           Section           DeviceId
+; -----------           -------           --------
+%PCI1756.DRVDESC%=      PCI1756_Inst,     PCI\VEN_13FE&DEV_1756
+%MIC3756.DRVDESC%=      PCI1756_Inst,     PCI\VEN_13FE&DEV_3756
+
+[PCI1756_Inst.NTx86]
+CopyFiles=PCI1756.CopyFiles.sys, PCI1756.CopyFiles.dll
+AddReg=CoInstaller_AddReg
+
+[PCI1756.CopyFiles.sys]
+Bio1756s.sys
+
+[PCI1756.CopyFiles.dll]
+Bio1756.dll
+
+[PCI1756_Inst.NTx86.Services]
+AddService=Bio1756S,0x00000002,PCI1756_Service 
+
+[PCI1756_Service]
+DisplayName    = %PCI1756.SVCDESC%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\Bio1756s.sys                            
+AddReg         = PCI1756_Parameters_AddReg
+
+[PCI1756_Parameters_AddReg]
+HKR, Parameters\Wdf, VerboseOn,       0x00010001, 1
+HKR, Parameters\Wdf, VerifierOn,      0x00010001, 1
+HKR, Parameters\Wdf, DbgBreakOnError, 0x00010001, 1
+
+;-------------- Coinstaller installation
+[PCI1756_Inst.NTx86.CoInstallers]
+AddReg=CoInstaller_AddReg
+CopyFiles=CoInstaller_CopyFiles
+
+[CoInstaller_CopyFiles]
+wdfcoinstaller01005.dll
+
+[CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "wdfcoinstaller01005.dll,WdfCoInstaller"
+HKR,,EnumPropPages32,,"Bio1756.dll, BioSysPropPageProvider"
+
+[PCI1756_Inst.NTx86.Wdf]
+KmdfService = Bio1756S, Bio1756S_wdfsect
+[Bio1756S_wdfsect]
+KmdfLibraryVersion = 1.5
+
+[Strings]
+MSFT = "Advantech"
+ClassName = "Advantech DAQ Devices"
+PCI1756.SVCDESC = "PCI-1756, 64-ch isolated DI/DO card"
+PCI1756.DRVDESC = "PCI-1756, 64-ch isolated DI/DO card"
+MIC3756.DRVDESC = "MIC-3756, 64-ch isolated DI/DO card, 1-ch counter card"
+DISK_NAME = "PCI-1756 Install Disk"
+

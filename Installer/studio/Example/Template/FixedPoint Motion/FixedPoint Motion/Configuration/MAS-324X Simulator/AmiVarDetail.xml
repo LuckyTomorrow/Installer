@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GlobalVariables>
+  <VarTitle Name="Motion_MAS-324X Simulator_00">
+    <Var Name="DOUT(0)" Type="0" Description="Axis-0 OUT4/CAMDO of MAS-324X Simulator" ModbusAddress="1" Init="0" LogicAddress="0" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DOUT(1)" Type="0" Description="Axis-0 OUT5/CMP of MAS-324X Simulator" ModbusAddress="2" Init="0" LogicAddress="1" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DOUT(2)" Type="0" Description="Axis-0 OUT6/SVON of MAS-324X Simulator" ModbusAddress="3" Init="0" LogicAddress="2" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DOUT(3)" Type="0" Description="Axis-0 OUT7/ERC of MAS-324X Simulator" ModbusAddress="4" Init="0" LogicAddress="3" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DOUT(4)" Type="0" Description="Axis-1 OUT4/CAMDO of MAS-324X Simulator" ModbusAddress="5" Init="0" LogicAddress="4" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DOUT(5)" Type="0" Description="Axis-1 OUT5/CMP of MAS-324X Simulator" ModbusAddress="6" Init="0" LogicAddress="5" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DOUT(6)" Type="0" Description="Axis-1 OUT6/SVON of MAS-324X Simulator" ModbusAddress="7" Init="0" LogicAddress="6" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DOUT(7)" Type="0" Description="Axis-1 OUT7/ERC of MAS-324X Simulator" ModbusAddress="8" Init="0" LogicAddress="7" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DOUT(8)" Type="0" Description="Axis-2 OUT4/CAMDO of MAS-324X Simulator" ModbusAddress="9" Init="0" LogicAddress="8" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DOUT(9)" Type="0" Description="Axis-2 OUT5/CMP of MAS-324X Simulator" ModbusAddress="10" Init="0" LogicAddress="9" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DOUT(10)" Type="0" Description="Axis-2 OUT6/SVON of MAS-324X Simulator" ModbusAddress="11" Init="0" LogicAddress="10" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DOUT(11)" Type="0" Description="Axis-2 OUT7/ERC of MAS-324X Simulator" ModbusAddress="12" Init="0" LogicAddress="11" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DOUT(12)" Type="0" Description="Axis-3 OUT4/CAMDO of MAS-324X Simulator" ModbusAddress="13" Init="0" LogicAddress="12" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DOUT(13)" Type="0" Description="Axis-3 OUT5/CMP of MAS-324X Simulator" ModbusAddress="14" Init="0" LogicAddress="13" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DOUT(14)" Type="0" Description="Axis-3 OUT6/SVON of MAS-324X Simulator" ModbusAddress="15" Init="0" LogicAddress="14" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DOUT(15)" Type="0" Description="Axis-3 OUT7/ERC of MAS-324X Simulator" ModbusAddress="16" Init="0" LogicAddress="15" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DIN(0)" Type="0" Description="Axis-0 IN1/LTC of MAS-324X Simulator" ModbusAddress="10001" Init="0" LogicAddress="0" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DIN(1)" Type="0" Description="Axis-0 IN2/RDY of MAS-324X Simulator" ModbusAddress="10002" Init="0" LogicAddress="1" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DIN(2)" Type="0" Description="Axis-0 IN4/JOG+ of MAS-324X Simulator" ModbusAddress="10003" Init="0" LogicAddress="2" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DIN(3)" Type="0" Description="Axis-0 IN5/JOG- of MAS-324X Simulator" ModbusAddress="10004" Init="0" LogicAddress="3" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DIN(4)" Type="0" Description="Axis-1 IN1/LTC of MAS-324X Simulator" ModbusAddress="10005" Init="0" LogicAddress="4" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DIN(5)" Type="0" Description="Axis-1 IN2/RDY of MAS-324X Simulator" ModbusAddress="10006" Init="0" LogicAddress="5" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DIN(6)" Type="0" Description="Axis-1 IN4/JOG+ of MAS-324X Simulator" ModbusAddress="10007" Init="0" LogicAddress="6" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DIN(7)" Type="0" Description="Axis-1 IN5/JOG- of MAS-324X Simulator" ModbusAddress="10008" Init="0" LogicAddress="7" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DIN(8)" Type="0" Description="Axis-2 IN1/LTC of MAS-324X Simulator" ModbusAddress="10009" Init="0" LogicAddress="8" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DIN(9)" Type="0" Description="Axis-2 IN2/RDY of MAS-324X Simulator" ModbusAddress="10010" Init="0" LogicAddress="9" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DIN(10)" Type="0" Description="Axis-2 IN4/JOG+ of MAS-324X Simulator" ModbusAddress="10011" Init="0" LogicAddress="10" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DIN(11)" Type="0" Description="Axis-2 IN5/JOG- of MAS-324X Simulator" ModbusAddress="10012" Init="0" LogicAddress="11" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DIN(12)" Type="0" Description="Axis-3 IN1/LTC of MAS-324X Simulator" ModbusAddress="10013" Init="0" LogicAddress="12" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DIN(13)" Type="0" Description="Axis-3 IN2/RDY of MAS-324X Simulator" ModbusAddress="10014" Init="0" LogicAddress="13" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DIN(14)" Type="0" Description="Axis-3 IN4/JOG+ of MAS-324X Simulator" ModbusAddress="10015" Init="0" LogicAddress="14" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DIN(15)" Type="0" Description="Axis-3 IN5/JOG- of MAS-324X Simulator" ModbusAddress="10016" Init="0" LogicAddress="15" DeviceName="MAS-324X Simulator (M00)" ObjectClass="AXIS" AxisIndex="3" />
+  </VarTitle>
+  <VarTitle Name="In_MAS-324X Simulator_00">
+    <Var Name="DIN(16)" Type="0" Description="Digital Input 0 of MAS-324X Simulator" ModbusAddress="10017" Init="0" LogicAddress="16" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(17)" Type="0" Description="Digital Input 1 of MAS-324X Simulator" ModbusAddress="10018" Init="0" LogicAddress="17" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(18)" Type="0" Description="Digital Input 2 of MAS-324X Simulator" ModbusAddress="10019" Init="0" LogicAddress="18" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(19)" Type="0" Description="Digital Input 3 of MAS-324X Simulator" ModbusAddress="10020" Init="0" LogicAddress="19" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(20)" Type="0" Description="Digital Input 4 of MAS-324X Simulator" ModbusAddress="10021" Init="0" LogicAddress="20" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(21)" Type="0" Description="Digital Input 5 of MAS-324X Simulator" ModbusAddress="10022" Init="0" LogicAddress="21" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(22)" Type="0" Description="Digital Input 6 of MAS-324X Simulator" ModbusAddress="10023" Init="0" LogicAddress="22" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(23)" Type="0" Description="Digital Input 7 of MAS-324X Simulator" ModbusAddress="10024" Init="0" LogicAddress="23" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(24)" Type="0" Description="Digital Input 8 of MAS-324X Simulator" ModbusAddress="10025" Init="0" LogicAddress="24" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(25)" Type="0" Description="Digital Input 9 of MAS-324X Simulator" ModbusAddress="10026" Init="0" LogicAddress="25" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(26)" Type="0" Description="Digital Input 10 of MAS-324X Simulator" ModbusAddress="10027" Init="0" LogicAddress="26" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(27)" Type="0" Description="Digital Input 11 of MAS-324X Simulator" ModbusAddress="10028" Init="0" LogicAddress="27" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(28)" Type="0" Description="Digital Input 12 of MAS-324X Simulator" ModbusAddress="10029" Init="0" LogicAddress="28" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(29)" Type="0" Description="Digital Input 13 of MAS-324X Simulator" ModbusAddress="10030" Init="0" LogicAddress="29" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(30)" Type="0" Description="Digital Input 14 of MAS-324X Simulator" ModbusAddress="10031" Init="0" LogicAddress="30" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DIN(31)" Type="0" Description="Digital Input 15 of MAS-324X Simulator" ModbusAddress="10032" Init="0" LogicAddress="31" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+  </VarTitle>
+  <VarTitle Name="Out_MAS-324X Simulator_00">
+    <Var Name="DOUT(16)" Type="0" Description="Digital Output 0 of MAS-324X Simulator" ModbusAddress="17" Init="0" LogicAddress="16" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(17)" Type="0" Description="Digital Output 1 of MAS-324X Simulator" ModbusAddress="18" Init="0" LogicAddress="17" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(18)" Type="0" Description="Digital Output 2 of MAS-324X Simulator" ModbusAddress="19" Init="0" LogicAddress="18" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(19)" Type="0" Description="Digital Output 3 of MAS-324X Simulator" ModbusAddress="20" Init="0" LogicAddress="19" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(20)" Type="0" Description="Digital Output 4 of MAS-324X Simulator" ModbusAddress="21" Init="0" LogicAddress="20" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(21)" Type="0" Description="Digital Output 5 of MAS-324X Simulator" ModbusAddress="22" Init="0" LogicAddress="21" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(22)" Type="0" Description="Digital Output 6 of MAS-324X Simulator" ModbusAddress="23" Init="0" LogicAddress="22" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(23)" Type="0" Description="Digital Output 7 of MAS-324X Simulator" ModbusAddress="24" Init="0" LogicAddress="23" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(24)" Type="0" Description="Digital Output 8 of MAS-324X Simulator" ModbusAddress="25" Init="0" LogicAddress="24" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(25)" Type="0" Description="Digital Output 9 of MAS-324X Simulator" ModbusAddress="26" Init="0" LogicAddress="25" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(26)" Type="0" Description="Digital Output 10 of MAS-324X Simulator" ModbusAddress="27" Init="0" LogicAddress="26" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(27)" Type="0" Description="Digital Output 11 of MAS-324X Simulator" ModbusAddress="28" Init="0" LogicAddress="27" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(28)" Type="0" Description="Digital Output 12 of MAS-324X Simulator" ModbusAddress="29" Init="0" LogicAddress="28" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(29)" Type="0" Description="Digital Output 13 of MAS-324X Simulator" ModbusAddress="30" Init="0" LogicAddress="29" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(30)" Type="0" Description="Digital Output 14 of MAS-324X Simulator" ModbusAddress="31" Init="0" LogicAddress="30" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+    <Var Name="DOUT(31)" Type="0" Description="Digital Output 15 of MAS-324X Simulator" ModbusAddress="32" Init="0" LogicAddress="31" DeviceName="MAS-324X Simulator (M00)" ObjectClass="DEVICE" AxisIndex="-1" />
+  </VarTitle>
+</GlobalVariables>

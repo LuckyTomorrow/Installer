@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\bin\Release\StudioUninst.exe.config
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\bin\Release\StudioUninst.exe
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\bin\Release\StudioUninst.pdb
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.Form1.resources
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.Properties.Resources.resources
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.exe
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.pdb
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.JudgeForm.resources
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.csprojResolveAssemblyReference.cache

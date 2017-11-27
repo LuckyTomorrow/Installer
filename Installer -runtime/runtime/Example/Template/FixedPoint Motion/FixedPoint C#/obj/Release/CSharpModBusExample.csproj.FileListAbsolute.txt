@@ -1,0 +1,16 @@
+F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\bin\Release\CSharpModBusExample.exe
+F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\Release\MSTest.FixedPointMotion02.resources
+F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\Release\MSTest.FixedPointMotion01.resources
+F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\Release\MSTest.FixedPointMotion03.resources
+F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\Release\CSharpModBusExample.Properties.Resources.resources
+F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\Release\CSharpModBusExample.csproj.GenerateResource.Cache
+F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\Release\CSharpModBusExample.exe
+F:\MAS例程\FixedPoint Motion\FixedPoint C#\CSharpModBusExample\obj\Release\CSharpModBusExample.csprojResolveAssemblyReference.cache
+F:\MAS例程\FixedPoint Motion\FixedPoint C#0818\obj\Release\CSharpModBusExample.exe
+F:\MAS例程\FixedPoint Motion\FixedPoint C#0818\bin\Release\CSharpModBusExample.exe
+F:\MAS例程\FixedPoint Motion\FixedPoint C#0818\obj\Release\CSharpModBusExample.csprojResolveAssemblyReference.cache
+F:\MAS例程\FixedPoint Motion\FixedPoint C#0818\obj\Release\MSTest.FixedPointMotion02.resources
+F:\MAS例程\FixedPoint Motion\FixedPoint C#0818\obj\Release\MSTest.FixedPointMotion01.resources
+F:\MAS例程\FixedPoint Motion\FixedPoint C#0818\obj\Release\MSTest.FixedPointMotion03.resources
+F:\MAS例程\FixedPoint Motion\FixedPoint C#0818\obj\Release\CSharpModBusExample.Properties.Resources.resources
+F:\MAS例程\FixedPoint Motion\FixedPoint C#0818\obj\Release\CSharpModBusExample.csproj.GenerateResource.Cache

@@ -1,0 +1,17 @@
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\bin\Release\RuntimeUninst.exe.config
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\bin\Release\RuntimeUninst.exe
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\bin\Release\RuntimeUninst.pdb
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.Form1.resources
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.Properties.Resources.resources
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\RuntimeUninst.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\RuntimeUninst.exe
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\RuntimeUninst.pdb
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\bin\Release\RuntimeUninst.exe.config
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\bin\Release\RuntimeUninst.exe
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\bin\Release\RuntimeUninst.pdb
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.Form1.resources
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.Properties.Resources.resources
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\RuntimeUninst.csproj.GenerateResource.Cache
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\RuntimeUninst.exe
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\RuntimeUninst.pdb
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.JudgeForm.resources

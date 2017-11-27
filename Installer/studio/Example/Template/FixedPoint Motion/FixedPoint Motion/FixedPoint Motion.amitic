@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Tools>
+  <Tool Name="I/O Viewer" IsPeriodicUpdateEnabled="False" />
+  <Tool Name="VR Viewer" IsPeriodicUpdateEnabled="True">
+    <Ranges>
+      <Range RowIndex="0" StartNo="0" EndNo="50" Desp="" IsHide="False" />
+      <Range RowIndex="52" StartNo="51" EndNo="100" Desp="" IsHide="False" />
+      <Range RowIndex="103" StartNo="101" EndNo="150" Desp="" IsHide="False" />
+    </Ranges>
+  </Tool>
+  <Tool Name="Cylinder Test">
+    <CylInUse>
+      <Index>0</Index>
+      <Index>1</Index>
+    </CylInUse>
+  </Tool>
+  <Tool Name="Watch Variables" IsPeriodicUpdateEnabled="False">
+    <Variables />
+  </Tool>
+  <Tool Name="Axis Parameters" IsPeriodicUpdateEnabled="False" IsShowAllParams="False">
+    <AxesInUse />
+  </Tool>
+  <Tool Name="Axis Test">
+    <AxesInUse>
+      <Index>0</Index>
+      <Index>1</Index>
+    </AxesInUse>
+  </Tool>
+  <Tool Name="Digital I/O Viewer" ShowStyle="0">
+    <DigitalIOBanks>
+      <Bank Index="8" Name="DOUT @0-7" />
+      <Bank Index="9" Name="DOUT @8-15" />
+      <Bank Index="10" Name="DOUT @16-23" />
+      <Bank Index="11" Name="DOUT @24-31" />
+      <Bank Index="12" Name="DOUT @32-39" />
+      <Bank Index="13" Name="DOUT @40-47" />
+      <Bank Index="14" Name="DOUT @48-55" />
+      <Bank Index="15" Name="DOUT @56-63" />
+    </DigitalIOBanks>
+  </Tool>
+</Tools>

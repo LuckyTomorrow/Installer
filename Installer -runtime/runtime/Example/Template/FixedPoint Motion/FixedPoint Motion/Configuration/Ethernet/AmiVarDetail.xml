@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GlobalVariables>
+  <VarTitle Name="Motion_PCI-1245-MAS_15">
+    <Var Name="DOUT(0)" Type="0" Description="Axis-0 OUT4/CAMDO of PCI-1245-MAS (M15)" ModbusAddress="1" Init="0" LogicAddress="0" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DOUT(1)" Type="0" Description="Axis-0 OUT5/CMP of PCI-1245-MAS (M15)" ModbusAddress="2" Init="0" LogicAddress="1" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DOUT(2)" Type="0" Description="Axis-0 OUT6/SVON of PCI-1245-MAS (M15)" ModbusAddress="3" Init="0" LogicAddress="2" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DOUT(3)" Type="0" Description="Axis-0 OUT7/ERC of PCI-1245-MAS (M15)" ModbusAddress="4" Init="0" LogicAddress="3" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DOUT(4)" Type="0" Description="Axis-1 OUT4/CAMDO of PCI-1245-MAS (M15)" ModbusAddress="5" Init="0" LogicAddress="4" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DOUT(5)" Type="0" Description="Axis-1 OUT5/CMP of PCI-1245-MAS (M15)" ModbusAddress="6" Init="0" LogicAddress="5" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DOUT(6)" Type="0" Description="Axis-1 OUT6/SVON of PCI-1245-MAS (M15)" ModbusAddress="7" Init="0" LogicAddress="6" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DOUT(7)" Type="0" Description="Axis-1 OUT7/ERC of PCI-1245-MAS (M15)" ModbusAddress="8" Init="0" LogicAddress="7" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DOUT(8)" Type="0" Description="Axis-2 OUT4/CAMDO of PCI-1245-MAS (M15)" ModbusAddress="9" Init="0" LogicAddress="8" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DOUT(9)" Type="0" Description="Axis-2 OUT5/CMP of PCI-1245-MAS (M15)" ModbusAddress="10" Init="0" LogicAddress="9" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DOUT(10)" Type="0" Description="Axis-2 OUT6/SVON of PCI-1245-MAS (M15)" ModbusAddress="11" Init="0" LogicAddress="10" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DOUT(11)" Type="0" Description="Axis-2 OUT7/ERC of PCI-1245-MAS (M15)" ModbusAddress="12" Init="0" LogicAddress="11" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DOUT(12)" Type="0" Description="Axis-3 OUT4/CAMDO of PCI-1245-MAS (M15)" ModbusAddress="13" Init="0" LogicAddress="12" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DOUT(13)" Type="0" Description="Axis-3 OUT5/CMP of PCI-1245-MAS (M15)" ModbusAddress="14" Init="0" LogicAddress="13" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DOUT(14)" Type="0" Description="Axis-3 OUT6/SVON of PCI-1245-MAS (M15)" ModbusAddress="15" Init="0" LogicAddress="14" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DOUT(15)" Type="0" Description="Axis-3 OUT7/ERC of PCI-1245-MAS (M15)" ModbusAddress="16" Init="0" LogicAddress="15" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DIN(0)" Type="0" Description="Axis-0 IN1/LTC of PCI-1245-MAS (M15)" ModbusAddress="10001" Init="0" LogicAddress="0" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DIN(1)" Type="0" Description="Axis-0 IN2/RDY of PCI-1245-MAS (M15)" ModbusAddress="10002" Init="0" LogicAddress="1" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DIN(2)" Type="0" Description="Axis-0 IN4/JOG+ of PCI-1245-MAS (M15)" ModbusAddress="10003" Init="0" LogicAddress="2" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DIN(3)" Type="0" Description="Axis-0 IN5/JOG- of PCI-1245-MAS (M15)" ModbusAddress="10004" Init="0" LogicAddress="3" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DIN(4)" Type="0" Description="Axis-1 IN1/LTC of PCI-1245-MAS (M15)" ModbusAddress="10005" Init="0" LogicAddress="4" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DIN(5)" Type="0" Description="Axis-1 IN2/RDY of PCI-1245-MAS (M15)" ModbusAddress="10006" Init="0" LogicAddress="5" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DIN(6)" Type="0" Description="Axis-1 IN4/JOG+ of PCI-1245-MAS (M15)" ModbusAddress="10007" Init="0" LogicAddress="6" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DIN(7)" Type="0" Description="Axis-1 IN5/JOG- of PCI-1245-MAS (M15)" ModbusAddress="10008" Init="0" LogicAddress="7" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DIN(8)" Type="0" Description="Axis-2 IN1/LTC of PCI-1245-MAS (M15)" ModbusAddress="10009" Init="0" LogicAddress="8" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DIN(9)" Type="0" Description="Axis-2 IN2/RDY of PCI-1245-MAS (M15)" ModbusAddress="10010" Init="0" LogicAddress="9" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DIN(10)" Type="0" Description="Axis-2 IN4/JOG+ of PCI-1245-MAS (M15)" ModbusAddress="10011" Init="0" LogicAddress="10" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DIN(11)" Type="0" Description="Axis-2 IN5/JOG- of PCI-1245-MAS (M15)" ModbusAddress="10012" Init="0" LogicAddress="11" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="3" />
+    <Var Name="DIN(12)" Type="0" Description="Axis-3 IN1/LTC of PCI-1245-MAS (M15)" ModbusAddress="10013" Init="0" LogicAddress="12" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="0" />
+    <Var Name="DIN(13)" Type="0" Description="Axis-3 IN2/RDY of PCI-1245-MAS (M15)" ModbusAddress="10014" Init="0" LogicAddress="13" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="1" />
+    <Var Name="DIN(14)" Type="0" Description="Axis-3 IN4/JOG+ of PCI-1245-MAS (M15)" ModbusAddress="10015" Init="0" LogicAddress="14" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="2" />
+    <Var Name="DIN(15)" Type="0" Description="Axis-3 IN5/JOG- of PCI-1245-MAS (M15)" ModbusAddress="10016" Init="0" LogicAddress="15" DeviceName="PCI-1245-MAS (M15)" ObjectClass="AXIS" AxisIndex="3" />
+  </VarTitle>
+</GlobalVariables>

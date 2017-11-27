@@ -1,0 +1,55 @@
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\bin\Release\AdvanInstaller.exe.config
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\bin\Release\AdvanInstaller.exe
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\bin\Release\AdvanInstaller.pdb
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.Form1.resources
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.Properties.Resources.resources
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.exe
+C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.pdb
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Release\Interop.IWshRuntimeLibrary.dll
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\Interop.VBA.dll
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csproj.ResolveComReference.cache
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.endBox.resources
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.Form1.resources
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.Properties.Resources.resources
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.judgeRunning.resources
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Release\Motion Studio V1.6.exe.config
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Release\Motion Studio V1.6.exe
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Release\Motion Studio V1.6.pdb
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\Motion Studio V1.6.exe
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\Motion Studio V1.6.pdb
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\bin\Release\Motion Runtime V1.6.exe.config
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\bin\Release\Motion Runtime V1.6.exe
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\bin\Release\Motion Runtime V1.6.pdb
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\bin\Release\Interop.IWshRuntimeLibrary.dll
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\Interop.VBA.dll
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csproj.ResolveComReference.cache
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.deviceSelect.resources
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.endBox.resources
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.Form1.resources
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.judgeRunning.resources
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.Properties.Resources.resources
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\Motion Runtime V1.6.exe
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\Motion Runtime V1.6.pdb
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\bin\Release\Motion Runtime V1.6.exe.config
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\Interop.VBA.dll
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csproj.ResolveComReference.cache
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\Motion Runtime V1.6.exe
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\Motion Runtime V1.6.pdb
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\bin\Release\Motion Runtime V1.6.exe
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\bin\Release\Motion Runtime V1.6.pdb
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\bin\Release\Interop.IWshRuntimeLibrary.dll
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.deviceSelect.resources
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.endBox.resources
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.Form1.resources
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.judgeRunning.resources
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.Properties.Resources.resources
+C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csprojResolveAssemblyReference.cache

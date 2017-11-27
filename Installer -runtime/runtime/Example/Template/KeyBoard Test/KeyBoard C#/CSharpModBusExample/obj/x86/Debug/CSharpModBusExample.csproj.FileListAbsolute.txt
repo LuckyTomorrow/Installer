@@ -1,0 +1,140 @@
+D:\06.[器]\CCLR\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\06.[器]\CCLR\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+D:\06.[器]\CCLR\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.TestModBus.resources
+D:\06.[器]\CCLR\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\06.[器]\CCLR\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\06.[器]\CCLR\CSharpModBusExample\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe.config
+D:\06.[器]\CCLR\CSharpModBusExample\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+D:\06.[器]\CCLR\CSharpModBusExample\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+D:\06.[器]\CCLR\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+D:\06.[器]\CCLR\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\leting.gan\Desktop\CSharpModBusExample\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe.config
+C:\Users\leting.gan\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\leting.gan\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\leting.gan\Desktop\CSharpModBusExample\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+C:\Users\leting.gan\Desktop\CSharpModBusExample\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+C:\Users\leting.gan\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csprojResolveAssemblyReference.cache
+C:\Users\leting.gan\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+C:\Users\leting.gan\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.TestModBus.resources
+C:\Users\leting.gan\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+C:\Users\GLT\Desktop\CSharpModBusExample\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe.config
+C:\Users\GLT\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\GLT\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\GLT\Desktop\CSharpModBusExample\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+C:\Users\GLT\Desktop\CSharpModBusExample\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+C:\Users\GLT\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csprojResolveAssemblyReference.cache
+C:\Users\GLT\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+C:\Users\GLT\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.TestModBus.resources
+C:\Users\GLT\Desktop\CSharpModBusExample\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+C:\Users\leting.gan\Desktop\CSharpModBus\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe.config
+C:\Users\leting.gan\Desktop\CSharpModBus\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\leting.gan\Desktop\CSharpModBus\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\leting.gan\Desktop\CSharpModBus\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+C:\Users\leting.gan\Desktop\CSharpModBus\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+C:\Users\leting.gan\Desktop\CSharpModBus\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+C:\Users\leting.gan\Desktop\CSharpModBus\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.TestModBus.resources
+C:\Users\leting.gan\Desktop\CSharpModBus\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+C:\Users\leting.gan\Desktop\C#ModBus\CSharpModBus\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe.config
+C:\Users\leting.gan\Desktop\C#ModBus\CSharpModBus\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\leting.gan\Desktop\C#ModBus\CSharpModBus\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\leting.gan\Desktop\C#ModBus\CSharpModBus\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+C:\Users\leting.gan\Desktop\C#ModBus\CSharpModBus\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.TestModBus.resources
+C:\Users\leting.gan\Desktop\C#ModBus\CSharpModBus\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+C:\Users\leting.gan\Desktop\C#ModBus\CSharpModBus\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+C:\Users\leting.gan\Desktop\C#ModBus\CSharpModBus\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+C:\Users\GLT\Desktop\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe.config
+C:\Users\GLT\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\GLT\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\GLT\Desktop\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+C:\Users\GLT\Desktop\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+C:\Users\GLT\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Form1.resources
+C:\Users\GLT\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Form2.resources
+C:\Users\GLT\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+C:\Users\GLT\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+C:\Users\GLT\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csprojResolveAssemblyReference.cache
+C:\Users\leting.gan\Desktop\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe.config
+C:\Users\leting.gan\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\leting.gan\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\leting.gan\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.KeyBoardTest01.resources
+C:\Users\leting.gan\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.KeyBoardTest02.resources
+C:\Users\leting.gan\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+C:\Users\leting.gan\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+C:\Users\leting.gan\Desktop\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+C:\Users\leting.gan\Desktop\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+C:\Users\leting.gan\Desktop\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.KeyBoardTest03.resources
+C:\Users\Advantech\Desktop\ModBusTcpIP\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\Advantech\Desktop\ModBusTcpIP\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\Advantech\Desktop\ModBusTcpIP\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+C:\Users\Advantech\Desktop\ModBusTcpIP\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+C:\Users\Advantech\Desktop\ModBusTcpIP\ModBusTcpIP\CSharpModBusExample\bin\Debug\ModBUSTCPIP.dll
+C:\Users\Advantech\Desktop\ModBusTcpIP\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csprojResolveAssemblyReference.cache
+C:\Users\Advantech\Desktop\ModBusTcpIP\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\ModBUSTCPIP.KeyBoardTest01.resources
+C:\Users\Advantech\Desktop\ModBusTcpIP\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\ModBUSTCPIP.KeyBoardTest02.resources
+C:\Users\Advantech\Desktop\ModBusTcpIP\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\ModBUSTCPIP.KeyBoardTest03.resources
+C:\Users\Advantech\Desktop\ModBusTcpIP\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+C:\Users\Advantech\Desktop\ModBusTcpIP\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+C:\Users\Advantech\Desktop\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\Advantech\Desktop\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\leting.gan\Desktop\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\leting.gan\Desktop\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\leting.gan\Desktop\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+C:\Users\leting.gan\Desktop\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+C:\Users\leting.gan\Desktop\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\bin\Debug\MSConnection.dll
+C:\Users\leting.gan\Desktop\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest01.resources
+C:\Users\leting.gan\Desktop\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest02.resources
+C:\Users\leting.gan\Desktop\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest03.resources
+C:\Users\leting.gan\Desktop\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+C:\Users\leting.gan\Desktop\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+C:\Users\Advantech\Desktop\MSClient\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\Advantech\Desktop\MSClient\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\Advantech\Desktop\MSClient\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+C:\Users\Advantech\Desktop\MSClient\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+C:\Users\Advantech\Desktop\MSClient\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\bin\Debug\MSConnection.dll
+C:\Users\Advantech\Desktop\MSClient\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest01.resources
+C:\Users\Advantech\Desktop\MSClient\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest02.resources
+C:\Users\Advantech\Desktop\MSClient\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest03.resources
+C:\Users\Advantech\Desktop\MSClient\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+C:\Users\Advantech\Desktop\MSClient\ModBusTcp_敲键盘示例\ModBusTcp_敲键盘示例\ModBusTcpIP\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\bin\Debug\MSConnection.dll
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\bin\Debug\MSConnection.pdb
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\bin\Debug\MSConnection.xml
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csprojResolveAssemblyReference.cache
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest01.resources
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest02.resources
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest03.resources
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+D:\Advan_Work\TCP通信接口\MSClient\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+C:\Users\Advantech\Desktop\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+C:\Users\Advantech\Desktop\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+C:\Users\Advantech\Desktop\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\bin\Debug\MSConnection.dll
+C:\Users\Advantech\Desktop\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest01.resources
+C:\Users\Advantech\Desktop\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest02.resources
+C:\Users\Advantech\Desktop\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest03.resources
+C:\Users\Advantech\Desktop\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+C:\Users\Advantech\Desktop\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+C:\Users\Advantech\Desktop\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\Advantech\Desktop\MSClient使用示例_敲键盘02\MSClient使用示例_敲键盘\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\Advantech\Desktop\KeyBoard示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+C:\Users\Advantech\Desktop\KeyBoard示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+C:\Users\Advantech\Desktop\KeyBoard示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest01.resources
+C:\Users\Advantech\Desktop\KeyBoard示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest02.resources
+C:\Users\Advantech\Desktop\KeyBoard示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest03.resources
+C:\Users\Advantech\Desktop\KeyBoard示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+C:\Users\Advantech\Desktop\KeyBoard示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache
+C:\Users\Advantech\Desktop\KeyBoard示例\KeyBoard C#\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+C:\Users\Advantech\Desktop\KeyBoard示例\KeyBoard C#\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+C:\Users\Advantech\Desktop\KeyBoard示例\KeyBoard C#\CSharpModBusExample\bin\Debug\MSConnection.dll
+D:\日常工作\KeyBoard新框架示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.exe
+D:\日常工作\KeyBoard新框架示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.pdb
+D:\日常工作\KeyBoard新框架示例\KeyBoard C#\CSharpModBusExample\bin\Debug\CSharpModBusExample.exe
+D:\日常工作\KeyBoard新框架示例\KeyBoard C#\CSharpModBusExample\bin\Debug\CSharpModBusExample.pdb
+D:\日常工作\KeyBoard新框架示例\KeyBoard C#\CSharpModBusExample\bin\Debug\MSConnection.dll
+D:\日常工作\KeyBoard新框架示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest01.resources
+D:\日常工作\KeyBoard新框架示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest02.resources
+D:\日常工作\KeyBoard新框架示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\MSTest.KeyBoardTest03.resources
+D:\日常工作\KeyBoard新框架示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.Properties.Resources.resources
+D:\日常工作\KeyBoard新框架示例\KeyBoard C#\CSharpModBusExample\obj\x86\Debug\CSharpModBusExample.csproj.GenerateResource.Cache

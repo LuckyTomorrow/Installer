@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VRs>
+  <VR No="0" Value="5" Address="40001" DataType="BIT_16_INT" DataSize="2" Init="0" Description="RunMode 1PR 2H 3HR 4O 5OR 6R 7ST 8EB 9ES" />
+  <VR No="1" Value="5" Address="40002" DataType="BIT_16_INT" DataSize="2" Init="0" Description="RunStatus 10RP" />
+  <VR No="2" Value="0" Address="40003" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="3" Value="0" Address="40004" DataType="BIT_16_INT" DataSize="2" Init="0" Description="step count" />
+  <VR No="4" Value="11" Address="40005" DataType="BIT_16_INT" DataSize="2" Init="0" Description="SubMode" />
+  <VR No="5" Value="0" Address="40006" DataType="BIT_16_INT" DataSize="2" Init="0" Description="CMD 1H 2O 3R 4Stop 5Pau 6Step 7Re 8B 9S 10Re" />
+  <VR No="6" Value="0" Address="40007" DataType="BIT_16_INT" DataSize="2" Init="0" Description="btn click" />
+  <VR No="7" Value="0" Address="40008" DataType="BIT_16_INT" DataSize="2" Init="0" Description="btn type" />
+  <VR No="8" Value="0" Address="40009" DataType="BIT_16_INT" DataSize="2" Init="0" Description="Warn ID" />
+  <VR No="9" Value="0" Address="40010" DataType="BIT_16_INT" DataSize="2" Init="0" Description="Err ID" />
+  <VR No="10" Value="-1" Address="40011" DataType="BIT_16_INT" DataSize="2" Init="0" Description="Home Flag" />
+  <VR No="11" Value="0" Address="40012" DataType="BIT_16_INT" DataSize="2" Init="0" Description="Stop Flag" />
+  <VR No="12" Value="0" Address="40013" DataType="BIT_16_INT" DataSize="2" Init="0" Description="Pause Flag" />
+  <VR No="13" Value="0" Address="40014" DataType="BIT_16_INT" DataSize="2" Init="0" Description="Step Flag" />
+  <VR No="14" Value="0" Address="40015" DataType="BIT_16_INT" DataSize="2" Init="0" Description="Err Flag" />
+  <VR No="15" Value="-1" Address="40016" DataType="BIT_16_INT" DataSize="2" Init="0" Description="AutoOrg" />
+  <VR No="16" Value="0" Address="40017" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="17" Value="0" Address="40018" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="18" Value="0" Address="40019" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="19" Value="0" Address="40020" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="20" Value="3000" Address="40021" DataType="BIT_16_INT" DataSize="2" Init="3000" Description="CR_OrgX" />
+  <VR No="21" Value="3000" Address="40022" DataType="BIT_16_INT" DataSize="2" Init="3000" Description="CR_OrgY" />
+  <VR No="22" Value="3000" Address="40023" DataType="BIT_16_INT" DataSize="2" Init="3000" Description="CR_OrgZ" />
+  <VR No="23" Value="0" Address="40024" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="24" Value="0" Address="40025" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="25" Value="0" Address="40026" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="26" Value="0" Address="40027" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="27" Value="0" Address="40028" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="28" Value="0" Address="40029" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="29" Value="0" Address="40030" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="30" Value="10000" Address="40031" DataType="BIT_16_INT" DataSize="2" Init="0" Description="CR_MoveX" />
+  <VR No="31" Value="10000" Address="40032" DataType="BIT_16_INT" DataSize="2" Init="0" Description="CR_MoveY" />
+  <VR No="32" Value="0" Address="40033" DataType="BIT_16_INT" DataSize="2" Init="0" Description="CR_MoveZ" />
+  <VR No="33" Value="1" Address="40034" DataType="BIT_16_INT" DataSize="2" Init="0" Description="CR_JogAxId" />
+  <VR No="34" Value="0" Address="40035" DataType="BIT_16_INT" DataSize="2" Init="0" Description="CR_JogN" />
+  <VR No="35" Value="0" Address="40036" DataType="BIT_16_INT" DataSize="2" Init="0" Description="CR_JogP" />
+  <VR No="36" Value="0" Address="40037" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="37" Value="0" Address="40038" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="38" Value="0" Address="40039" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="39" Value="0" Address="40040" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="40" Value="0" Address="40041" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="41" Value="0" Address="40042" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="42" Value="0" Address="40043" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="43" Value="0" Address="40044" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="44" Value="0" Address="40045" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="45" Value="0" Address="40046" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="46" Value="0" Address="40047" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="47" Value="0" Address="40048" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="48" Value="0" Address="40049" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="49" Value="0" Address="40050" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="50" Value="0" Address="40051" DataType="BIT_16_INT" DataSize="2" Init="0" Description="" />
+  <VR No="51" Value="10000" Address="40052" DataType="BIT_32_FLOAT" DataSize="4" Init="10000" Description="PointX1" />
+  <VR No="52" Value="10000" Address="40054" DataType="BIT_32_FLOAT" DataSize="4" Init="10000" Description="PointY1" />
+  <VR No="53" Value="20000" Address="40056" DataType="BIT_32_FLOAT" DataSize="4" Init="20000" Description="PointX2" />
+  <VR No="54" Value="10000" Address="40058" DataType="BIT_32_FLOAT" DataSize="4" Init="10000" Description="PointY2" />
+  <VR No="55" Value="19003" Address="40060" DataType="BIT_32_FLOAT" DataSize="4" Init="20000" Description="PointX3" />
+  <VR No="56" Value="10000" Address="40062" DataType="BIT_32_FLOAT" DataSize="4" Init="20000" Description="PointY3" />
+  <VR No="57" Value="19003" Address="40064" DataType="BIT_32_FLOAT" DataSize="4" Init="10000" Description="PointX4" />
+  <VR No="58" Value="-3483" Address="40066" DataType="BIT_32_FLOAT" DataSize="4" Init="20000" Description="PointY4" />
+  <VR No="59" Value="0" Address="40068" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="60" Value="0" Address="40070" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="61" Value="0" Address="40072" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="62" Value="0" Address="40074" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="63" Value="0" Address="40076" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="64" Value="0" Address="40078" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="65" Value="0" Address="40080" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="66" Value="0" Address="40082" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="67" Value="0" Address="40084" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="68" Value="0" Address="40086" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="69" Value="0" Address="40088" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="70" Value="0" Address="40090" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="71" Value="0" Address="40092" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="72" Value="0" Address="40094" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="73" Value="0" Address="40096" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="74" Value="0" Address="40098" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="75" Value="0" Address="40100" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="76" Value="0" Address="40102" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="77" Value="0" Address="40104" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="78" Value="0" Address="40106" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="79" Value="0" Address="40108" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="80" Value="0" Address="40110" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="81" Value="0" Address="40112" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="82" Value="0" Address="40114" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="83" Value="0" Address="40116" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="84" Value="0" Address="40118" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="85" Value="0" Address="40120" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="86" Value="0" Address="40122" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="87" Value="0" Address="40124" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="88" Value="0" Address="40126" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="89" Value="0" Address="40128" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="90" Value="0" Address="40130" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="91" Value="0" Address="40132" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="92" Value="0" Address="40134" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="93" Value="0" Address="40136" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="94" Value="0" Address="40138" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="95" Value="0" Address="40140" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="96" Value="0" Address="40142" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="97" Value="0" Address="40144" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="98" Value="0" Address="40146" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="99" Value="0" Address="40148" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="100" Value="0" Address="40150" DataType="BIT_32_FLOAT" DataSize="4" Init="0" Description="" />
+  <VR No="101" Value="0" Address="40152" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="Point_Num" />
+  <VR No="102" Value="0" Address="40153" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="Current_Point" />
+  <VR No="103" Value="0" Address="40154" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="104" Value="0" Address="40155" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="105" Value="0" Address="40156" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="106" Value="0" Address="40157" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="107" Value="0" Address="40158" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="108" Value="0" Address="40159" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="109" Value="0" Address="40160" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="110" Value="0" Address="40161" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="111" Value="1" Address="40162" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="AX0_SVON" />
+  <VR No="112" Value="1" Address="40163" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="AX1_SVON" />
+  <VR No="113" Value="0" Address="40164" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="114" Value="0" Address="40165" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="115" Value="0" Address="40166" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="116" Value="0" Address="40167" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="117" Value="0" Address="40168" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="118" Value="0" Address="40169" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="119" Value="0" Address="40170" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="120" Value="0" Address="40171" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="121" Value="0" Address="40172" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="122" Value="0" Address="40173" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="123" Value="0" Address="40174" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="124" Value="0" Address="40175" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="125" Value="0" Address="40176" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="126" Value="0" Address="40177" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="127" Value="0" Address="40178" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="128" Value="0" Address="40179" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="129" Value="0" Address="40180" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="130" Value="0" Address="40181" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="131" Value="0" Address="40182" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="btn_JogN" />
+  <VR No="132" Value="0" Address="40183" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="btn_JogP" />
+  <VR No="133" Value="0" Address="40184" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="134" Value="0" Address="40185" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="135" Value="1" Address="40186" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="Run_btn" />
+  <VR No="136" Value="0" Address="40187" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="Pause_btn" />
+  <VR No="137" Value="1" Address="40188" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="Step_btn" />
+  <VR No="138" Value="0" Address="40189" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="Resume_btn" />
+  <VR No="139" Value="0" Address="40190" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="Home_btn" />
+  <VR No="140" Value="1" Address="40191" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="Teach_btn" />
+  <VR No="141" Value="1" Address="40192" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="Dbg_btn" />
+  <VR No="142" Value="0" Address="40193" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="ERR_Times" />
+  <VR No="143" Value="0" Address="40194" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="144" Value="0" Address="40195" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="145" Value="0" Address="40196" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="146" Value="0" Address="40197" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="147" Value="0" Address="40198" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="148" Value="0" Address="40199" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="149" Value="0" Address="40200" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+  <VR No="150" Value="0" Address="40201" DataType="BIT_16_UINT" DataSize="2" Init="0" Description="" />
+</VRs>

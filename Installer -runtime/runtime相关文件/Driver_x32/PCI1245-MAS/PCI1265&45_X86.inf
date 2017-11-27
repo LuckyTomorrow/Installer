@@ -1,0 +1,163 @@
+;/*++
+;
+;Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;   THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+;   KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+;   IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+;   PURPOSE.
+;
+;Module Name:
+;
+;    PCI1265.INF
+;
+;Abstract:
+;    INF file for PCI1265 device.
+;
+;--*/
+
+[Version]
+Signature      = "$WINDOWS NT$"
+Class          =  %ClassName%
+ClassGuid      = {897408A3-F62B-484f-8CDD-908560C2E69A}
+Provider       = %Advantech%
+DriverVer      = 08/24/2011,6.1.7600.16385
+CatalogFile    = PCI1265S.cat
+
+[DestinationDirs]
+DefaultDestDir  = 12
+
+;-------------------------------------------------------------------------
+; Class Section
+;-------------------------------------------------------------------------
+[ClassInstall32]
+Addreg         = MotionClassReg
+
+[MotionClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+HKR,,DeviceCharacteristics,0x10001,0x100     ;Use same security checks on relative opens
+HKR,,Security,,"D:P(A;;GA;;;SY)(A;;GA;;;BA)(A;;GA;;;WD)" ;Allow generic all access to system and built-in Admin and everyone.
+
+;-------------------------------------------------------------------------
+; Device Install Section
+;-------------------------------------------------------------------------
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%Advantech%=Advantech,NTX86
+
+[SourceDisksFiles]
+PCI1265s.sys     = 1
+
+[SourceDisksNames]
+1=%DISK_NAME%,
+
+; For Win2K
+[Advantech]
+; DisplayName            Section           DeviceId
+; -----------            -------           --------
+%PCI1265.DRVDESC%=PCI1265_Inst, PCI\VEN_13FE&DEV_1265
+%PCI1245.DRVDESC%=PCI1245_Inst, PCI\VEN_13FE&DEV_1245&SUBSYS_A1001000
+
+; For XP and later
+[Advantech.NTX86]
+; DisplayName            Section           DeviceId
+; -----------            -------           --------
+%PCI1265.DRVDESC%=PCI1265_Inst, PCI\VEN_13FE&DEV_1265
+%PCI1245.DRVDESC%=PCI1245_Inst, PCI\VEN_13FE&DEV_1245&SUBSYS_A1001000
+
+;-----------------------------------------------------------------------
+;PCI-1265 
+;-----------------------------------------------------------------------
+[PCI1265_Inst.NT]
+CopyFiles      = PCI1265.CopyFiles
+
+
+[PCI1265.CopyFiles]
+PCI1265s.sys
+
+
+[PCI1265_Inst.NT.Services]
+AddService     = PCI1265,0x00000002,PCI1265_Service
+
+[PCI1265_Service]
+DisplayName    = %PCI1265.SVCDESC%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\PCI1265s.sys
+
+;-----------------------------------------------------------------------
+;PCI-1245
+;-----------------------------------------------------------------------
+[PCI1245_Inst.NT]
+CopyFiles      = PCI1245.CopyFiles
+
+
+[PCI1245.CopyFiles]
+PCI1265s.sys
+
+
+[PCI1245_Inst.NT.Services]
+AddService     = PCI1245,0x00000002,PCI1245_Service
+
+[PCI1245_Service]
+DisplayName    = %PCI1245.SVCDESC%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\PCI1265s.sys
+DelReg	       = OEM.DelReg
+
+[OEM.DelReg]
+HKLM,SYSTEM\CurrentControlSet\services\ADVANTECH\AdvMotion Device\OEM,PCI-1245
+;-------------------------------------------------------------------------
+; WDF Coinstaller installation
+;-------------------------------------------------------------------------
+[DestinationDirs]
+CoInstaller_CopyFiles = 11
+
+[PCI1265_Inst.NT.CoInstallers]
+AddReg         = CoInstaller_AddReg
+CopyFiles      = CoInstaller_CopyFiles
+
+[PCI1245_Inst.NT.CoInstallers]
+AddReg         = CoInstaller_AddReg
+CopyFiles      = CoInstaller_CopyFiles
+
+[CoInstaller_CopyFiles]
+WdfCoInstaller01005.dll
+
+[SourceDisksFiles]
+WdfCoInstaller01005.dll = 1 ; make sure the number matches with SourceDisksNames
+
+[CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller01005.dll,WdfCoInstaller"
+
+[PCI1265_Inst.NT.Wdf]
+KmdfService    = PCI1265, PCI1265_wdfsect
+
+[PCI1245_Inst.NT.Wdf]
+KmdfService    = PCI1245, PCI1245_wdfsect
+
+[PCI1265_wdfsect]
+KmdfLibraryVersion = 1.5
+
+[PCI1245_wdfsect]
+KmdfLibraryVersion = 1.5
+;------------------------------------------------------------------------------
+;  String Definitions
+;------------------------------------------------------------------------------
+
+[Strings]
+Advantech      = "Advantech"
+ClassName      = "Advantech Common Motion Card"
+PCI1265.SVCDESC = "PCI1245/65-MAS Series WDF Driver"
+PCI1265.DRVDESC = "PCI1245/65-MAS Series Motion Device"
+DISK_NAME      = "Advantech Common Motion Install Disk"
+PCI1245.SVCDESC = "PCI1245/65-MAS Series WDF Driver"
+PCI1245.DRVDESC = "PCI1245/65-MAS Series Motion Device"
+DISK_NAME      = "Advantech Common Motion Install Disk"
+

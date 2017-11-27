@@ -1,0 +1,315 @@
+;
+;File Name:
+;    BioGPDCs.INF
+;Abstract:
+;    INF file for the GPDC(General Purpose Dio Counter) driver.
+;$Support:PCIE-1752,PCIE-1754,PCIE-1756,PCIE-1730,PCIE-1760,PCIE-1751,PCIE-1753$
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Advantech
+ClassGuid={63B1F11D-C727-4d95-8338-A3D7E3F40416}
+Provider=%MSFT%
+DriverVer=08/16/2016,15.11.39.83
+CatalogFile=BioGPDCs.cat
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=AdvantechClassReg     
+
+[AdvantechClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+; Use same security checks on relative opens
+HKR,,DeviceCharacteristics,0x10001,0x100
+; Allow generic all access to system, built-in Admin, and Everyone.
+HKR,,Security,,"D:P(A;;GA;;;SY)(A;;GA;;;BA)(A;;GA;;;WD)" 
+
+; ================= Device Install section =====================
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer]
+%MSFT%=MSFT,NTAMD64
+
+[SourceDisksNames]
+1=%DISK_NAME%,
+
+[SourceDisksFiles]
+BioGPDC.dll=1
+BioGPDCs.sys=1
+wdfcoinstaller01005.dll=1 ; make sure the number matches with SourceDisksNames
+
+[DestinationDirs]
+DefaultDestDir = 12        ;%windir%\system32\drivers 
+
+PCIE1756.CopyFiles.sys = 12 ;%windir%\system32\drivers 
+PCIE1756.CopyFiles.dll = 11 ;%windir%\system32 
+
+PCIE1752.CopyFiles.sys = 12 ;%windir%\system32\drivers 
+PCIE1752.CopyFiles.dll = 11 ;%windir%\system32 
+
+PCIE1754.CopyFiles.sys = 12 ;%windir%\system32\drivers 
+PCIE1754.CopyFiles.dll = 11 ;%windir%\system32 
+
+PCIE1730.CopyFiles.sys = 12 ;%windir%\system32\drivers 
+PCIE1730.CopyFiles.dll = 11 ;%windir%\system32 
+
+PCIE1760.CopyFiles.sys = 12 ;%windir%\system32\drivers 
+PCIE1760.CopyFiles.dll = 11 ;%windir%\system32 
+
+PCIE1751.CopyFiles.sys = 12 ;%windir%\system32\drivers 
+PCIE1751.CopyFiles.dll = 11 ;%windir%\system32 
+
+PCIE1753.CopyFiles.sys = 12 ;%windir%\system32\drivers 
+PCIE1753.CopyFiles.dll = 11 ;%windir%\system32 
+
+CoInstaller_CopyFiles = 11 ;%windir%\system32 
+
+; For XP and later
+[MSFT.NTAMD64]
+; DisplayName           Section           DeviceId
+; -----------           -------           --------
+%PCIE1756.DRVDESC%=      PCIE1756_Inst,     PCI\VEN_13FE&DEV_E756
+%PCIE1752.DRVDESC%=      PCIE1752_Inst,     PCI\VEN_13FE&DEV_E752
+%PCIE1754.DRVDESC%=      PCIE1754_Inst,     PCI\VEN_13FE&DEV_E754
+%PCIE1730.DRVDESC%=      PCIE1730_Inst,     PCI\VEN_13FE&DEV_E730
+%PCIE1760.DRVDESC%=      PCIE1760_Inst,     PCI\VEN_13FE&DEV_E760
+%PCIE1751.DRVDESC%=      PCIE1751_Inst,     PCI\VEN_13FE&DEV_E751
+%PCIE1753.DRVDESC%=      PCIE1753_Inst,     PCI\VEN_13FE&DEV_E753
+
+[PCIE1756_Inst.NTAMD64]
+CopyFiles=PCIE1756.CopyFiles.sys, PCIE1756.CopyFiles.dll
+AddReg=CoInstaller_AddReg
+[PCIE1752_Inst.NTAMD64]
+CopyFiles=PCIE1752.CopyFiles.sys, PCIE1752.CopyFiles.dll
+AddReg=CoInstaller_AddReg
+[PCIE1754_Inst.NTAMD64]
+CopyFiles=PCIE1754.CopyFiles.sys, PCIE1754.CopyFiles.dll
+AddReg=CoInstaller_AddReg
+[PCIE1730_Inst.NTAMD64]
+CopyFiles=PCIE1730.CopyFiles.sys, PCIE1730.CopyFiles.dll
+AddReg=CoInstaller_AddReg
+[PCIE1760_Inst.NTAMD64]
+CopyFiles=PCIE1760.CopyFiles.sys, PCIE1760.CopyFiles.dll
+AddReg=CoInstaller_AddReg
+[PCIE1751_Inst.NTAMD64]
+CopyFiles=PCIE1751.CopyFiles.sys, PCIE1751.CopyFiles.dll
+AddReg=CoInstaller_AddReg
+[PCIE1753_Inst.NTAMD64]
+CopyFiles=PCIE1753.CopyFiles.sys, PCIE1753.CopyFiles.dll
+AddReg=CoInstaller_AddReg
+
+[PCIE1756.CopyFiles.sys]
+BioGPDCs.sys
+[PCIE1752.CopyFiles.sys]
+BioGPDCs.sys
+[PCIE1754.CopyFiles.sys]
+BioGPDCs.sys
+[PCIE1730.CopyFiles.sys]
+BioGPDCs.sys
+[PCIE1760.CopyFiles.sys]
+BioGPDCs.sys
+[PCIE1751.CopyFiles.sys]
+BioGPDCs.sys
+[PCIE1753.CopyFiles.sys]
+BioGPDCs.sys
+
+
+[PCIE1756.CopyFiles.dll]
+BioGPDC.dll
+[PCIE1752.CopyFiles.dll]
+BioGPDC.dll
+[PCIE1754.CopyFiles.dll]
+BioGPDC.dll
+[PCIE1730.CopyFiles.dll]
+BioGPDC.dll
+[PCIE1760.CopyFiles.dll]
+BioGPDC.dll
+[PCIE1751.CopyFiles.dll]
+BioGPDC.dll
+[PCIE1753.CopyFiles.dll]
+BioGPDC.dll
+
+
+[PCIE1756_Inst.NTAMD64.Services]
+AddService=BioGPDCS,0x00000002,PCIE1756_Service 
+[PCIE1752_Inst.NTAMD64.Services]
+AddService=BioGPDCS,0x00000002,PCIE1752_Service 
+[PCIE1754_Inst.NTAMD64.Services]
+AddService=BioGPDCS,0x00000002,PCIE1754_Service 
+[PCIE1730_Inst.NTAMD64.Services]
+AddService=BioGPDCS,0x00000002,PCIE1730_Service 
+[PCIE1760_Inst.NTAMD64.Services]
+AddService=BioGPDCS,0x00000002,PCIE1760_Service 
+[PCIE1751_Inst.NTAMD64.Services]
+AddService=BioGPDCS,0x00000002,PCIE1751_Service 
+[PCIE1753_Inst.NTAMD64.Services]
+AddService=BioGPDCS,0x00000002,PCIE1753_Service 
+
+[PCIE1756_Service]
+DisplayName    = %PCIE1756.SVCDESC%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\BioGPDCs.sys                            
+AddReg         = PCIE1756_Parameters_AddReg
+
+[PCIE1752_Service]
+DisplayName    = %PCIE1752.SVCDESC%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\BioGPDCs.sys                            
+AddReg         = PCIE1752_Parameters_AddReg
+
+[PCIE1754_Service]
+DisplayName    = %PCIE1754.SVCDESC%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\BioGPDCs.sys                            
+AddReg         = PCIE1754_Parameters_AddReg
+
+[PCIE1730_Service]
+DisplayName    = %PCIE1730.SVCDESC%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\BioGPDCs.sys                            
+AddReg         = PCIE1730_Parameters_AddReg
+
+[PCIE1760_Service]
+DisplayName    = %PCIE1760.SVCDESC%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\BioGPDCs.sys                            
+AddReg         = PCIE1760_Parameters_AddReg
+
+[PCIE1751_Service]
+DisplayName    = %PCIE1751.SVCDESC%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\BioGPDCs.sys                            
+AddReg         = PCIE1751_Parameters_AddReg
+
+[PCIE1753_Service]
+DisplayName    = %PCIE1753.SVCDESC%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\BioGPDCs.sys                            
+AddReg         = PCIE1753_Parameters_AddReg
+
+
+[PCIE1756_Parameters_AddReg]
+HKR, Parameters\Wdf, VerboseOn,       0x00010001, 1
+HKR, Parameters\Wdf, VerifierOn,      0x00010001, 1
+HKR, Parameters\Wdf, DbgBreakOnError, 0x00010001, 1
+
+[PCIE1752_Parameters_AddReg]
+HKR, Parameters\Wdf, VerboseOn,       0x00010001, 1
+HKR, Parameters\Wdf, VerifierOn,      0x00010001, 1
+HKR, Parameters\Wdf, DbgBreakOnError, 0x00010001, 1
+
+[PCIE1754_Parameters_AddReg]
+HKR, Parameters\Wdf, VerboseOn,       0x00010001, 1
+HKR, Parameters\Wdf, VerifierOn,      0x00010001, 1
+HKR, Parameters\Wdf, DbgBreakOnError, 0x00010001, 1
+
+[PCIE1730_Parameters_AddReg]
+HKR, Parameters\Wdf, VerboseOn,       0x00010001, 1
+HKR, Parameters\Wdf, VerifierOn,      0x00010001, 1
+HKR, Parameters\Wdf, DbgBreakOnError, 0x00010001, 1
+
+[PCIE1760_Parameters_AddReg]
+HKR, Parameters\Wdf, VerboseOn,       0x00010001, 1
+HKR, Parameters\Wdf, VerifierOn,      0x00010001, 1
+HKR, Parameters\Wdf, DbgBreakOnError, 0x00010001, 1
+
+[PCIE1751_Parameters_AddReg]
+HKR, Parameters\Wdf, VerboseOn,       0x00010001, 1
+HKR, Parameters\Wdf, VerifierOn,      0x00010001, 1
+HKR, Parameters\Wdf, DbgBreakOnError, 0x00010001, 1
+
+[PCIE1753_Parameters_AddReg]
+HKR, Parameters\Wdf, VerboseOn,       0x00010001, 1
+HKR, Parameters\Wdf, VerifierOn,      0x00010001, 1
+HKR, Parameters\Wdf, DbgBreakOnError, 0x00010001, 1
+
+
+;-------------- Coinstaller installation
+[PCIE1756_Inst.NTAMD64.CoInstallers]
+CopyFiles=CoInstaller_CopyFiles
+[PCIE1752_Inst.NTAMD64.CoInstallers]
+CopyFiles=CoInstaller_CopyFiles
+[PCIE1754_Inst.NTAMD64.CoInstallers]
+CopyFiles=CoInstaller_CopyFiles
+[PCIE1730_Inst.NTAMD64.CoInstallers]
+CopyFiles=CoInstaller_CopyFiles
+[PCIE1760_Inst.NTAMD64.CoInstallers]
+CopyFiles=CoInstaller_CopyFiles
+[PCIE1751_Inst.NTAMD64.CoInstallers]
+CopyFiles=CoInstaller_CopyFiles
+
+[PCIE1753_Inst.NTAMD64.CoInstallers]
+CopyFiles=CoInstaller_CopyFiles
+
+[CoInstaller_CopyFiles]
+wdfcoinstaller01005.dll
+
+[CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "wdfcoinstaller01005.dll,WdfCoInstaller"
+HKR,,EnumPropPages32,,"BioGPDC.dll, BioSysPropPageProvider"
+
+[PCIE1756_Inst.NTAMD64.Wdf]
+KmdfService = BioGPDCS, BioGPDCS_wdfsect
+[PCIE1752_Inst.NTAMD64.Wdf]
+KmdfService = BioGPDCS, BioGPDCS_wdfsect
+[PCIE1754_Inst.NTAMD64.Wdf]
+KmdfService = BioGPDCS, BioGPDCS_wdfsect
+[PCIE1730_Inst.NTAMD64.Wdf]
+KmdfService = BioGPDCS, BioGPDCS_wdfsect
+[PCIE1760_Inst.NTAMD64.Wdf]
+KmdfService = BioGPDCS, BioGPDCS_wdfsect
+[PCIE1751_Inst.NTAMD64.Wdf]
+KmdfService = BioGPDCS, BioGPDCS_wdfsect
+[PCIE1753_Inst.NTAMD64.Wdf]
+KmdfService = BioGPDCS, BioGPDCS_wdfsect
+
+[BioGPDCS_wdfsect]
+KmdfLibraryVersion = 1.5
+
+[Strings]
+MSFT = "Advantech"
+ClassName = "Advantech DAQ Devices"
+
+PCIE1756.SVCDESC = "PCIE-1756, 64-ch isolated DI/DO card"
+PCIE1756.DRVDESC = "PCIE-1756, 64-ch isolated DI/DO card"
+
+PCIE1752.SVCDESC = "PCIE-1752, 64-ch isolated DO card"
+PCIE1752.DRVDESC = "PCIE-1752, 64-ch isolated DO card"
+
+PCIE1754.SVCDESC = "PCIE-1754, 64-ch isolated DI card"
+PCIE1754.DRVDESC = "PCIE-1754, 64-ch isolated DI card"
+
+PCIE1730.SVCDESC = "PCIE-1730, 32-ch isolated DI/DO card"
+PCIE1730.DRVDESC = "PCIE-1730, 32-ch isolated DI/DO card"
+
+PCIE1760.SVCDESC = "PCIE-1760, 8-ch relay, 8-ch isolated DI, 2-ch counter/timer card"
+PCIE1760.DRVDESC = "PCIE-1760, 8-ch relay, 8-ch isolated DI, 2-ch counter/timer card"
+
+PCIE1751.SVCDESC = "PCIE-1751, 48-ch DI/DO, 3-ch counter/timer card"
+PCIE1751.DRVDESC = "PCIE-1751, 48-ch DI/DO, 3-ch counter/timer card"
+
+PCIE1753.SVCDESC = "PCIE-1753, 96-ch DI/DO card"
+PCIE1753.DRVDESC = "PCIE-1753, 96-ch DI/DO card"
+
+DISK_NAME = "Driver Install Disk"
+
+

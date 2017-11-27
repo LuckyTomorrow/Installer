@@ -1,8 +1,0 @@
-C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\UninstallForStudio\bin\Release\UninstallForStudio.exe.config
-C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\UninstallForStudio\bin\Release\UninstallForStudio.exe
-C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\UninstallForStudio\bin\Release\UninstallForStudio.pdb
-C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\UninstallForStudio\obj\Release\UninstallForStudio.Form1.resources
-C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\UninstallForStudio\obj\Release\UninstallForStudio.Properties.Resources.resources
-C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\UninstallForStudio\obj\Release\UninstallForStudio.csproj.GenerateResource.Cache
-C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\UninstallForStudio\obj\Release\UninstallForStudio.exe
-C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\UninstallForStudio\obj\Release\UninstallForStudio.pdb

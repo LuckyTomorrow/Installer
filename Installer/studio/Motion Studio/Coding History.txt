@@ -1,0 +1,748 @@
+V1.0.0.0(2015.07.20之前) 实现第一阶段功能：
+1. Connect to Controller
+2. 上传/下载Project
+3. 上传/下载File
+4. Compile/Run/Debugging(Step Into/Step Over/Continue) Program
+5. Watch Variable可查看单个/数组单个元素的值
+6. Project的操作：New/Load/Change/Create from Controler，Backup，Project Check
+7. Program的操作：New/Load/Copy/Rename/Delete
+8. Controller和Tools有界面，但功能待完善
+
+-----------------------------------------------------------------------------------
+V1.0.1.0（2015.10.8）实现第二阶段功能：
+可与BASIC、Guard及PM Designer搭配实现敲击键盘的功能：
+1. Motion支持以下功能：
+   1）速度参数设置
+   2）Home运动
+   3）PTP运动
+   4）Line运动
+   5）设置DO
+2. Tools支持：
+   1）运动测试：Tools——Axis Test
+   2）查看轴属性/状态：Tools——Axis Parameters
+   3）查看DI/DO值：Digital IO Viewer
+   4) 查看/设置VR变量值：VR Viewer
+   5) 查看/设置TABLE变量值：Tools——TABLE Viewer
+   6）运行时查看指定变量值：Tools——Watch Variables
+   7）通过Terminal方式下指令：Tools——Terminal
+3.WOP与Guard、BASIC串联运行：根据Modbus地址表，配置VR的Modbus地址，编写BASIC敲击键盘程序
+4.运行时报错处理：（停在错误行）显示错误信息
+
+2016.03.23
+1. Controller基本信息根据轴卡的个数进行加载（若个数为1，则直接显示在TreeView上；若大于1，则显示轴卡的名字，双击时显示信息）
+2. 检测网络是否正常改用线程进行（原来为Timer）
+
+----------------------------------------------------------------------------------
+V 1.0.1.1(2016.05.10)
+1. 修正一系列Bug（参考Worktile）
+2. VR Viewer添加Description列，Add Range时自动配置Modbus地址，信息以.csv的格式导入/导出
+3. 错误提示支持英文/简体中文和繁体中文
+4. Coding Helper新增模糊匹配查询功能
+
+-----------------------------------------------------------------------------------
+V 1.0.1.2(2016.05.17)
+1.修正Bug：Watch Variables双击空行报错
+2.修正Bug：不同模式Project切换的处理
+3.修正Bug：Coding History查询下拉框输入第一个字符不起作用
+
+-----------------------------------------------------------------------------------
+V 1.0.2.0:
+1.IDE初始未连接，点击连接后进入Tool模式，此时Programs信息没有，状态栏中的Project信息也没有
+2.配置虚拟轴卡时创建虚拟轴卡,删除虚拟轴卡时卸载虚拟轴卡
+3.根据Modbus地址调整，IDE相关进行调整
+4.增加支持IN1/2/4/5 StopEdge/StopOffset属性
+5.修正Bug：Configuration中的Motion Config，点击Remove all会卡死
+6.修正Bug：Menu Item快捷键（F10）不生效
+7.Bug：Output创建的Device的Board ID不对
+8.修正Bug：VR .csv导入时，值不会设置到VR
+
+-----------------------------------------------------------------------------------
+V 1.0.2.1:
+1. 修正Bug：若板卡有Device DI/DO，Motion Config产生的DI/DO Address与Input Config和Output Config有重复
+2. Find/Replace界面在切换Editor Tab后会自动切换到对应的Editor（Task）
+3. 加载新的Icon
+4. 新增Axis Status工具，移除Axis Parameters中的轴状态和IO指示灯
+5. Configuration点击OK后，由于可能创建/删除虚拟轴卡，因此需要检查与之前的可用板卡一致，如有不同，则Controller Treeview需要更新，Axis Status控件也需要进行更新
+
+-----------------------------------------------------------------------------------
+V 1.0.2.2:
+1.修正Bug：从Editor选中局部变量拖拉到Watch Variables，若目前Editor未保存，则对应的Context的内容在.bas后面会有“*”；
+2.New Icon，添加ToolButton;
+3.Axis Status刷新太频繁，会影响到整个IDE的响应效果，甚至处理效果(IDE卡死的现象)：将Interval从100ms改为1000ms
+4.VR Viewer处理：
+  1）自动保存/导入所有信息（除了值）
+  2）DataType Enum进行缩写
+  3）修正Bug：当内容中含有英文逗号”,”，则解析出的列数会超出DataGridView中的列数，出现Exception
+5.修正Bug：初始为Tool模式，Axis Status显示不正确（没有轴）
+6.修正Bug：Guard未关闭（已含有Project）,IDE初次连接为Tool模式，切换为同步模式，根据提示选择Project后报错：Open project file failed with Exception:System.Xml.XmlException: Root element is missing.
+
+------------------------------------------------------------------------------------
+V 1.0.2.3:
+1.修正Bug：手动关闭Axis Status后，切换Tool/Sync模式，会出现异常：关闭Axis Status后，全域变量m_AxisStatus没有重置为Null；
+2.完善：调整DockPanel标题字体：DockPanel控件—>Skin—>DockPanelStripSkin—>TextFont：Simsun改为Micosoft YaHei（同主界面的MenuItem的字体）
+3.修正Bug：简体中文和繁体中文版本运行报错
+4.修正Bug：Controller：Stop Motion/Enable Drive/Reset Error有时候不成功（>6轴要多次下命令）
+5.修正Bug：IDE打开后，第一次编译/运行，若.bas有更改，不会先保存更改
+6.修正Bug：若工程路径中有“（）”，则编译有错误时，双击错误行报错：Exception
+7.完善：Axis Status/Axis Properties：调整为一次获取所有请求轴的相关信息
+8.修正Bug：DIN/DOUT全域变量，会显示为Invalid Value
+9.New Program界面完善：
+  1) 移除Cycle和Event项
+  2) New Program输入框限制非法字符：只能为数字/下划线和字符
+10.Tool中移除第三阶段不Release的：TABLE/Oscilloscope
+11.按照最新BASIC指令表调整相关指令，新增一些指令
+
+------------------------------------------------------------------------------------
+V 1.0.2.4:
+1.修正Bug：Find&Replace打开后，关闭窗体后，切换Task，Find&Replace对话框会自动跳出
+2.修正Bug：New/Load/Save Project Button点击后会执行两遍
+3.修正Bug：切换到简体中文/繁体中文后，Axis Test和Digital IO Viewer不能加载上次保存的配置信息
+4.完善：切换到简体中文/繁体中文，有些界面显示的内容仍然为英文（程序中的切换）
+5.默认语言从英文改为简体中文
+6.Coding Helper：使用导入Excel实现
+
+------------------------------------------------------------------------------------
+V 1.0.2.5:
+VR Viewer：
+1.开放初始值（Init）栏
+2.添加“重置初始值”工具按钮
+3.New Range使用Icon
+
+Global Variables：
+1.开放初始值（Init）栏：保存到AmiVarDetail.xml
+2.栏位的顺序调整
+3.添加“重置初始值”工具按钮
+4.添加Value栏，可刷新值
+5.添加刷新数据/切换定期刷新数据工具按钮
+6.完善：简体中文/繁体中文
+
+修正：
+1.Bug：打开Configuration删除Device，重新配置Device后，Axis Status显示不正常（所有值均为null）
+2.Bug：VR Viewer Change Range/Delete Range操作后可能出现Exception
+3.Bug：同步模式下，Change Project加载不正常
+
+完善：
+1.添加BASIC相关错误代码
+2.IDE的Icon更换
+3.添加Axis Status的工具按钮和菜单项
+4.VR Viewer/Global Variables的Title字体也统一为Microsoft YaHei
+5.Controller TreeView上的Controller Name加粗
+
+调整：
+1.DI Modbus的起始地址调整：100001—>10001
+2.Controller：Stop Motion使用“STOP_ALL”指令实现
+3.主界面和Editor的状态栏高度：33—>25
+4.Axis Test的Config：显示改为模式对话框：必须关闭后才能再操作Axis Test
+5.Load Project不限制当前Project不可Load
+6.移除Online：Download/Upload
+
+------------------------------------------------------------------------------------
+V 1.0.2.6:
+AMI IDE修正、完善：
+1.修正：点击断开连接，ToolsBar的ToolButton状态不对
+2.修正：编程助手Tool Button没有生效
+3.修正：当没有配置Device时，点击Input/Output/Motion的Config报Exception
+4.修正：“删除以前”的备份，实际删除的是之后的备份
+5.修正：Program—>Copy/Rename跳出的对话框没有确定/取消按钮
+6.修正：AxisParameters，点击Show All后，勾选ModuleRange，再次点击Show All，会出现Exception：Specified cast is not valid
+7.修正：Lock/Unlock Controller对话框，打开后直接点击Cancle会报错：密码不能为空
+8.修正：Watch Variables初次打开后，按Ctrl+W产生一行，产生一个变量（变量名为空），点击刷新时报Exception——注：此操作不是正常的添加变量模式
+9.添加：Controller TreeView——添加控制器状态，当控制器状态为Error时，才显示状态为Error
+10.添加: Path Delay指令：DELAY
+11.修正：Program—>Edit的快捷键：Ctrl+E不起作用
+12.修正：Program—>Debug的快捷键：Ctrl+Shift+D不起作用
+13.调整：Program—>Save的快捷键由Ctrl+S改为Ctrl+Shift+S
+14.修正Bug：断线连接后，使用快捷键（比如Ctrl+N/Ctrl+E），会跳出界面
+15.修正Bug：Tool—>Call Custom Library，添加函数界面，直接点击Cancle会报错
+16.调整：备份Project和Project加密中列出的文件中将AmiVar.xml更换为AmiVarDetail.xml
+17.调整：移除Download Firmware菜单
+18.调整：PictureBox选中色：InactiveCaptionText(墨绿)—>InactiveCaption（淡蓝）
+19.添加：Option—>General中添加Axis Status和Global Variables刷新时间配置
+
+------------------------------------------------------------------------------------
+V 1.0.2.7:
+AMI IDE修正、完善：
+1.调整：如果没有配置自定义API或者自定义结构体，则Project file中不包含AmiCustomLib.bi或者Library的信息
+2.调整：Project备份和Project加密中显示Project相关信息，Custom Library以AmiCustomLib.bi为准
+3.修正：切换Project，会使得VR Viewer出现很多个范围（范围是重复的）
+4.调整：SetAutoRun API需要更改Project file，而IDE一直占用Project file；调整：先取消占用，SetAutoRun后再取消占用
+5.完善：Axis Test的Config界面，获取到的值不对，将值设置为SelectIndex会出现异常
+6.调整：Axis Parameters中属性名改为关键字，新增显示一些属性（Home速度参数和Jog速度参数等）
+7.修正：Axis Parameters关闭时Show All Params为true，关闭IDE，再次打开后，没有显示所有的属性
+8.调整：Option界面暂时移除Language和Diagnosis节点
+9.调整：Debug标识与背景行颜色由Yellow调整为LightGreen
+10.完善：Debug跳转，超出可视视窗时，跳转行在跳转后的视窗中间（之前是在第一行）
+11.调整：添加Editor错误行背景色（淡粉红），重新编译后错误行背景色会被清除
+12.完善：Watch Variables简体中文/繁体中文
+13.完善：Edit—>Advance简体中文/繁体中文
+14.完善：查找/替换和跳转行窗体简体中文/繁体中文
+15.完善：Axis Parameters和Axis Status：Axis(no)—>简体中文/繁体中文
+16.完善：Digital IO Viewer的简体中文/繁体中文
+17.完善：Terminal右键菜单的简体中文/繁体中文
+18.修正：Terminal中右键Copy，Paste and Run不起作用
+19.修正：Terminal中的子窗体编辑宏按钮，勾选/取消勾选会出现Exception
+20.新增：Configuration中支持MVP-3245
+21.修正：VR Viewer初始值/Modbus地址和DataType和Global Variables中的初始值无法正常编辑
+
+------------------------------------------------------------------------------------------
+V 1.0.2.8:
+1.Axis Parameters中增加显示KillDec属性（关键字：INSTOP_DEC）
+2.JOG-JK不支持，Axis Test移除
+3.PTP/Home速度参数分开，以Tab方式实现
+4.第三阶段只支持PCI-1245，MVP-3245，PCI-1750，PCI-1756，虚拟轴卡PCI-1245和PCI-1285
+5.移除Configuration的产生变量的两个按钮，界面改小一些
+6.移除Controller的导入/导出值菜单项
+7.Project Tree调整：
+  ——全局变量表, VR察看器 —>改名 I/O表, VR表
+  ——配置—>改名硬件配置
+  ——io/vr 表放到Project Tree（因为Project是由程序跟变量组成）
+8.修正：保存/导入.csv，当Description为null时，导入失败
+9.修正：当.csv中含中文时，导入出现乱码
+10.调整：VR Viewer和I/O Viewer中的Edit和Save Tool Button移除
+11.修正：VR Viewer的Copy/Paste不能单个Cell（可用Ctrl+C/Ctrl+V）
+12.新增：I/O Viewer的Copy/Paste不能单个Cell（可用Ctrl+C/Ctrl+V）
+13.完善：限制I/O Viewer的Value和Init只能是0/1
+14.新增：运行前勾选重置初始值
+15.新增：支持AutoRun和Normal的转换，Project TreeView和Controller TreeView右键菜单项显示切换
+16.移除：Project加密菜单项
+17.调整：Option的界面大小调整
+18.调整：Coding Helper中的Group下拉框
+19.修正：VR Viewer保存.csv的列名有遗漏，且顺序不对
+20.修正：VR Viewer创建新的范围没有根据DataType自动创建Modbus地址（DataType）
+21.调整：Backup Manager1）界面改小；2）解决界面缩短时，按钮会出现滚动条的问题
+22.调整：IDE之前编译为X86—>Any CPU
+23.调整：VR Viewer创建新的范围界面中Modbus地址范围调整450001—>40001
+24.调整：Axis Test的Servo On/Off图标调整，Servo On时即为On图标
+
+----------------------------------------------------------------------------------------
+V 1.0.2.9
+1.调整：VRViewer：显示单元格网格
+  BorderStyle：None—>FixedSingle；
+  CellBorderStype：None—>Single
+2.调整：Configuration中Input/Output/Motion中4个按钮位置统一
+3.调整：Project Save时需要保存AmiVarDetail.xml和AmiVR.xml以及其他Tool的相关信息
+4.调整：Project SaveAs前需要先进行Project Save
+5.调整：I/O表和VR表名称统一；I/O列宽可自行拖拉；Value的背景颜色改为淡绿色
+6.调整：为避免在Guard初始打开没有Device时，IDE运行获取版本信息等报错，获取时报错，不弹出对话框
+7.修正：Configuration删除虚拟轴卡后，点击OK后Axis Status报Exception：Index was outside the bounds of the array
+8.调整：64bit下创建虚拟轴卡失败的问题
+9.修正：纯净Guard（无AMI文件夹）第一次运行，纯净IDE（无.xml文件）第一次运行，新建工程，对应轴的状态均为Disable
+10.添加：根据Program的TaskType加载Icon
+11.修正：New Project界面提示显示不对
+12.调整：Axis Status列宽调整（有些列名显示不全）
+13.调整：当轴的状态为ERROR_STOPPED时，Axis Status的状态单元格背景色变红，Axis Test的轴Label背景色变红
+14.修正：新建工程时，上一个工程的路径若是直接在某个硬盘下，则会出现异常；
+15.修正：初次IDE打开连接（Guard没有启动）失败，启动Guard后建立连接后Axis Status的刷新间隔会是10s
+16.修正：Coding Helper查询输入框输入后显示的关键字不是Excel中的关键字
+17.添加：Project Check添加AmiCfg.xml和AmiVR.xml以及AmiCustomLib.bi的比较（待续）
+18.添加：Reset Controller前添加提醒对话框
+19.调整：Editor状态栏不实时根据Thread获取到的Program状态更新，而是根据操作结果显示相关提示信息
+20.调整：切换定时刷新按钮的提示根据当前状态改为使能/禁用定时刷新
+21.添加：I/O表使能/禁用定时刷新状态自动保存/导入
+22.添加：项目右上角点击删除前添加提醒对话框
+23.调整：移除项目树和控制器树右键中的Step Into
+24.修正：点击项目树和控制器树右键中的开始调试后，文字没有切换为停止调试
+25.调整：重置初始值图标调整
+
+------------------------------------------------------------------------------------------
+V 1.0.2.10:
+1.开放：运行前勾选重置初始值
+2.调整：IDE打开后第一次编译/运行前不再下载整个Project（用户在操作时，最好在编译/运行前先Save Project）
+3.修正Bug：Option的General界面，更改配置后，下次打开显示值非配置值（仍为默认值）
+4.添加：Option的General界面，更改配置后，点击Apply，刷新间隔参数立即生效
+5.调整：Project点击节点后，关闭界面，再次点击节点，界面不会跳出：AfterSelected事件更改为NodeMouseClick事件
+6.修正：选中ControllerTreeView的Programs节点，点右键，报错Exception：Object reference not set to an instance of an object
+7.修正：Configuration模块，双击更改配置后，Axis Status显示轴顺序不对
+8.调整：设置为自启动改为设置为自动运行程序；重置为正常改为设置为一般程序
+9.修正：当AmiVR.xml保存的VR个数大于IDE中要保存VR的个数，而原始VR的编号有问题时，关闭IDE，再次打开IDE，仍然会出现编号不对的情况（编号未根据实际情况设置）
+10.添加：Controller TreeView点击Reset Controller时进行提示
+11.修正：原来Reset Controller的提示简体中文/繁体中文互换了
+12.修正：查看模组版本信息界面在测试机台上会跳出Exception
+13.修正：查看模组界面在测试机台上会跳出Exception
+14.IDE新增支持：LTC_FLAG,CMP_FLAG和RESET_CMP
+15.修正：Watch Variables：SYNC_SRC—>STA_SRC；HOME_OFFSETDIS—>HOME_OFFSETDIST；添加DSPEED
+16.调整：Axis Parameters：移除GenDo：DO_EN
+17.调整：Configuration：移除Gen Output
+18.修正：Axis Parameters：若先选择轴0、1，再添加轴2、3时，轴3的名称与轴2相同，都是轴(2)
+19.修正：Axis Test没有选择任何轴时，没有选择轴的提示
+20.修正：当Project（.amitic）中配置中要显示轴，实际配置轴没有对应的轴序号时，虽然不会显示相应信息，但轴序号仍然一直记录着。此时即使没有选择任何轴，也不会有“选择轴”的提示信息出现
+21.完善：Axis Test中跳出的Select Axes仍然是英文
+22.调整：移除Controller TreeView中的Memory及其子节点
+23.修正：Coding Helper：当输入字符不是关键字，连续点击查询，会报Exception
+24.修正：Project/Controller切换自动运行/一般程序时，Controller当前Program（同一个）不切换，右键菜单名显示不对
+25.完善：Controller的右键菜单中的Delete没有提示
+
+----------------------------------------------------------------------------------------------
+V 1.0.2.11:
+1.调整：安装/卸载虚拟轴卡调整到AmiCfg.xml添加/删除配置信息之前，只有正常安装/卸载，AmiCfg.xml才会更改
+2.修正：项目窗口中, IO, VR表, 硬件配置等tree Item, 按鼠标右键，跳出异常窗口
+3.修正：Axis Parameters全部移除轴后会报Exception：Overlapping link regions——暂时只是Try…Catch到
+4.修正：点击Configuration后，没有点击OK，直接关闭或者Cancel，Axis Status不会再刷新
+5.添加：IDE标题添加版本号显示
+6.添加：判断Init/Modbus地址/DataType有更改时，才保存，下载AmiVR.xml/AmiVarDetail.xml
+7.修正：在原有工程（已配置Axis Test）正常情况下，新建工程，点击Axis Test，会报Exception：Object reference not set to an instance of an object（对象未初始化）
+8.添加：虚拟轴卡卸载前调接口Close Device
+9.添加：Modbus地址每次有更新都下载到Controller；新增接口在运行前重置初始值
+10.调整：点击Configuration，即使不点击OK，也会Check实际板卡与AmiCfg.xml是否一致，也会下载AmiCfg.xml（因为虚拟轴卡会即时安装/卸载）
+11.调整：IDE（Axis Parameters/关键字/Configuration）中移除以下指令或相关配置：FE_LIMIT、 HOME_SWITCH、JOG_JK、LBUF_ID、LTC_EDG、EXT_EN、IN1STOP_LOGIC、IN2STOP_LOGIC、IN4STOP_LOGIC、IN5STOP_LOGIC
+12.修正：删除所有Device后，重新配置Device，DI/DO的InStartAddress和OutStartAddress可能不为0；
+13.修正：Call Library Lib当参数为Return Value时，不可下移；第一个参数不可上移
+14.修正：Call Library Lib的Add Function初始界面显示不正常（如当返回值是Void时，Data Type应该显示，当参数为Return Type时，Const CheckBox应该Disabled）
+15.调整：Call Library Lib的Add Function界面第一个参数的名称不能更改（Return Value）
+16.调整：由于Modbus地址那边的结构体需要2字节对齐，因此读取轴的属性和状态的结构体的对齐方式均改为2字节对齐（注：需要搭配最新的Guard和BASIC）
+17.调整：AMI IDE—>AIMS Studio
+18.修正：删除选择备份，若选择多个，会弹出多个删除提示框
+19.添加：菜单项中的Compile和Compile All支持Release版
+20.调整：Compile时将Modbus/Init相关信息下载
+21.调整：将GlobalVar.bProjectUploaded相关处理屏蔽
+
+---------------------------------------------------------------------------------------------
+V 1.0.2.12:
+1.修正：STATUS，MIO，Motion_Error 传下来的类型不对，写成了局部变量类型。——WATCH Variables中添加支持
+2.修正：DSPEED偏移地址不对
+3.添加：DATATYPE_FLOAT和DATATYPE_INT32用于区分Float和U32，I32，Watch Variables中查看全局变量（属性相关）进行相关处理
+4.修正：VR Viewer中的Add Range，设置完起始Modbus地址后，切换到Start No/End No，退出后，起始Modbus地址会自动更改
+5.添加：支持新建工程在填写完ProjectName后按Enter创建新工程
+6.调整：编译出错时，不先清除Output Viewer中的信息；——否则在Compile All或者多个Task一起编译时信息显示不全
+7.调整：多个Task一起编译，添加Application.DoEvent——防呆
+8.调整：使能/禁用驱动器——>使能/禁用伺服
+9.修正：Controller TreeView，选中配置或最大轴数时，右键报Exception
+10.修正：点击除了Programs和Task节点外，右键会出现菜单
+11.修正：编译错误，双击没有跳转到对应的Task（Editor）
+12.修正：编译错误后，双击错误行后，更改后（错误行信息已改变）再次编译，错误行背景色没有移除
+13.修正：编译出现错误行，双击后，不会跳转到错误行（往上跳转时，背景色有处理）
+14.调整：标题调整：v+版本号
+15.调整：由于单纯只是值有变化，编译前不会下载；关闭IDE若没有下载下去，下次打开IDE时会显示不同步（AmiVR.xml不同），因此在IDE关闭时进行比较，若不一样，则下载
+16.调整：当检查到实际可用板卡与配置信息不同时，先将AxisStatus停止刷新，创建新的配置文件（AmiCfg.xml）后，下载相关信息后，再根据新的配置信息创建新的AxisStatus的轴列表——否则会报错：索引超出了数据界限
+17.调整：判断VR初始值/地址有变化才下载AmiVR.xml改为Check AmiVR.xml，当有不一样时，则下载——Add Range/Change Range/Delete Range都需要下载
+18.添加：VR Viewer/IO Viewer新增工具按钮：下载到控制器
+19.调整：节点添加空格不能对齐，改添加空格为“：”
+20.添加：Controller TreeViewer添加SYSTEM_ERROR和RUN_ERROR节点
+21.添加：Reset Error：添加CLEAR_ERROR处理
+22.修正：Call Library Lib中的勾选Const中的BASIC中Const与DataType连在一起
+23.修正：断开连接后Call LibraryLib和Axis Status的菜单项没有被禁用，而Coding Helper被禁用了
+24.添加：Controller状态添加一种：2表示没有Error_Stopped或者Disabled，但是有ErrorCode
+25.修正：Axis Parameters取消显示某列所有轴参数后，单击列名时会弹出报错窗口
+26.调整：MOTION_ERROR—>RUN_ERROR
+27.修正：先点Upload All/Download All，再点Download all/Upload All，Icon显示不对
+28.调整：Call Library Lib：限制返回值不能为常量
+29.修正：同一个API，Add/Edit/Show初始显示不对
+30.调整：限制一个Project里面最大支持10个Program：已有10个后，不能新建/导入/复制
+31.修正：PPU/PPU分母（Option中General中的下拉框）等输入框都不能输入0
+32.修正：若先将Program拷贝到工程路径下，在IDE中导入此Program后，工程树和控制器树没有重新加载
+33.添加关键字ERR_MSG：传入ErrorCode，返回具体错误信息
+
+-------------------------------------------------------------------------------------------------
+V 1.0.2.13:
+1.修正：Structure参数不能上移到第一位
+2.修正：编写结构体后，关闭IDE再打开，结构体没有加载（Struct/结构体）
+3.添加：点击菜单可弹出BASIC手册
+4.修正：Add API：数据类型设置后，查看/Edit时，数据类型自动变为U8
+5.修正：选VOID时，AmiCustomLib.bi内该函数的声明语句结尾没有换行，导致后面的函数声明接在该句后面，导致编译错误
+6.修正：当返回值为数组，需要在自定义库bi文本该语句声明最后添加Ptr
+7.修正：当返回值为string类型时，自定义库bi文本的返回值声明部分“AS STRING”应改为“AS ZSTRING PTR”
+8.完善：查看时，所有控件禁用，图片也改为灰阶
+9.修正：结构体移除所有成员后，再添加会报Exception：Value of ‘1’ is not valid for ‘index’
+10.修正：添加函数窗体，选择DLL路径后程序，会在路径最前面自动添加“C:\windows\system32\”，导致编译错误
+11.调整：限制API的Parameter的类型不能为void
+12.修正：当没有任何参数时，声明没有右括号，不完整
+13.调整：Struct的成员的数据类型可以为其他Struct
+14.修正：Build/Debug—>Watch Variable，即使选中内容为空，也会添加变量，导致刷新时报错
+15.调整：Watch Variable变量名为空时，不跳出对话框，只在Output Viewer中显示
+16.调整：所有可能Timer中的报错：若Timer没有启用，则跳出对话框；若Timer已启用，则只在Output Viewer中显示
+17.修正：Global Variable，单击列名“当前值”报Exception：限制不可排序
+18.修正：Global Variable，点击标题列可能会报Exception或错误框：限制为只读（VR Viewer做同步更改）
+19.完善：Global Variable：IN变量不可更改Value值
+20.修正：Call Library Lib，API，当参数为Array时，不需要添加ByVal或ByRef
+21.修正：Call Library Lib，API, 当参数为String时，需要定义为ZSTRING PTR
+22.调整：控制器状态提示名称更改：黄色—>系统执行错误，红色—>运动状态错误
+23.修正：New Program，不选择Task类型，点确定/取消报错：Object reference not set to an instance of an object
+24.添加：New Program按Enter后，如无错误进入下一个流程
+25.修正：Project工程名重复，没有报错提示
+26.添加：备份的重命名可按Enter后进入下一个流程
+27.完善：Controller/Project的按钮/Picture添加提示信息
+28.调整：Controller中RUN_ERROR需要带轴，改为使用ControllerID中的LastError
+29.修正：断线模式后，工具按钮中的“同步模式”和“监控模式”不可用
+30.修正：解锁密码输入错误，仍然可进入下一个流程
+31.修正：VR保存为AmiVR.xml有问题：IDE打开VR后，关闭VR，关闭IDE；然后再打开IDE，再关闭IDE时，AmiVR.xml会保存有问题——即使没有导入AmiVR.xml，也会再次保存AmiVR.xml，导致保存的信息不对
+32.修正：Upload AmiCustomLib.bi后，AmiCustomLib.bi和dll信息没有添加到Project file中
+33.优化：另存为和从控制器创建工程的默认路径为当前Project file的上一级路径
+34.修正：PPU/PPU Denominator等不可的数值不能包含0（10/100也不可以）
+35.移除：若没有设置断点，自动设置第一行为断点
+
+-----------------------------------------------------------------------------------------------
+V 1.0.2.14:
+1.添加：Struct：当类型为数组时，可以设置数组元素的个数
+2.修正：使用Ctrl+W添加的变量不显示值
+3.完善：非编辑状态时，所有的TextBox的Enabled属性设置为False；
+4.修正：结构体中当参数为字符串时，改用ZString，并可设置字符个数
+5.修正：输入框Ctrl+C或Ctrl+V报错：但用Ctrl+C/V的名称无法检测出无效性
+6.修正：Rename .bas，编辑名称不会实时检测名称是否有重复
+7.修正：检测名称是否重复不区分大小写
+8.完善：FreeBASIC不区分大小写，因此API和Struct名称也不区分大小写
+9.修正：再次打开日期时间，报Exception
+10.添加：关键字PTR
+11.修正：运行Icon的提示信息会随着鼠标移动
+12.添加：编译/运行前判断若Library不一样，将先下载AmiCustomLib.xml和Custom dll
+13.修正：New Project后，New Program点击Cancle，会跳出Exception
+14.修正：Custom Library当返回值/参数为Array/String/Struct时，不能正常执行的问题
+15.调整：若检测到地址有冲突（行背景色为红色），将不保存AmiVR.xml
+16.修正：Project TreeView，点击和选中的不一致，导致右键菜单不对，Rename Program报错
+17.完善：Project TreeView/Controller TreeView，点击和选中的不一致；Controller TreeView的Hide Selection设置为False，显示当前选中节点
+18.完善：Custom Library中Show模式下，显示打开路径的按钮不可用
+
+----------------------------------------------------------------------------------------------
+V 1.0.2.15:
+1.调整：当轴为DISABLE时，Axis Status和Axis Test的背景色也为红色
+2.修正：Editor的字体不能更改的问题
+3.修正：Tools 不可放置到DockPanel的问题
+4.修正：Tool在Document中显示，关闭时需要点击两次“x”；打开时加载界面不正常
+5.修正：自定义Struct，删除后再添加，在AmiCustomLib.bi中顺序不对（顺序没有按照Key的顺序）
+6.完善：Add Library界面的简体中文/繁体中文
+7.完善：API List和Struct List对齐模式统一为左对齐
+8.添加：Add Library工具按钮
+9.调整：Coding Help excel改名：AMI BASIC指令改为AIMS BASIC
+10.调整：重置控制器的按钮名称：重置—>重置控制器；菜单中的名称也调整为一致：C重启控制器—>重置控制器
+12.添加：关于AIMS Studio
+13.完善：Help中名称调整：AMI IDE—>AIMS Studio，AMI—>AIMS
+14.修正：Coding Helper报错：输入非关键字，点击查询后，再点下拉箭头，报Exception
+
+----------------------------------------------------------------------------------------------
+V 1.0.2.16:
+1.调整：为统一顺序：主菜单中，Axis Status和Digital IO Viewer顺序互换
+2.修正： Axis Test大小更改后，关闭IDE，再次打开，Axis Test的布局仍是初始布局（未随着大小而变化）
+3.调整：由于IDE打开时偶尔会发生所有界面缩小至左上角，因为暂时先不保存布局，打开IDE后按照默认布局加载
+4.改名：AMIS Studio—>WebAccess MAS Studio，Excel和PDF的名称做同步更改
+
+----------------------------------------------------------------------------------------------
+V 1.0.2.17:
+1.调整：Motion Config中轴的属性，原来的中文简体为zh-CN，为与IDE一致，调整为zh-Hans
+2.完善：I/O表，中文Data Type—>数据类型
+3.完善：VR表，新建范围对话框
+4.调整：VR表中只读Modbus地址范围调整：350001—>30001；355000—>35000
+5.修正：关闭IDE前，不调用关闭Tool窗体程序，则Tool相关配置信息不会保存到.amitic中
+6.调整：Select Axes：调整高度为327（默认可显示8个轴）
+7.调整：轴状态中的Last Error—>RUN_ERROR
+8.调整：移除Coding Helper的状态栏
+9.修正：编辑API/结构体时，类型为结构体，数据类型下拉框没有显示（选择String后，再选择Struct）
+10.调整：连接配置的中文界面（确定与取消按钮有重叠）
+11.完善：锁定控制器/解锁控制器，内容不为空，但仍提示内容不能为空
+12.完善：日期和时间界面，GroupBox居中显示
+13.修正：VR Viewer信息保存，当VR个数比原来少时，保存到AmiVR.xml有问题（多余的节点没有完全删除）
+14.修正：VR Viewer更改Modbus，Value列的背景色会变化
+
+---------------------------------------------------------------------------------------------
+V 1.0.2.18:
+1.调整：输入字符串大于1时才显示AutoComplete（但删除时，字符串长度为1时，仍显示）
+2.完善：有些关键字不会自动补齐——已追踪确实是ScintillaNET的bug，目前调整虽然不会自动补齐，但AutoComplete显示框会存在
+3.调整：编辑框有更改未保存，关闭IDE提示保存，选择Yes后，保存并下载到控制器
+4.新增：ProjectDefine（Bi）编辑器
+5.调整：Studio手册：WebAccess MAS Studio.pdf
+6.调整：Coding Helper名称更改：CodingHelp.xlsx
+
+--------------------------------------------------------------------------------------------
+V 1.0.2.19:
+1.添加：支持板卡类型：PCI-1245-MAS,PCI-1285-MAS,MVP-3245-MAS,MAS-324X Simulator和MAS-328X Simulator
+2.修正：更改字体，Text字体没有改变
+3.调整：与控制器建立连接后，连接配置菜单/工具按钮为Enabled。若已建立连接，则询问是否先断开连接；断开连接后再跳出“连接配置”对话框
+4.调整：“连接配置”界面根据单选框来确定Connection Type，并根据ConnectionType来确定工具：Axis Parametes和Axis Test中的轴的类型（Actual/Virtual）；根据Connection Type来确定DI是否可操作
+5.新增：连接虚拟控制器时，Digital IO Viewer可操作DI
+6.新增：连接虚拟控制器时，IO表可设置DI的值和初始值？
+7.新增：“连接配置”根据Runtime是否已存在来加载Simulator单选框的Enabled属性
+8.修正：若没有轴卡的时候，AmiCfg.xml仍存在，但之前的板卡信息需删除
+9.添加：连接虚拟控制器，记录虚拟控制器类型
+10.添加：切换连接后，重新创建AmiCfg.xml和AmiVarDetial.xml，并下载；重新初始化AxisStatus
+11.修正：错误提示简体中文和简体繁体弄反了
+12.调整：下载工程失败，切换到Tool模式
+13.添加：编译运行前，若ProjectDefine.bi有更改，需要先保存
+14.修正：新（空）的控制器，第一次使用Studio，新建工程，ProjectDefine.bi没有下载，导致会出现比对框
+15.完善：有些对话框的标题没有多种语言化
+16.调整：第一次连接Controller，跳出Connection对话框
+17.添加：第一次连接时，跳出对话框让用户选择产生工程的方式
+18.完善：移除Controller菜单项最下端的分割线
+19.调整：连接对话框Internet改为Ethernet
+20.调整：错误枚举前缀AMI改为MAS
+21.修正：连接到MAS-328X Simulator后，打开Axis Parameters，全选所有轴；再切换到MAS-324X Simulator报Exception：索引超出数组界限
+
+---------------------------------------------------------------------------------------------
+V 1.0.2.20:
+1.修正：没有实体卡，提示是否切换虚拟控制器后，点击No之后会再提示一次
+2.调整：单步后，由于时间差，Program的状态不是Debug_Ready，不能实时获取（刷新）到变量值，添加Sleep(100)等待
+3.添加：在提示切换虚拟控制器后，点击Yes后，都需要先断开连接，才能再连接到虚拟控制器
+4.修正：创建虚拟控制器有时候会失败，报Eception：无效的命令
+5.调整：I/O表中的名称：IN(xx)—>DIN(xx)，OUT(xx)—>DOUT(xx)
+6.修正：VR Viewer的Add Range的TextBox的鼠标光标不正常
+7.添加：防呆处理，Studio关闭异常时，产生的AmiRecentProjects.xml里面内容都没有，导致加载时报Exception：Root element is missing。所有XML的Load都添加Try…Catch防呆处理
+8.添加：支持指令PAUSEM和RESUMEM
+9.修正：编辑宏按钮，若中间有些Title没有勾选，则编辑后双击会报Exception：Index was out of range.
+
+----------------------------------------------------------------------------------------------
+V 1.0.2.21:
+1.完善：移除每一个FormEditor有一个Timer，统一放在主界面的Timer中
+2.修正：若有两个Simulator（如使用Utility添加），Studio打开后虽然会卸载其中一个Simulator，但由于在卸载前会先Close Device，后面CheckAmiCfg.xml与实际板卡一致，没有再下载AmiCfg.xml，导致会报错：AMI_InitializeFailed
+3.修正：biEditor中字体改变部分有漏处理到
+4.修正：没有设备时，导入项目报错：0x90000001。Studio添加判断，当Device的个数为0时，不去获取驱动版本号
+5.完善：为处理Studio的CPU占用率比较高的问题，进行优化处理
+6.调整：PAUSEM改为GPAUSE，RESUMEM改为GRESUME
+7.修正：初始连接Controller后报Exception的问题
+8.添加：对自定义的dll和Studio exe进行反编译保护
+9.修正：添加对象到Watch Variables后，编辑，若.bas没有保存，Context的Program名会有*，导致Runtime报错：程序中无此变量
+10.修正：初始连接，监控模式，程序为运行状态，Controller中的状态不对
+11.修正：ProjectDefine.bi关闭后再打开报Exception
+
+----------------------------------------------------------------------------------------------
+v 1.0.2.22:
+1. 修正: 第一次启动创建工程报错:保存IO失败
+2. 修正: 双击错误行不能跳转
+3. 完善：Project模式选择界面，描述文字的Mouse Enter背景色没有变化
+
+----------------------------------------------------------------------------------------------
+v 1.0.2.23:
+1.修正：RUN_ERROR不为0时，关闭Studio后，再打开，重置错误后，RUN_ERROR不为0
+2.添加：支持PCI-1245L-MAS、PCI-1245LIO-MAS和PCIE-1730和PCIE-1756
+3.修正Bug：当ActiveDocument为ProjectDefine.bi时点击控制器一栏task的调试\Compile按钮，程序会抛异常
+4.修正Bug：若ProjectDefine.bi显示在Document中，从同步模式切换到监控模式，ProjectDefine.bi没有关闭，点击控制器一栏task的调试/Compile按钮，程序会抛异常
+5.修正Bug：Studio创建Task，切换到Auto-Run后再切换回Normal，产生的Task仍为Auto-Run类型
+6.修正Bug：MAS-328X Simulator，数字输入输出表选中所有DI/O后，切换到MAX-324X Simulator报Exception
+
+----------------------------------------------------------------------------------------------
+安装包 V1.1之后
+----------------------------------------------------------------------------------------------
+v 1.0.2.24:
+1.修正：第一次连接后跳出打开对话框
+2.修正：工程文件被删除或者路径被更改时，再次打开studio会出现Exception导致连不上控制器的情况
+3.修正：Configuration中模拟控制器删除配置，再创建Motion配置不成功
+4.修正：扩大VR的Range范围，不会自动产生初始值
+5.添加：在.bas和ProjectDefine.bi中选中关键字，按F12，可跳出CodingHelper，并跳转到指定关键字
+6.修正：先打开studio，显示连接到控制器失败后再打开runtime，选择同步/监控连接模式，控制器树没有初始化
+7.修正：创建VR表（只填写VR的索引范围），Modbus地址和数据类型都为空白，此时改变某个VR的数据类型，程序抛异常
+8.完善：Axis Parameters中的数值显示：每隔3位添加逗号
+9.完善：轴参数中的数值显示：每隔3位添加逗号
+10.完善：数字输入输出表中的ToolButton添加智能提示
+11.完善：轴测试中添加智能提示
+12.新增：支持当前值可设置初始值（可分Range处理）
+13.修正：VR表格新建保存数据时，常常保存不下去，Modbus地址会不对（一直为第一次操作的值）
+14.修正：VR表更改Range范围，地址会错乱的问题
+15.完善：限制虚拟器连接模式时，不可添加实体轴卡；同样，Ethernet连接模式时，不可添加虚拟控制器；虚拟控制连接模式时，当已存在一种虚拟器类型时，不可再配置其他控制器类型； 
+16.完善：Axis Test/Axis Status中等参数值以千位加逗号方式显示
+17.调整：DO描述由MAS-324X Simulator Axis-0 OUT4/CAMDO调整为Axis-0 OUT4/CAMDO of MAS-324X Simulator
+18.完善：轴参数的参数名和值列应该都是只读
+
+----------------------------------------------------------------------------------------------
+v 1,0.2.25:
+1.完善：若当前值或初始值处于编辑状态时，点击[重置为初始值]或[设置当前值为初始值]，设置不会生效
+2.完善：如果某个范围刚刚被编辑过，且已退出编辑状态，此时如果不重新打开范围，则右键[范围]选项中的[当前值设为初始值]设置不会生效——限制只有选中行为Range才跳出右键
+3.修正： [硬件配置] --> [输出] 选项卡 --> 删除设备: MAS-324X Simulator -->然后添加设备MAS-324X Simulator，报错：BoardID均已占用，请选择其他的板卡类型。
+4.完善：Axis Test未选中时，不会进行智能提示：需要将toolTips1的ShowAlways设置为true
+5.调整：New Project时直接导入新的工程，而不是单个单个文件导入
+
+----------------------------------------------------------------------------------------------
+v 1.0.2.26:
+1.修正：编辑状态，设置初始值或者重置初始值不起作用(VR等使用DataGridView同步更改)
+2.完善：编辑状态，保存的内容可能不完整(VR等使用DataGridView同步更改)
+3.修正：VR新建时，如Modbus地址重复，不会提示错误
+4.完善：VR新建时，自动产生的Modbus地址有可能是重复的
+5.完善：VR保存为.csv时，先进行检查，若有冲突，进行提示
+6.完善：VR初始值设置为当前值或者当前值设置为初始值之前进行提示
+
+----------------------------------------------------------------------------------------------
+v 1.0.2.27:
+1.修正：监控模式或断开连接，点击“重置窗体布局”，会跳出Project窗体等界面
+2.修正：断开连接，“设置为一般程序”菜单没有禁用
+3.修正：BiEditor的编辑框内容显示不完整
+4.调整：VR表数据类型的FlatStyle由Standard改为Flat——可正常显示背景色
+5.修正：提示对话框的标题是英文
+6.调整：WebAccess MAS Studio更名为Motion Studio
+7.添加:支持PATHLINK相关指令：PATHLINKINI，PATHLINKBEGIN，PATHLINKEND，PATHLINKEND
+----Test----
+1.线程暂停和恢复改用AutoResetEvent实现
+2.一次只能启动一个应用程序改用Mutex实现
+3.Studio的CPU Loading改善
+4.Studio防呆处理：主要针对新建/导入工程，从控制器上传工程以及切换虚拟控制器等过程
+5.修正：提示对话框的标题是英文
+
+-----------------------------------------------------------------------------------------------
+v 1.0.2.28:
+1.完善：消息提示框有些消息列分为2行显示—>扩大长度，显示为1行
+2.修正：ProjectDefine.bi更改后，在ProjectTree/ControllerTree中点击Compile/StartDebugging，不会先保存/下载
+3.修正：VR/IO表中当前值栏，通过Ctrl+V方式粘贴值，不会设置到控制器
+4.修正：IO表，虚拟控制器时，DI更改当前值不成功
+5.修正：点击主菜单“编辑”后，再通过Ctrl+V粘贴到ProjectDefine.bi不起作用
+6.修正："编辑"主菜单下的所有子菜单都对ProjectDefine.bi操作无效
+7.优化：Terminal字体会自动变化的问题，调整后其字体与Editor一致。其他用到的RichTextBox进行同步更改
+8.新增：支持CANCELWAIT和PATHRESET指令
+9.优化：Configuration模块当属性PulseOutMode和HomeMode添加图形显示
+10.修正：同步方式连接，若原来的Project不存在，弹出的选择工程对话框直接关闭，信息对话框会一直存在
+11.新增：为支持气油缸功能，Configuration中添加气油缸相关配置部分
+12.新增：为支持气油缸功能，新增Tool：气油缸测试
+13.新增：关键字气油缸相关指令
+14.修正：Axis Test的位置输入超过1000，会自动跳到最前面
+
+-----------------------------------------------------------------------------------------------
+v 1.0.3.0:
+1.新增：选项—>编辑器中添加“显示自动补齐框”选项，可选择显示/屏蔽自动补齐框
+2.修正：中文输入法在Terminal中初始输入，会报Exception
+3.修正：编辑菜单中的屏蔽选中内容对ProjectDefine.bi不起作用
+4.优化：编辑框按Tab键移动4个空格（原来为8个）
+5.新增：在虚拟控制器方式连接时，也可切换到Internet方式中更改端口号
+6.优化：当板卡不支持属性时，属性值下拉框不显示NOT_SUPPORT
+7.新增：添加折叠功能,.BAS中运行时此功能禁用，Ready时才可用
+8.优化：开放ProjectDefine.bi的Motion相关指令的AutoComplete功能
+9.修正：编辑框放大/缩小字体后，鼠标单击左侧下断点不起作用/位置不对
+10.修正：在终端中，第一次按"UP”键不是最后一条指令
+11.优化：查找/替换不是中文（需要添加查找/替换的资源文件）
+12.修正：Replace的内容为空时，点击报Exception
+13.新增：Stop Motion(停止运动)工具按钮
+14.优化：Studio连Runtime不成功时添加信息提示
+15.新增：TCP相关指令支持TCP_READSTR，TCP_WRITESTR，TCP_STATUS，TCP_WAIT，TCP_CHECK，PARSESTR；TCP_READ/WRTIESTREAM更新未TCP_READ/WRITE
+16.修正：观察变量定时器打开，书写变量名未写全之前，VarContext为空，导致可能报错：Task不在Project中的错误
+
+------------------------------------------------------------------------------------------------
+安装包 V1.2之后
+----------------------------------------------------------------------------------------------
+v 1.0.3.1:
+1.修正：Project文件损坏（文件名存在，但内容损坏），打开Studio报异常，且不可新建/导入工程
+2.优化：当Project文件损坏，打开工程失败，若本为Sync模式，则会切换为Tool模式
+3.优化：Project TreeView显示Project名不完整
+4.新增：输出窗体和终端的右键菜单添加快捷键（清除——Alt+C，复制、粘贴、运行——Ctrl+R）
+5.优化：为统一操作方式，VR/Terminal/Watch Variable打开后，再点击不会关闭（统一为再次选中）
+6.修正：终端出现垂直滚动条后，滚动条没有在最底部，导致最后一条显示不全
+7.优化：Project文件损坏后，会切换到监控模式（监控模式不能使用备份功能）。在切换之前，先提示是否要使用备份文件
+8.优化：检查所有信息提示的函数和事件，在函数/事件的结束/退出处关闭信息提示框
+9.优化：VR表中的Modbus相关内容更改后，添加提示框
+10.优化：VR表新增范围对话框控件的TabIndex统一排序
+11.优化：VR表新增范围对话框：1）VR数据类型更改为Modbus数据类型 2）更换数据类型和地址的位置
+12.修正：查找替换窗体出现的情况下，再按Ctrl+F 焦点不会切换到查找替换窗体中
+13.修正：（Editor内容比较多时出现）编译出现错误时，点击错误信息，会跳转到错误行，但错误行会被挡住（滚动条的位置不对）
+14.修正：错误行内容比较多，在OutputView中的占用不止一行，获取到的当前行号与OutputView中的内容行号不一致，导致定位错误
+15.优化：还原为备份工程，之前只是打开工程——调整为导入工程（备份工程和之前的工程可能程序个数/名称不一样）
+16.优化：数字输入输出表描述文字显示不全
+17.优化：控制器树的重置控制器和状态显示更换位置，以免点错
+18.优化：输出窗体右键菜单中文化
+
+---------------------------------------------------------------------------------------------
+v 1.0.3.2:
+1.修正：Cylinder节点右键移除，删除所有气油缸后，气油缸的子节点仍存在
+2.修正：编译报错的代码行被折叠起来时，双击输出视窗的报错信息不能定位到错误行
+3.修正：终端，按Ctrl+R ，“>>” 会跳到行尾
+4.修正：“查找与替换”切换Task，查找框内偶尔变成上一次查找内容
+5.修正：查找替换窗体出现的情况下，再按Ctrl+H 焦点不会切换到查找替换窗体中
+6.优化：VR表的DataType更换后，检查地址是否有冲突
+7.新增：CYL关键字
+8.优化：配置模块中的气油缸子节点前面的序号改为CylID（之前为序号）
+9.修正：Controller中RUN_ERROR和SYSTEM_ERROR显示格式不一致
+10.修正：新增一个气油缸，更改CylID；删除后，再添加一个气油缸，产生的仍为之前的CylID
+11.修正：第一次新增一个气油缸，更改CylID，点击OK；双击Device行再次打开CylID变为默认值
+12.修正：第二块板卡新增一个气油缸，DO0无默认值
+
+---------------------------------------------------------------------------------------------
+v 1.0.3.3:
+1.优化：Terminal中文语言不可输入（Timer中切换右键菜单禁用等引起）
+2.优化：开放不选中字体，也可Copy，Paste and Run（Ctrl+R）
+3.新增：VR的Range Title行可添加描述
+4.优化：记录Range Title的显示/隐藏
+5.新增：折叠功能在选项中可设置（使能/禁用）
+6.修正：复制/粘贴快捷键（Ctrl+C/Ctrl+v）有时候不起作用
+7.优化：VR表第一列编号改显示为VR(X)
+8.修正：错误提示框显示在信息框后面
+9.修正：气油缸测试中Terminal指令CYL_BASE CYL(X)—>CYL_BASE X
+10.修正：HLMT和SLMT的Tolerance属性（8个）在Configuration中设置后再读取不正确
+11.修正：两张板卡，分别新建气油缸（不具体配置，且不查看），第二张默认产生/保存的DO/DI序号不对
+12.修正：编码器到位方式，可用Axis的编号实际为DI可用编号（误赋值）
+13.修正：编码器到位方式，编码器值只能设置正整数（实际为浮点数）
+
+---------------------------------------------------------------------------------------------
+v 1.0.3.4:
+1.修正：Redo工具按钮的状态有时候不对，同时优化Cut/Copy/Paste状态刷新
+2.优化：编辑菜单的状态（使能/禁用）
+3.修正：新增气油缸后，在轴卡配置页面选择取消的话，气油缸ID号会被占用
+4.优化：若配置没有改变，不再下载AmiCfg.xml和AmiVarDetail.xml
+5.修正：气油缸测试方向参数：前进为1，后退为0
+
+---------------------------------------------------------------------------------------------
+安装包 V1.3之后
+----------------------------------------------------------------------------------------------
+v 1.0.4.0:
+1.新增：控制器切换时，可导入之前的配置/复制当前配置
+2.新增：支持MVP-3285-MAS
+
+----------------------------------------------------------------------------------------------
+v 1.0.4.1:
+1.优化：气油缸测试模块中状态改为枚举显示（之前为数字）
+2.优化：PulseOutMode、HomeMode和SimStartSrc显示为数值，而不是枚举值（底层值含义有变化）
+3.修正：控制器之间切换时，DI/O编号大于DIO个数，下载AmiCfg.xml报错
+4.修正：控制器之间切换时，有DAQ板卡（复制）会报异常
+5.修正：控制器之间切换时，没有实体板卡，从Ethernet切换到Simulator，复制配置会报异常
+6.修正：控制器之间切换时，MAS-324X Simulator到Ethernet（PCI-1285+PCI1245L+DAQ）报异常
+7.优化：气油缸测试移除复位模式下拉框，新增复位按钮（与BASIC指令调整一致）
+8.优化：编程助手的ListBox的列宽随窗体宽度变化
+9.修正：信息框/提示框长时间不操作会引起断线
+10.添加：Tool中嵌入Vision Editor
+11.添加: Tool中嵌入3D Path
+12.添加：I/O表支持导入/导出描述和初始值
+13.添加：变量检测值添加支持十六进制/二进制显示
+14.修正：I/O表描述栏为空，会报异常
+15.优化：VR表描述栏逗号时，提醒，移除逗号
+
+------------------------------------------------------------------------------------------------
+安装包 V1.4（包含前面V1.3之后的功能）
+------------------------------------------------------------------------------------------------
+V 1.1.0.0:
+1.优化：Motion Studio整体界面/图标 
+2.新增：TASK_STATUS指令
+3.优化：Controller的按钮下指令调整：RESETERRALL,SVONALL,SVOFFALL
+4.优化：查找/替换对话框界面改小一些
+5.修正：VR减少Range数量时，少了一个左括号，导致异常
+6.修正：硬件配置起始地址等虽为ReadOnly，但实际修改仍生效
+7.修正：I/O表窗体中单击[当前值]栏，栏位背景色色变成白色
+8.修正：重新加载IO表时，若初始值不是0或1，单元格背景色不会变成红色
+9.修正：新建工程后，状态栏的工程路径没有切换
+
+------------------------------------------------------------------------------------------------
+V 1.1.0.1
+1.修正：Tree节点Task的Icon与文本不对齐
+2.修正：编程助手偶尔会报Exception
+3.优化：Stop的Icon风格与StartDebug，StepOut等一致
+4.修正：鼠标移动到项目窗体中的新建程序图标后，图标底色变成透明
+5.优化：项目产生来源和配置产生来源的界面有一个Icon改为32*32
+6.修正：程序编辑界面Float方式显示时，[重置为初始值] 选择框与标签分离
+7.修正：数字输入输出查看器：点击列头排列顺序时抛异常
+8.修正：程序编辑界面单独拉出（Float方式显示）时，对界面上工具按钮的操作没有对应到当前程序
+9.优化：帮助菜单Motion Studio/BASIC帮助改为使用手冊
+10.优化：VTask Editor改在Project TreeView中添加Vision节点
+11.优化：针对有时报异常：Out of Memory做些许优化
+
+------------------------------------------------------------------------------------------------
+V 1.1.0.2:
+1.优化：IO表导入/保存csv文件的工具按钮的提示信息中文化
+2.优化：气油缸测试的按钮“选择气油缸”显示不全
+3.优化：气油缸测试中“选择气油缸”Lable的颜色和字体统一
+4.优化：Project树和Controller树，ScrollBar滚动后，Program名与Icon没有对齐
+5.优化：硬件配置界面轴属性名和描述优化
+6.修正：MVP-3285-MAS只有16DI/16DO
+7.修正：自定义函数添加函数，返回值为常规数据，指针形式，BASIC接口不对（没有PTR）
+8.修正：解决差异中点击新建工程报错
+9.优化：解决差异中新建工程的图标更换，鼠标进入背景色有更改
+10.优化：菜单项对应编辑框编辑相关有Icon的添加Icon（如Find/Replace等）
+11.修正：控制器窗体中“自动运行”程序图标不正确
+12.修正：轴测试的正向/反向PTP/Home初始图标不对
+
+-----------------------------------------------------------------------------------------------
+V 1.1.0.3:
+1.优化：向后定位/向前定位改为向后导航/向前导航
+2.修正：轴测试和数字输入输出表嵌入到DockPanel后，需要双击才会重回浮动显示
+3.修正：查找替换窗口上边缘有时会超出可操作范围
+4.优化：硬件配置中轴属性表限制高度不可调整，同时对VR表进行限制
+5.修正：断开连接时，气油缸测试和自定义函数如果没有关闭，不会自动关闭
+6.优化：气油缸测试中按钮改为图标，并新增提示
+7.修正：轴测试工具嵌入到DockPanel（如Document）中，再拖出后界面显示不全
+
+-----------------------------------------------------------------------------------------------
+V 1.1.0.4:
+1.优化：帮助助手指令行切换后背景色不是默认色
+2.优化：控制器状态当为系统执行错误/运动执行错误时显示不全
+3.新增：.bas保存时添加空行（For Bug：断点在最后一行，Debug运行不正常）
+4.优化：选项和自定义函数界面中文化
+5.优化：部分显示文字/提示信息优化
+6.优化：VR保存ICON与IO表一致
+7.修正：编程助手，切换后栏位背景色不是默认色
