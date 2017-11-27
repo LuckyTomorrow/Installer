@@ -73,7 +73,7 @@ namespace AdvanInstaller
         }
 
         //判断是32位还是64位系统
-        public void checkWin32Or64()
+        public void checkWin32Or64(int proValue)
         {
             string fromPath = StudioPath + @"Motion Studio\Client.zip";
             string targetPaht = StudioPath + @"Motion Studio\";
@@ -91,13 +91,15 @@ namespace AdvanInstaller
                 writer.Write(Properties.Resources.Client_x86, 0, Properties.Resources.Client_x86.Length);
             }
             writer.Dispose();
+            processValue += proValue / 2;
             //解压studio
             UnpackFileRarOrZip(fromPath, targetPaht);
             System.IO.File.Delete(fromPath);
+            processValue += proValue / 2;
         }
 
         //根据系统语言是简中还是繁中，对相应文件进行复制操作
-        public void checkSampleOrTradition()
+        public void checkSampleOrTradition(int proValue)
         {
             try
             {
@@ -114,18 +116,22 @@ namespace AdvanInstaller
                 {
                     formwhere = StudioPath + @"Motion Studio\zh-TW\";
                 }
+                processValue += proValue / 5;
 
                 formpath = formwhere + manual[3];
                 topath = StudioPath + @"Documents\Application Manual\" + manual[3];
                 System.IO.File.Copy(formpath, topath, true);
+                processValue += proValue / 5;
 
                 formpath = formwhere + manual[5];
                 topath = StudioPath + @"Documents\Application Manual\" + manual[5];
                 System.IO.File.Copy(formpath, topath, true);
+                processValue += proValue / 5;
 
                 formpath = formwhere + manual[4];
                 topath = StudioPath + @"Documents\Release Note\" + manual[4];
                 System.IO.File.Copy(formpath, topath, true);
+                processValue += proValue / 5;
 
                 for (int i = 0; i < 3; i++)
                 {
@@ -133,6 +139,7 @@ namespace AdvanInstaller
                     topath = StudioPath + @"Documents\Software Manual\" + manual[i];
                     System.IO.File.Copy(formpath, topath, true);
                 }
+                processValue += proValue / 5;
             }
             catch(Exception e)
             {
@@ -444,8 +451,8 @@ namespace AdvanInstaller
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        {
-            this.progressBar1.Value = processValue;
+        {            
+            this.skinProgressBar1.Value = processValue;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -458,12 +465,12 @@ namespace AdvanInstaller
         {
             RegistryKey hkml = Registry.LocalMachine;
             RegistryKey software = hkml.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy", true);
-
-            processValue += 5;
+            processValue += 4;
 
             //初始化设置
             string[] rootDir = { "Motion Studio", "Libraries", "Example", "Documents" };
             InitAction(rootDir);
+            processValue += 5;
 
             # region 复制压缩包至指定目录，并解压
             string sourcePath = StudioPath + "studio.zip";
@@ -478,15 +485,13 @@ namespace AdvanInstaller
             //解压studio
             UnpackFileRarOrZip(sourcePath, targetPaht);
             System.IO.File.Delete(sourcePath);
-            processValue += 10;
+            processValue += 15;
 
             //判断系统32位还是64位，用于下一步对应系统的压缩包解压
-            checkWin32Or64();
-            processValue += 5;
+            checkWin32Or64(16);
             //判断系统简中还是繁中，用于下一步对应系统的文件复制
-            checkSampleOrTradition();
+            checkSampleOrTradition(25);
             #endregion
-            processValue += 5;
 
             #region 创建桌面快捷键
             //创建桌面快捷键
@@ -496,7 +501,7 @@ namespace AdvanInstaller
             //创建桌面快捷键，参数1为快捷键对应的程序实际位置，参数2为快捷键名字，参数3为快捷键描述
             CreateDesktopShortcuts(targetPath, name, description);
             #endregion
-            processValue += 10;
+            processValue += 2;
 
             # region 创建开始菜单   Motion Studio.exe 快捷键
             //创建Motion Studio.exe 快捷键
@@ -506,7 +511,7 @@ namespace AdvanInstaller
             targetPath = StudioPath + @"Motion Studio\Motion Studio.exe";
             CreateStartmenuShortcuts(iconpath, targetPath, startmenupath, description);
             #endregion
-            processValue += 10;
+            processValue += 2;
 
             # region 创建开始菜单   Motion Studio.exe 卸载快捷键
             //创建Motion Studio.exe 快捷键
@@ -516,7 +521,7 @@ namespace AdvanInstaller
             targetPath = StudioPath + @"Motion Studio\StudioUninst.exe";
             CreateStartmenuShortcuts(iconpath, targetPath, startmenupath, description);
             #endregion
-            processValue += 10;
+            processValue += 2;
 
             #region 创建开始菜单  Example文件夹快捷键
             //创建开始菜单快捷键------Example/Normal/Single Axis
@@ -547,7 +552,7 @@ namespace AdvanInstaller
             targetPath = StudioPath + @"Example\Template\FixedPoint Motion";
             CreateStartmenuShortcuts(iconpath, targetPath, startmenupath, description);
             #endregion
-            processValue += 10;
+            processValue += 2;
             
             #region 创建开始菜单  Documents文件夹快捷键
             //创建开始菜单快捷键------Documents/DSP
@@ -600,7 +605,7 @@ namespace AdvanInstaller
             CreateStartmenuShortcuts(iconpath, targetPath, startmenupath, description);
 
             #endregion
-            processValue += 10;
+            processValue += 2;
 
             //将卸载程序加入控制面板/程序卸载
             software = hkml.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\", true);
@@ -678,7 +683,7 @@ namespace AdvanInstaller
             }
             flag_png_times++;
 
-            this.progressBar1.Value = processValue;
+            this.skinProgressBar1.Value = processValue;
             switch (flag_text)
             {
                 case 0:
@@ -686,7 +691,7 @@ namespace AdvanInstaller
                     label1.Visible = false;
                     break;
                 case 1:
-                    progressBar1.Visible = true;
+                    skinProgressBar1.Visible = true;
                     label1.Visible = true;
                     label1.Text = "正在安装.   ";
                     flag_text += 1;
@@ -704,7 +709,7 @@ namespace AdvanInstaller
             if (processValue == 100)
             {
                 //进度条到顶，进度条不可见
-                progressBar1.Visible = false;
+                skinProgressBar1.Visible = false;
                 pictureBox2.Visible = false;
                 timer1.Enabled = false;
 
@@ -785,7 +790,7 @@ namespace AdvanInstaller
             pictureBox3.Image = Properties.Resources.finish_out;
             pictureBox3.SizeMode = PictureBoxSizeMode.Normal;
 
-            progressBar1.Visible = false;
+            skinProgressBar1.Visible = false;
             timer1.Enabled = false;
             pictureBox2.Visible = true;
             pictureBox3.Visible = false;

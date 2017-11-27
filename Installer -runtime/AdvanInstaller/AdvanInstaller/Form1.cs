@@ -94,7 +94,7 @@ namespace AdvanInstaller
         }
 
         //复制与解压资源内的zip包
-        public void CopyAndUnzip()
+        public void CopyAndUnzip(int proValue)
         {
             string[] str = { "Dll&Sys.zip", "Driver_x32.zip", "Driver_x64.zip", "runtime_basic.zip", "System32.zip", "System64.zip" };
             string sourcePath = "";
@@ -131,12 +131,13 @@ namespace AdvanInstaller
 
                 UnpackFileRarOrZip(sourcePath, targetPath);
                 System.IO.File.Delete(sourcePath);
+                processValue += proValue/str.Length;
             }
 
         }
 
         //判断是32位还是64位系统
-        public void checkWin32Or64()
+        public void checkWin32Or64(int proValue)
         {
             string sourceDir = null;
             string targetDir = null;
@@ -292,6 +293,7 @@ namespace AdvanInstaller
                     System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\BioGPDCs.sys", @"C:\Windows\System32\drivers\BioGPDCs.sys", true);
 
                 }
+                processValue += proValue / 3;
 
                 //System32文件夹操作
                 sourceDir = RuntimePath + "System64";
@@ -301,7 +303,8 @@ namespace AdvanInstaller
                 //Syswow64文件夹操作
                 sourceDir = RuntimePath + "System32";
                 targetDir = @"C:\Windows\SysWOW64";
-                CopySystem32File(sourceDir, targetDir);            
+                CopySystem32File(sourceDir, targetDir);
+                processValue += proValue / 3;
 
             }
             else   //32位系统
@@ -441,11 +444,13 @@ namespace AdvanInstaller
                     System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\BioGPDCs.sys", @"C:\Windows\System32\drivers\BioGPDCs.sys", true);
 
                 }
+                processValue += proValue / 3;
 
                 //System32文件夹操作
                 sourceDir = RuntimePath + "System32";
                 targetDir = @"C:\Windows\System32";
                 CopySystem32File(sourceDir, targetDir);
+                processValue += proValue / 3;
             }
 
             //删除多余的文件夹
@@ -457,6 +462,7 @@ namespace AdvanInstaller
                     Directory.Delete(RuntimePath + Folder[i], true);
                 }
             }
+            processValue += proValue / 3;
         }
 
         /// <summary>
@@ -572,7 +578,7 @@ namespace AdvanInstaller
         }
 
         //安装驱动程序
-        public void InstallDriver()
+        public void InstallDriver(int proValue)
         {
             Process t = null;
             string[] dirName = { "PCI1245-MAS", "PCI1245L&LIO-MAS", "PCI1285-MAS" , "MVP3245-MAS" , "PCI1750", "PCI1756", "PCIGPDC" };
@@ -590,6 +596,8 @@ namespace AdvanInstaller
                     t.Close();
                     t.Dispose();
                 }
+
+                processValue += proValue / dirName.Length;
             }
 
         }
@@ -900,7 +908,7 @@ namespace AdvanInstaller
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.progressBar1.Value = processValue;
+             this.skinProgressBar1.Value = processValue;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -914,23 +922,20 @@ namespace AdvanInstaller
             //初始化设置
             string[] rootDir = { "Motion_Runtime", "DAQNavi" };
             InitAction(rootDir);
-            processValue += 5;
+            processValue += 6;
 
             //先进行注册表相关操作
             doRegedit();
             processValue += 5;
 
             //复制压缩包至指定目录，并解压
-            CopyAndUnzip();
-            processValue += 20;
+            CopyAndUnzip(30);
 
             //判断系统32位还是64位，用于相应文件的复制、删除
-            checkWin32Or64();
-            processValue += 20;
+            checkWin32Or64(15);
 
             //安装驱动程序
-            InstallDriver();
-            processValue += 25;
+            InstallDriver(35);
 
             #region 创建开始菜单   Motion_Runtime.exe 快捷键
             //创建Motion_Runtime.exe 快捷键
@@ -940,7 +945,7 @@ namespace AdvanInstaller
             string targetPath = RuntimePath + @"Motion_Runtime\Motion_Runtime\Motion_Runtime.exe";
             CreateStartmenuShortcuts(iconpath, targetPath, startmenupath, description);
             #endregion
-            processValue += 5;
+            processValue += 2;
 
             # region 创建开始菜单   Motion_Runtime.exe 卸载快捷键
             //创建Motion_Runtime.exe 卸载快捷键
@@ -950,7 +955,7 @@ namespace AdvanInstaller
             targetPath = RuntimePath + @"Motion_Runtime\Motion_Runtime\RuntimeUninst.exe";
             CreateStartmenuShortcuts(iconpath, targetPath, startmenupath, description);
             #endregion
-            processValue += 5;
+            processValue += 2;
 
             # region 创建启动菜单   Motion_Runtime.exe 启动快捷键
             //创建Motion_Runtime.exe 卸载快捷键
@@ -960,7 +965,7 @@ namespace AdvanInstaller
             targetPath = RuntimePath + @"Motion_Runtime\Motion_Runtime\Motion_Runtime.exe";
             CreateStartmenuShortcuts(iconpath, targetPath, startmenupath, description);
             #endregion
-            processValue += 5;
+            processValue += 1;
 
             //将卸载程序加入控制面板/程序卸载     
             RegistryKey hkml = Registry.LocalMachine;
@@ -986,10 +991,10 @@ namespace AdvanInstaller
             software.SetValue("sEstimatedSize2", 0);            
             //software.SetValue("NoModify", 1);
             //software.SetValue("NoRepair", 1);
-            processValue += 5;
+            processValue += 2;
 
             removeDll();
-            processValue += 5;
+            processValue += 2;
 
         }
 
@@ -1025,7 +1030,7 @@ namespace AdvanInstaller
             }
             flag_png_times++;
 
-            this.progressBar1.Value = processValue;
+            this.skinProgressBar1.Value = processValue;
             
             switch (flag_text)
             {
@@ -1034,7 +1039,7 @@ namespace AdvanInstaller
                     label1.Visible = false;
                     break;
                 case 1:
-                    progressBar1.Visible = true;
+                    skinProgressBar1.Visible = true;
                     if (processValue>=50 && processValue<75)
                     {
                         label1.Text = "正在加载驱动.  ";
@@ -1072,7 +1077,7 @@ namespace AdvanInstaller
             if (processValue == 100)
             {
                 //进度条到顶，进度条不可见
-                progressBar1.Visible = false;
+                skinProgressBar1.Visible = false;
                 pictureBox2.Visible = false;
                 button1.Visible = true;
                 button2.Visible = true;
@@ -1155,7 +1160,7 @@ namespace AdvanInstaller
             pictureBox3.Image = Properties.Resources.finish_out;
             pictureBox3.SizeMode = PictureBoxSizeMode.Normal;
 
-            progressBar1.Visible = false;
+            skinProgressBar1.Visible = false;
             timer1.Enabled = false;
             pictureBox2.Visible = true;
             pictureBox3.Visible = false;

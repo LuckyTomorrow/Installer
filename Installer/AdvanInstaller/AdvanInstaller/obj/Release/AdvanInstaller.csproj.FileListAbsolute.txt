@@ -21,4 +21,5 @@ C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Relea
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Release\Motion Studio V1.6.pdb
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\Motion Studio V1.6.exe
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\Motion Studio V1.6.pdb
-C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Release\CSkin.dll
+C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Release\CSkin.xml
