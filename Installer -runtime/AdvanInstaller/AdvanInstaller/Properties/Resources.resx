@@ -160,9 +160,6 @@
   <data name="Dll_Sys" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Dll&amp;Sys.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="runtime_basic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\runtime_basic.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="runtime01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\runtime01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -177,5 +174,11 @@
   </data>
   <data name="runtime05" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\runtime05.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DAQNavi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DAQNavi.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Runtime1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Runtime.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

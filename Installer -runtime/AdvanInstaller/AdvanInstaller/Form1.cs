@@ -42,427 +42,488 @@ namespace AdvanInstaller
         
         //初始化的操作
         //包括对目标路径的检测，如果不存在则创建，如果存在，则先删除不应该存在的文件夹
-        public void InitAction(string[] rootDir)
+        public uint InitAction(string[] rootDir)
         {
-            if (Directory.Exists(RuntimePath))
+            try
             {
-
-                for (int i = 0; i < rootDir.Length; i++)
+                if (Directory.Exists(RuntimePath))
                 {
-                    string ss = RuntimePath + rootDir[i];
-                    if (Directory.Exists(ss))
+
+                    for (int i = 0; i < rootDir.Length; i++)
                     {
-                        Directory.Delete(ss, true);
+                        string ss = RuntimePath + rootDir[i];
+                        if (Directory.Exists(ss))
+                        {
+                            Directory.Delete(ss, true);
+                        }
                     }
                 }
+                else
+                {
+                    Directory.CreateDirectory(RuntimePath);
+                }
+
+                return 0;
             }
-            else
+            catch (Exception e)
             {
-                Directory.CreateDirectory(RuntimePath);
+                MessageBox.Show("Step 1 Error! \r\n" + e.ToString());
+                return 1;
             }
+            
         }
 
         //Runtime的注册表操作
-        public void doRegedit()
+        public uint doRegedit()
         {
-            //让system32文件夹可读可写
-            RegistryKey hkml = Registry.LocalMachine;
-            RegistryKey software = hkml.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Environment", true);
-            string path = software.GetValue("Path").ToString();
-            if (!path.Contains(@";C:\Windows\System32;")&& !path.Contains(@"C:\Windows\System32;") && !path.Contains(@";C:\Windows\System32"))
+            try
             {
-                path = path + @";C:\Windows\System32";
-                software.SetValue("Path", path);
-            }
+                //让system32文件夹可读可写
+                RegistryKey hkml = Registry.LocalMachine;
+                RegistryKey software = hkml.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Environment", true);
+                string path = software.GetValue("Path").ToString();
+                if (!path.Contains(@";C:\Windows\System32;") && !path.Contains(@"C:\Windows\System32;") && !path.Contains(@";C:\Windows\System32"))
+                {
+                    path = path + @";C:\Windows\System32";
+                    software.SetValue("Path", path);
+                }
 
-            //public--用于studio查找DAQ板卡
-            software = hkml.OpenSubKey(@"SOFTWARE\Advantech\Public", true);
-            if (null == software)
-            {
-                software = hkml.CreateSubKey(@"SOFTWARE\Advantech\Public");
-            }
-            software.SetValue("RootPath", "C:\\Advantech");
+                //public--用于studio查找DAQ板卡
+                software = hkml.OpenSubKey(@"SOFTWARE\Advantech\Public", true);
+                if (null == software)
+                {
+                    software = hkml.CreateSubKey(@"SOFTWARE\Advantech\Public");
+                }
+                software.SetValue("RootPath", "C:\\Advantech");
 
-            //记录版本和路径
-            software = hkml.OpenSubKey(@"SOFTWARE\Advantech\Motion_Runtime", true);
-            if (null == software)
-            {
-                software = hkml.CreateSubKey(@"SOFTWARE\Advantech\Motion_Runtime");
+                //记录版本和路径
+                software = hkml.OpenSubKey(@"SOFTWARE\Advantech\Motion_Runtime", true);
+                if (null == software)
+                {
+                    software = hkml.CreateSubKey(@"SOFTWARE\Advantech\Motion_Runtime");
+                }
+                software.SetValue("Path", "C:\\Advantech\\Motion_Runtime");
+                software.SetValue("Version", "V1.6.0.2");
+
+                return 0;
             }
-            software.SetValue("Path", "C:\\Advantech\\Motion_Runtime");
-            software.SetValue("Version", "V1.6.0.2");
+            catch (Exception e)
+            {
+                MessageBox.Show("Step 2 Error! \r\n" + e.ToString());
+                return 2;
+            }
+            
         }
 
         //复制与解压资源内的zip包
-        public void CopyAndUnzip(int proValue)
+        public uint CopyAndUnzip(int proValue)
         {
-            string[] str = { "Dll&Sys.zip", "Driver_x32.zip", "Driver_x64.zip", "runtime_basic.zip", "System32.zip", "System64.zip" };
-            string sourcePath = "";
-            string targetPath = RuntimePath;
-            FileStream writer = null;
-
-            for (int i = 0; i < str.Length; i++)
+            try
             {
-                sourcePath = RuntimePath + str[i];
+                FileStream writer = null;
+                string sourcePath = RuntimePath + "Runtime.zip";
+                string targetPath = RuntimePath;
 
+                //先复制解压Runtime.zip，用于先卸载可能正在运行的虚拟轴卡和DAQ卡
                 writer = new FileStream(sourcePath, FileMode.OpenOrCreate);
-                switch (i)
-                {
-                    case 0:
-                        writer.Write(Properties.Resources.Dll_Sys, 0, Properties.Resources.Dll_Sys.Length);
-                        break;
-                    case 1:
-                        writer.Write(Properties.Resources.Driver_x32, 0, Properties.Resources.Driver_x32.Length);
-                        break;
-                    case 2:
-                        writer.Write(Properties.Resources.Driver_x64, 0, Properties.Resources.Driver_x64.Length);
-                        break;
-                    case 3:
-                        writer.Write(Properties.Resources.runtime_basic, 0, Properties.Resources.runtime_basic.Length);
-                        break;
-                    case 4:
-                        writer.Write(Properties.Resources.System32, 0, Properties.Resources.System32.Length);
-                        break;
-                    case 5:
-                        writer.Write(Properties.Resources.System64, 0, Properties.Resources.System64.Length);
-                        break;
-                }
+                writer.Write(Properties.Resources.Runtime1, 0, Properties.Resources.Runtime1.Length);
                 writer.Dispose();
-
                 UnpackFileRarOrZip(sourcePath, targetPath);
                 System.IO.File.Delete(sourcePath);
-                processValue += proValue/str.Length;
+
+                //不管存不存在，都先调用bat文件卸载虚拟轴卡和DAQ卡，再删除
+                UninstallDriver();
+                if (Directory.Exists(RuntimePath + "DAQNavi"))
+                {                    
+                    Directory.Delete(RuntimePath + "DAQNavi", true);
+                }
+
+                string[] str = { "Dll&Sys.zip", "Driver_x32.zip", "Driver_x64.zip", "DAQNavi.zip", "System32.zip", "System64.zip" };
+                for (int i = 0; i < str.Length; i++)
+                {
+                    sourcePath = RuntimePath + str[i];
+
+                    writer = new FileStream(sourcePath, FileMode.OpenOrCreate);
+                    switch (i)
+                    {
+                        case 0:
+                            writer.Write(Properties.Resources.Dll_Sys, 0, Properties.Resources.Dll_Sys.Length);
+                            break;
+                        case 1:
+                            writer.Write(Properties.Resources.Driver_x32, 0, Properties.Resources.Driver_x32.Length);
+                            break;
+                        case 2:
+                            writer.Write(Properties.Resources.Driver_x64, 0, Properties.Resources.Driver_x64.Length);
+                            break;
+                        case 3:
+                            writer.Write(Properties.Resources.DAQNavi, 0, Properties.Resources.DAQNavi.Length);
+                            break;
+                        case 4:
+                            writer.Write(Properties.Resources.System32, 0, Properties.Resources.System32.Length);
+                            break;
+                        case 5:
+                            writer.Write(Properties.Resources.System64, 0, Properties.Resources.System64.Length);
+                            break;
+                    }
+                    writer.Dispose();
+
+                    UnpackFileRarOrZip(sourcePath, targetPath);
+                    System.IO.File.Delete(sourcePath);                    
+                    processValue += proValue / str.Length;
+                }
+
+                return 0;
             }
+            catch (Exception e)
+            {
+                MessageBox.Show("Step 3 Error! \r\n" + e.ToString());
+                return 3;
+            }           
 
         }
 
         //判断是32位还是64位系统
-        public void checkWin32Or64(int proValue)
+        public uint checkWin32Or64(int proValue)
         {
-            string sourceDir = null;
-            string targetDir = null;
-
-            if (Environment.Is64BitOperatingSystem)
+            try
             {
-                //复制AdvEncryption.dll到Motion_Runtime\Motion_Runtime文件夹
-                string sourceFile = RuntimePath + @"Dll&Sys\x64\AdvEncryption.dll";
-                string targetFile = RuntimePath + @"Motion_Runtime\Motion_Runtime\AdvEncryption.dll";
-                System.IO.File.Copy(sourceFile, targetFile);
+                string sourceDir = null;
+                string targetDir = null;
 
-                //驱动文件的复制
-                sourceDir = RuntimePath + "Driver_x64";
-                targetDir = RuntimePath + "Motion_Runtime";
-                CopyOldLabFilesToNewLab(sourceDir, targetDir);
-
-                //驱动PCI1245
-                string driverName = "PCI1245-MAS";
-                if (!publicVar.flag_1245)
+                if (Environment.Is64BitOperatingSystem)
                 {
-                    Directory.Delete(targetDir+ "\\"+ driverName, true);
+                    //复制AdvEncryption.dll到Motion_Runtime\Motion_Runtime文件夹
+                    string sourceFile = RuntimePath + @"Dll&Sys\x64\AdvEncryption.dll";
+                    string targetFile = RuntimePath + @"Motion_Runtime\Motion_Runtime\AdvEncryption.dll";
+                    System.IO.File.Copy(sourceFile, targetFile);
+
+                    //驱动文件的复制
+                    sourceDir = RuntimePath + "Driver_x64";
+                    targetDir = RuntimePath + "Motion_Runtime";
+                    CopyOldLabFilesToNewLab(sourceDir, targetDir);
+
+                    //驱动PCI1245
+                    string driverName = "PCI1245-MAS";
+                    if (!publicVar.flag_1245)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1265.dll", targetDir + "\\" + driverName + "\\PCI1265.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1265s.sys", targetDir + "\\" + driverName + "\\PCI1265s.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1265.dll", @"C:\Windows\System32\PCI1265.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1265.dll", @"C:\Windows\SysWOW64\PCI1265.dll", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1265s.sys", @"C:\Windows\System32\drivers\PCI1265s.sys", true);
+
+                    }
+
+                    //驱动PCI1245L
+                    driverName = "PCI1245L&LIO-MAS";
+                    if (!publicVar.flag_1245L)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1245L.dll", targetDir + "\\" + driverName + "\\PCI1245L.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1245L.sys", targetDir + "\\" + driverName + "\\PCI1245L.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1245L.dll", @"C:\Windows\System32\PCI1245L.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1245L.dll", @"C:\Windows\SysWOW64\PCI1245L.dll", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1245L.sys", @"C:\Windows\System32\drivers\PCI1245L.sys", true);
+
+                    }
+
+                    //驱动PCI1285
+                    driverName = "PCI1285-MAS";
+                    if (!publicVar.flag_1285)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1285.dll", targetDir + "\\" + driverName + "\\PCI1285.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1285s.sys", targetDir + "\\" + driverName + "\\PCI1285s.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1285.dll", @"C:\Windows\System32\PCI1285.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1285.dll", @"C:\Windows\SysWOW64\PCI1285.dll", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1285s.sys", @"C:\Windows\System32\drivers\PCI1285s.sys", true);
+
+                    }
+
+                    //驱动MVP3245
+                    driverName = "MVP3245-MAS";
+                    if (!publicVar.flag_3245)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\MVP3245.dll", targetDir + "\\" + driverName + "\\MVP3245.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\MVP3245s.sys", targetDir + "\\" + driverName + "\\MVP3245s.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\MVP3245.dll", @"C:\Windows\System32\MVP3245.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\MVP3245.dll", @"C:\Windows\SysWOW64\MVP3245.dll", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\MVP3245s.sys", @"C:\Windows\System32\drivers\MVP3245s.sys", true);
+
+                    }
+
+                    //驱动PCI1750
+                    driverName = "PCI1750";
+                    if (!publicVar.flag_1750)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1750.dll", targetDir + "\\" + driverName + "\\Bio1750.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1750s.sys", targetDir + "\\" + driverName + "\\Bio1750s.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1750.dll", @"C:\Windows\System32\Bio1750.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1750.dll", @"C:\Windows\SysWOW64\Bio1750.dll", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1750s.sys", @"C:\Windows\System32\drivers\Bio1750s.sys", true);
+
+                    }
+
+                    //驱动PCI1756
+                    driverName = "PCI1756";
+                    if (!publicVar.flag_1756)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1756.dll", targetDir + "\\" + driverName + "\\Bio1756.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1756s.sys", targetDir + "\\" + driverName + "\\Bio1756s.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1756.dll", @"C:\Windows\System32\Bio1756.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1756.dll", @"C:\Windows\SysWOW64\Bio1756.dll", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1756s.sys", @"C:\Windows\System32\drivers\Bio1756s.sys", true);
+
+                    }
+
+                    //驱动PCIGPDC
+                    driverName = "PCIGPDC";
+                    if (!publicVar.flag_1730)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\BioGPDC.dll", targetDir + "\\" + driverName + "\\BioGPDC.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\BioGPDCs.sys", targetDir + "\\" + driverName + "\\BioGPDCs.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\BioGPDC.dll", @"C:\Windows\System32\BioGPDC.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\BioGPDC.dll", @"C:\Windows\SysWOW64\BioGPDC.dll", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\BioGPDCs.sys", @"C:\Windows\System32\drivers\BioGPDCs.sys", true);
+
+                    }
+                    processValue += proValue / 3;
+
+                    //System32文件夹操作
+                    sourceDir = RuntimePath + "System64";
+                    targetDir = @"C:\Windows\System32";
+                    CopySystem32File(sourceDir, targetDir);
+
+                    //Syswow64文件夹操作
+                    sourceDir = RuntimePath + "System32";
+                    targetDir = @"C:\Windows\SysWOW64";
+                    CopySystem32File(sourceDir, targetDir);
+                    processValue += proValue / 3;
+
                 }
-                else
+                else   //32位系统
                 {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe",true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1265.dll", targetDir + "\\" + driverName + "\\PCI1265.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1265s.sys", targetDir + "\\" + driverName + "\\PCI1265s.sys", true);
+                    //复制AdvEncryption.dll到Motion_Runtime\Motion_Runtime文件夹
+                    string sourceFile = RuntimePath + @"Dll&Sys\x86\AdvEncryption.dll";
+                    string targetFile = RuntimePath + @"Motion_Runtime\Motion_Runtime\AdvEncryption.dll";
+                    System.IO.File.Copy(sourceFile, targetFile);
 
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1265.dll", @"C:\Windows\System32\PCI1265.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1265.dll", @"C:\Windows\SysWOW64\PCI1265.dll", true);
+                    //驱动文件的复制
+                    sourceDir = RuntimePath + "Driver_x32";
+                    targetDir = RuntimePath + "Motion_Runtime";
+                    CopyOldLabFilesToNewLab(sourceDir, targetDir);
 
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1265s.sys", @"C:\Windows\System32\drivers\PCI1265s.sys", true);
+                    //驱动PCI1245
+                    string driverName = "PCI1245-MAS";
+                    if (!publicVar.flag_1245)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1265.dll", targetDir + "\\" + driverName + "\\PCI1265.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1265s.sys", targetDir + "\\" + driverName + "\\PCI1265s.sys", true);
 
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1265.dll", @"C:\Windows\System32\PCI1265.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1265s.sys", @"C:\Windows\System32\drivers\PCI1265s.sys", true);
+
+                    }
+
+                    //驱动PCI1245L
+                    driverName = "PCI1245L&LIO-MAS";
+                    if (!publicVar.flag_1245L)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1245L.dll", targetDir + "\\" + driverName + "\\PCI1245L.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1245L.sys", targetDir + "\\" + driverName + "\\PCI1245L.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1245L.dll", @"C:\Windows\System32\PCI1245L.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1245L.sys", @"C:\Windows\System32\drivers\PCI1245L.sys", true);
+
+                    }
+
+                    //驱动PCI1285
+                    driverName = "PCI1285-MAS";
+                    if (!publicVar.flag_1285)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1285.dll", targetDir + "\\" + driverName + "\\PCI1285.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1285s.sys", targetDir + "\\" + driverName + "\\PCI1285s.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1285.dll", @"C:\Windows\System32\PCI1285.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1285s.sys", @"C:\Windows\System32\drivers\PCI1285s.sys", true);
+
+                    }
+
+                    //驱动MVP3245
+                    driverName = "MVP3245-MAS";
+                    if (!publicVar.flag_3245)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\MVP3245.dll", targetDir + "\\" + driverName + "\\MVP3245.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\MVP3245s.sys", targetDir + "\\" + driverName + "\\MVP3245s.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\MVP3245.dll", @"C:\Windows\System32\MVP3245.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\MVP3245s.sys", @"C:\Windows\System32\drivers\MVP3245s.sys", true);
+
+                    }
+
+                    //驱动PCI1750
+                    driverName = "PCI1750";
+                    if (!publicVar.flag_1750)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1750.dll", targetDir + "\\" + driverName + "\\Bio1750.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1750s.sys", targetDir + "\\" + driverName + "\\Bio1750s.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1750.dll", @"C:\Windows\System32\Bio1750.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1750s.sys", @"C:\Windows\System32\drivers\Bio1750s.sys", true);
+
+                    }
+
+                    //驱动PCI1756
+                    driverName = "PCI1756";
+                    if (!publicVar.flag_1756)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1756.dll", targetDir + "\\" + driverName + "\\Bio1756.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1756s.sys", targetDir + "\\" + driverName + "\\Bio1756s.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1756.dll", @"C:\Windows\System32\Bio1756.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1756s.sys", @"C:\Windows\System32\drivers\Bio1756s.sys", true);
+
+                    }
+
+                    //驱动PCIGPDC
+                    driverName = "PCIGPDC";
+                    if (!publicVar.flag_1730)
+                    {
+                        Directory.Delete(targetDir + "\\" + driverName, true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\BioGPDC.dll", targetDir + "\\" + driverName + "\\BioGPDC.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\BioGPDCs.sys", targetDir + "\\" + driverName + "\\BioGPDCs.sys", true);
+
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\BioGPDC.dll", @"C:\Windows\System32\BioGPDC.dll", true);
+                        System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\BioGPDCs.sys", @"C:\Windows\System32\drivers\BioGPDCs.sys", true);
+
+                    }
+                    processValue += proValue / 3;
+
+                    //System32文件夹操作
+                    sourceDir = RuntimePath + "System32";
+                    targetDir = @"C:\Windows\System32";
+                    CopySystem32File(sourceDir, targetDir);
+                    processValue += proValue / 3;
                 }
 
-                //驱动PCI1245L
-                driverName = "PCI1245L&LIO-MAS";
-                if (!publicVar.flag_1245L)
+                //删除多余的文件夹
+                string[] Folder = { "Dll&Sys", "Driver_x32", "Driver_x64", "System32", "System64" };
+                for (int i = 0; i < Folder.Length; i++)
                 {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1245L.dll", targetDir + "\\" + driverName + "\\PCI1245L.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1245L.sys", targetDir + "\\" + driverName + "\\PCI1245L.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1245L.dll", @"C:\Windows\System32\PCI1245L.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1245L.dll", @"C:\Windows\SysWOW64\PCI1245L.dll", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1245L.sys", @"C:\Windows\System32\drivers\PCI1245L.sys", true);
-
+                    if (Directory.Exists(RuntimePath + Folder[i]))
+                    {
+                        Directory.Delete(RuntimePath + Folder[i], true);
+                    }
                 }
 
-                //驱动PCI1285
-                driverName = "PCI1285-MAS";
-                if (!publicVar.flag_1285)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1285.dll", targetDir + "\\" + driverName + "\\PCI1285.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1285s.sys", targetDir + "\\" + driverName + "\\PCI1285s.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1285.dll", @"C:\Windows\System32\PCI1285.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1285.dll", @"C:\Windows\SysWOW64\PCI1285.dll", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\PCI1285s.sys", @"C:\Windows\System32\drivers\PCI1285s.sys", true);
-
-                }
-
-                //驱动MVP3245
-                driverName = "MVP3245-MAS";
-                if (!publicVar.flag_3245)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\MVP3245.dll", targetDir + "\\" + driverName + "\\MVP3245.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\MVP3245s.sys", targetDir + "\\" + driverName + "\\MVP3245s.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\MVP3245.dll", @"C:\Windows\System32\MVP3245.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\MVP3245.dll", @"C:\Windows\SysWOW64\MVP3245.dll", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\MVP3245s.sys", @"C:\Windows\System32\drivers\MVP3245s.sys", true);
-
-                }
-
-                //驱动PCI1750
-                driverName = "PCI1750";
-                if (!publicVar.flag_1750)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1750.dll", targetDir + "\\" + driverName + "\\Bio1750.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1750s.sys", targetDir + "\\" + driverName + "\\Bio1750s.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1750.dll", @"C:\Windows\System32\Bio1750.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1750.dll", @"C:\Windows\SysWOW64\Bio1750.dll", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1750s.sys", @"C:\Windows\System32\drivers\Bio1750s.sys", true);
-
-                }
-
-                //驱动PCI1756
-                driverName = "PCI1756";
-                if (!publicVar.flag_1756)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1756.dll", targetDir + "\\" + driverName + "\\Bio1756.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1756s.sys", targetDir + "\\" + driverName + "\\Bio1756s.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1756.dll", @"C:\Windows\System32\Bio1756.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1756.dll", @"C:\Windows\SysWOW64\Bio1756.dll", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\Bio1756s.sys", @"C:\Windows\System32\drivers\Bio1756s.sys", true);
-
-                }
-
-                //驱动PCIGPDC
-                driverName = "PCIGPDC";
-                if (!publicVar.flag_1730)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\WdfCoInstaller01009.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01009.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\BioGPDC.dll", targetDir + "\\" + driverName + "\\BioGPDC.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\BioGPDCs.sys", targetDir + "\\" + driverName + "\\BioGPDCs.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\BioGPDC.dll", @"C:\Windows\System32\BioGPDC.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\BioGPDC.dll", @"C:\Windows\SysWOW64\BioGPDC.dll", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x64\BioGPDCs.sys", @"C:\Windows\System32\drivers\BioGPDCs.sys", true);
-
-                }
+                //在操作完system32和64文件夹后，再调用DAQNavi安装bat，如果在之前就调用bat，可能
+                //会导致复制daq相关dll到system32和64出问题
+                InstallDAQNavi();
                 processValue += proValue / 3;
 
-                //System32文件夹操作
-                sourceDir = RuntimePath + "System64";
-                targetDir = @"C:\Windows\System32";
-                CopySystem32File(sourceDir, targetDir);
-
-                //Syswow64文件夹操作
-                sourceDir = RuntimePath + "System32";
-                targetDir = @"C:\Windows\SysWOW64";
-                CopySystem32File(sourceDir, targetDir);
-                processValue += proValue / 3;
-
+                return 0;
             }
-            else   //32位系统
+            catch (Exception e)
             {
-                //复制AdvEncryption.dll到Motion_Runtime\Motion_Runtime文件夹
-                string sourceFile = RuntimePath + @"Dll&Sys\x86\AdvEncryption.dll";
-                string targetFile = RuntimePath + @"Motion_Runtime\Motion_Runtime\AdvEncryption.dll";
-                System.IO.File.Copy(sourceFile, targetFile);
-
-                //驱动文件的复制
-                sourceDir = RuntimePath + "Driver_x32";
-                targetDir = RuntimePath + "Motion_Runtime";
-                CopyOldLabFilesToNewLab(sourceDir, targetDir);
-
-                //驱动PCI1245
-                string driverName = "PCI1245-MAS";
-                if (!publicVar.flag_1245)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1265.dll", targetDir + "\\" + driverName + "\\PCI1265.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1265s.sys", targetDir + "\\" + driverName + "\\PCI1265s.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1265.dll", @"C:\Windows\System32\PCI1265.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1265s.sys", @"C:\Windows\System32\drivers\PCI1265s.sys", true);
-
-                }
-
-                //驱动PCI1245L
-                driverName = "PCI1245L&LIO-MAS";
-                if (!publicVar.flag_1245L)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1245L.dll", targetDir + "\\" + driverName + "\\PCI1245L.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1245L.sys", targetDir + "\\" + driverName + "\\PCI1245L.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1245L.dll", @"C:\Windows\System32\PCI1245L.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1245L.sys", @"C:\Windows\System32\drivers\PCI1245L.sys", true);
-
-                }
-
-                //驱动PCI1285
-                driverName = "PCI1285-MAS";
-                if (!publicVar.flag_1285)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1285.dll", targetDir + "\\" + driverName + "\\PCI1285.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1285s.sys", targetDir + "\\" + driverName + "\\PCI1285s.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1285.dll", @"C:\Windows\System32\PCI1285.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\PCI1285s.sys", @"C:\Windows\System32\drivers\PCI1285s.sys", true);
-
-                }
-
-                //驱动MVP3245
-                driverName = "MVP3245-MAS";
-                if (!publicVar.flag_3245)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\MVP3245.dll", targetDir + "\\" + driverName + "\\MVP3245.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\MVP3245s.sys", targetDir + "\\" + driverName + "\\MVP3245s.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\MVP3245.dll", @"C:\Windows\System32\MVP3245.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\MVP3245s.sys", @"C:\Windows\System32\drivers\MVP3245s.sys", true);
-
-                }
-
-                //驱动PCI1750
-                driverName = "PCI1750";
-                if (!publicVar.flag_1750)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1750.dll", targetDir + "\\" + driverName + "\\Bio1750.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1750s.sys", targetDir + "\\" + driverName + "\\Bio1750s.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1750.dll", @"C:\Windows\System32\Bio1750.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1750s.sys", @"C:\Windows\System32\drivers\Bio1750s.sys", true);
-
-                }
-
-                //驱动PCI1756
-                driverName = "PCI1756";
-                if (!publicVar.flag_1756)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1756.dll", targetDir + "\\" + driverName + "\\Bio1756.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1756s.sys", targetDir + "\\" + driverName + "\\Bio1756s.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1756.dll", @"C:\Windows\System32\Bio1756.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\Bio1756s.sys", @"C:\Windows\System32\drivers\Bio1756s.sys", true);
-
-                }
-
-                //驱动PCIGPDC
-                driverName = "PCIGPDC";
-                if (!publicVar.flag_1730)
-                {
-                    Directory.Delete(targetDir + "\\" + driverName, true);
-                }
-                else
-                {
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\DPInst.exe", targetDir + "\\" + driverName + "\\DPInst.exe", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\WdfCoInstaller01005.dll", targetDir + "\\" + driverName + "\\WdfCoInstaller01005.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\BioGPDC.dll", targetDir + "\\" + driverName + "\\BioGPDC.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\BioGPDCs.sys", targetDir + "\\" + driverName + "\\BioGPDCs.sys", true);
-
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\BioGPDC.dll", @"C:\Windows\System32\BioGPDC.dll", true);
-                    System.IO.File.Copy(RuntimePath + @"Dll&Sys\x86\BioGPDCs.sys", @"C:\Windows\System32\drivers\BioGPDCs.sys", true);
-
-                }
-                processValue += proValue / 3;
-
-                //System32文件夹操作
-                sourceDir = RuntimePath + "System32";
-                targetDir = @"C:\Windows\System32";
-                CopySystem32File(sourceDir, targetDir);
-                processValue += proValue / 3;
+                MessageBox.Show("Step 4 Error! \r\n" + e.ToString());
+                return 4;
             }
-
-            //删除多余的文件夹
-            string[] Folder = { "Dll&Sys", "Driver_x32", "Driver_x64", "System32","System64" };
-            for (int i = 0; i < Folder.Length; i++)
-            {
-                if (Directory.Exists(RuntimePath + Folder[i]))
-                {
-                    Directory.Delete(RuntimePath + Folder[i], true);
-                }
-            }
-            processValue += proValue / 3;
+            
         }
 
         /// <summary>
@@ -518,54 +579,17 @@ namespace AdvanInstaller
             try
             {
                 string[] labFiles = Directory.GetFiles(sourcePath);//文件
-                if (labFiles.Length > 0)
+                for (int i = 0; i < labFiles.Length; i++)
                 {
-                    //如果当前有AdvVirtualMotionCardSvc.exe进程，先kill掉                   
-                    Process[] proc = Process.GetProcessesByName("AdvVirtualMotionCardSvc");
-                    if (proc.Length != 0)
+                    string s = Path.GetFileName(labFiles[i]);
+                    if (System.IO.File.Exists(savePath + "\\" + s))
                     {
-                        for (int i = 0; i < proc.Length; i++)
+                        if (s == "mfc100.dll" || s == "mfc100u.dll" || s == "msvcp100.dll" || s == "msvcr100.dll" || s == "msvcr100_clr0400.dll")
                         {
-                            proc[i].Kill();
-                            proc[i].Close();
-                            proc[i].Dispose();
-                        }                        
-                    }
-                    //如果当前有simulatore.exe进程，先kill掉
-                    Process[] proc2 = Process.GetProcessesByName("simulatore");
-                    if (proc2.Length != 0)
-                    {
-                        for (int i = 0; i < proc2.Length; i++)
-                        {
-                            proc2[i].Kill();
-                            proc2[i].Close();
-                            proc2[i].Dispose();
+                            continue;
                         }
                     }
-
-                    //延迟100ms，防止当程序运行到下面时，前面的kill进程还没结束，导致IO操作异常
-                    Thread.Sleep(100);
-
-                    for (int i = 0; i < labFiles.Length; i++)
-                    {
-                        string s = Path.GetFileName(labFiles[i]);
-                        if (s != ".lab")//排除.lab文件
-                        {
-                            if (System.IO.File.Exists(savePath + "\\" + s))
-                            {
-                                if (s== "mfc100.dll" || s == "mfc100u.dll" || s == "msvcp100.dll" || s == "msvcr100.dll" || s == "msvcr100_clr0400.dll")
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    //给复制到system32文件夹下的文件安全权限设为全部可操作，防止覆盖文件时有异常出现
-                                    AddSecurityControll2File(savePath + "\\" + s);
-                                }                                
-                            }
-                            System.IO.File.Copy(sourcePath + "\\" + Path.GetFileName(labFiles[i]), savePath + "\\" + Path.GetFileName(labFiles[i]),true);
-                        }
-                    }
+                    System.IO.File.Copy(sourcePath + "\\" + Path.GetFileName(labFiles[i]), savePath + "\\" + Path.GetFileName(labFiles[i]), true);
                 }
             }
             catch (Exception e )
@@ -578,27 +602,38 @@ namespace AdvanInstaller
         }
 
         //安装驱动程序
-        public void InstallDriver(int proValue)
+        public uint InstallDriver(int proValue)
         {
-            Process t = null;
-            string[] dirName = { "PCI1245-MAS", "PCI1245L&LIO-MAS", "PCI1285-MAS" , "MVP3245-MAS" , "PCI1750", "PCI1756", "PCIGPDC" };
-            for (int i = 0; i < dirName.Length; i++)
+            try
             {
-                if (Directory.Exists(RuntimePath+ @"Motion_Runtime\"+ dirName[i]))
+                Process t = null;
+                string[] dirName = { "PCI1245-MAS", "PCI1245L&LIO-MAS", "PCI1285-MAS", "MVP3245-MAS", "PCI1750", "PCI1756", "PCIGPDC" };
+                for (int i = 0; i < dirName.Length; i++)
                 {
-                    t = new Process();
-                    t.StartInfo.FileName = RuntimePath + @"Motion_Runtime\" + dirName[i]+ @"\DPInst.exe";
-                    t.StartInfo.Arguments = "/L 0x409 /sw /se /sa";
-                    t.StartInfo.UseShellExecute = false;
+                    if (Directory.Exists(RuntimePath + @"Motion_Runtime\" + dirName[i]))
+                    {
+                        t = new Process();
+                        t.StartInfo.FileName = RuntimePath + @"Motion_Runtime\" + dirName[i] + @"\DPInst.exe";
+                        t.StartInfo.Arguments = "/L 0x409 /sw /se /sa";
+                        t.StartInfo.UseShellExecute = false;
 
-                    t.Start();
-                    t.WaitForExit();
-                    t.Close();
-                    t.Dispose();
+                        t.Start();
+                        t.WaitForExit();
+                        t.Close();
+                        t.Dispose();
+                    }
+
+                    processValue += proValue / dirName.Length;
                 }
 
-                processValue += proValue / dirName.Length;
+                return 0;
             }
+            catch (Exception e)
+            {
+                MessageBox.Show("Step 5 Error! \r\n" + e.ToString());
+                return 5;
+            }
+            
 
         }
 
@@ -908,7 +943,7 @@ namespace AdvanInstaller
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-             this.skinProgressBar1.Value = processValue;
+             this.progressBar1.Value = processValue;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -919,26 +954,26 @@ namespace AdvanInstaller
         //新线程实时刷新进度条
         private void SleepT()
         {      
-            //初始化设置
-            string[] rootDir = { "Motion_Runtime", "DAQNavi" };
+            //初始化设置---Step 0ne
+            string[] rootDir = { "Motion_Runtime"};
             InitAction(rootDir);
             processValue += 6;
 
-            //先进行注册表相关操作
+            //先进行注册表相关操作---Step Two
             doRegedit();
             processValue += 5;
 
-            //复制压缩包至指定目录，并解压
+            //复制压缩包至指定目录，并解压---Step Three
             CopyAndUnzip(30);
 
-            //判断系统32位还是64位，用于相应文件的复制、删除
+            //判断系统32位还是64位，用于相应文件的复制、删除---Step Four
             checkWin32Or64(15);
 
-            //安装驱动程序
+            //安装驱动程序---Step Five
             InstallDriver(35);
 
             #region 创建开始菜单   Motion_Runtime.exe 快捷键
-            //创建Motion_Runtime.exe 快捷键
+            //创建Motion_Runtime.exe 快捷键---Step Six
             string iconpath = StartMenu + @"Advantech Automation\Motion_Studio\Motion_Runtime.lnk";
             string startmenupath = Path.GetDirectoryName(iconpath);
             string description = "";
@@ -948,7 +983,7 @@ namespace AdvanInstaller
             processValue += 2;
 
             # region 创建开始菜单   Motion_Runtime.exe 卸载快捷键
-            //创建Motion_Runtime.exe 卸载快捷键
+            //创建Motion_Runtime.exe 卸载快捷键---Step Seven
             iconpath = StartMenu + @"Advantech Automation\Motion_Studio\RuntimeUninst.lnk";
             startmenupath = Path.GetDirectoryName(iconpath);
             description = "";
@@ -958,7 +993,7 @@ namespace AdvanInstaller
             processValue += 2;
 
             # region 创建启动菜单   Motion_Runtime.exe 启动快捷键
-            //创建Motion_Runtime.exe 卸载快捷键
+            //创建Motion_Runtime.exe 卸载快捷键---Step Eight
             iconpath = BeginMenu + @"Motion_Runtime.lnk";
             startmenupath = Path.GetDirectoryName(iconpath);
             description = "";
@@ -967,7 +1002,7 @@ namespace AdvanInstaller
             #endregion
             processValue += 1;
 
-            //将卸载程序加入控制面板/程序卸载     
+            //将卸载程序加入控制面板/程序卸载---Step Night  
             RegistryKey hkml = Registry.LocalMachine;
             RegistryKey software = hkml.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\", true);
             if (software.OpenSubKey("Motion Runtime") != null)
@@ -1001,7 +1036,7 @@ namespace AdvanInstaller
         int flag_text = 0;
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-            if (flag_png_times%15==0)
+            if (flag_png_times%20==0)
             {
                 switch (flag_png)
                 {
@@ -1030,7 +1065,7 @@ namespace AdvanInstaller
             }
             flag_png_times++;
 
-            this.skinProgressBar1.Value = processValue;
+            this.progressBar1.Value = processValue;
             
             switch (flag_text)
             {
@@ -1039,7 +1074,7 @@ namespace AdvanInstaller
                     label1.Visible = false;
                     break;
                 case 1:
-                    skinProgressBar1.Visible = true;
+                    progressBar1.Visible = true;
                     if (processValue>=50 && processValue<75)
                     {
                         label1.Text = "正在加载驱动.  ";
@@ -1077,7 +1112,7 @@ namespace AdvanInstaller
             if (processValue == 100)
             {
                 //进度条到顶，进度条不可见
-                skinProgressBar1.Visible = false;
+                progressBar1.Visible = false;
                 pictureBox2.Visible = false;
                 button1.Visible = true;
                 button2.Visible = true;
@@ -1160,7 +1195,7 @@ namespace AdvanInstaller
             pictureBox3.Image = Properties.Resources.finish_out;
             pictureBox3.SizeMode = PictureBoxSizeMode.Normal;
 
-            skinProgressBar1.Visible = false;
+            progressBar1.Visible = false;
             timer1.Enabled = false;
             pictureBox2.Visible = true;
             pictureBox3.Visible = false;
@@ -1308,7 +1343,43 @@ namespace AdvanInstaller
             fileInfo.Refresh();
         }
 
-        
+        //调用卸载虚拟轴卡和DAQ卡的批处理
+        public void UninstallDriver()
+        {
+            Process t = null;
+            if (System.IO.File.Exists(RuntimePath + @"Motion_Runtime\Motion_Runtime\uninstallall\uninstallall.bat"))
+            {
+                t = new Process();
+                t.StartInfo.FileName = RuntimePath + @"Motion_Runtime\Motion_Runtime\uninstallall\uninstallall.bat";
+                t.StartInfo.UseShellExecute = false;
+                t.StartInfo.CreateNoWindow = true;
+
+                t.Start();
+                t.WaitForExit();
+                t.Close();
+                t.Dispose();
+            }
+        }
+
+        //调用安装DAQ卡的批处理
+        public void InstallDAQNavi()
+        {
+            Process t = null;
+            if (System.IO.File.Exists(RuntimePath + @"Motion_Runtime\Motion_Runtime\uninstallall\install.bat"))
+            {
+                t = new Process();
+                t.StartInfo.FileName = RuntimePath + @"Motion_Runtime\Motion_Runtime\uninstallall\install.bat";
+                t.StartInfo.UseShellExecute = false;
+                t.StartInfo.CreateNoWindow = true;
+
+                t.Start();
+                t.WaitForExit();
+                t.Close();
+                t.Dispose();
+            }
+        }
+
+
     }
 }
 

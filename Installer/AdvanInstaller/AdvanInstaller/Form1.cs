@@ -53,53 +53,75 @@ namespace AdvanInstaller
 
         //初始化的操作
         //包括对目标路径的检测，如果不存在则创建，如果存在，则先删除不应该存在的文件夹
-        public void InitAction(string[] rootDir)
+        public uint InitAction(string[] rootDir)
         {
-            if (Directory.Exists(StudioPath))
-            {                
-                for (int i = 0; i < rootDir.Length; i++)
+            try
+            {
+                if (Directory.Exists(StudioPath))
                 {
-                    string ss = StudioPath + rootDir[i];
-                    if (Directory.Exists(ss))
+                    for (int i = 0; i < rootDir.Length; i++)
                     {
-                        Directory.Delete(ss, true);
+                        string ss = StudioPath + rootDir[i];
+                        if (Directory.Exists(ss))
+                        {
+                            Directory.Delete(ss, true);
+                        }
                     }
                 }
+                else
+                {
+                    Directory.CreateDirectory(StudioPath);
+                }
+
+                return 0;
             }
-            else
+            catch (Exception e)
             {
-                Directory.CreateDirectory(StudioPath);
+                MessageBox.Show("Step 1 Error!\r\n"+ e.ToString());
+                return 1;
             }
+            
         }
 
         //判断是32位还是64位系统
-        public void checkWin32Or64(int proValue)
+        public uint checkWin32Or64(int proValue)
         {
-            string fromPath = StudioPath + @"Motion Studio\Client.zip";
-            string targetPaht = StudioPath + @"Motion Studio\";
+            try
+            {
+                string fromPath = StudioPath + @"Motion Studio\Client.zip";
+                string targetPaht = StudioPath + @"Motion Studio\";
 
-            //复制64位文件压缩包至指定目录，并解压 
-            FileStream writer = new FileStream(fromPath, FileMode.OpenOrCreate);
-            if (Environment.Is64BitOperatingSystem)
-            {
-                //Client_x64压缩包复制到本地                
-                writer.Write(Properties.Resources.Client_x64, 0, Properties.Resources.Client_x64.Length);               
+                //复制文件压缩包至指定目录，并解压 
+                FileStream writer = new FileStream(fromPath, FileMode.OpenOrCreate);
+                if (Environment.Is64BitOperatingSystem)
+                {
+                    //Client_x64压缩包复制到本地                
+                    writer.Write(Properties.Resources.Client_x64, 0, Properties.Resources.Client_x64.Length);
+                }
+                else
+                {
+                    //Client_x86压缩包复制到本地              
+                    writer.Write(Properties.Resources.Client_x86, 0, Properties.Resources.Client_x86.Length);
+                }
+                writer.Dispose();
+                processValue += proValue / 2;
+                //解压studio
+                UnpackFileRarOrZip(fromPath, targetPaht);
+                System.IO.File.Delete(fromPath);
+                processValue += proValue / 2;
+
+                return 0;
             }
-            else
+            catch (Exception e)
             {
-                //Client_x86压缩包复制到本地              
-                writer.Write(Properties.Resources.Client_x86, 0, Properties.Resources.Client_x86.Length);
+                MessageBox.Show("Step 4 Error!\r\n" + e.ToString());
+                return 4;
             }
-            writer.Dispose();
-            processValue += proValue / 2;
-            //解压studio
-            UnpackFileRarOrZip(fromPath, targetPaht);
-            System.IO.File.Delete(fromPath);
-            processValue += proValue / 2;
+
         }
 
         //根据系统语言是简中还是繁中，对相应文件进行复制操作
-        public void checkSampleOrTradition(int proValue)
+        public uint checkSampleOrTradition(int proValue)
         {
             try
             {
@@ -140,12 +162,15 @@ namespace AdvanInstaller
                     System.IO.File.Copy(formpath, topath, true);
                 }
                 processValue += proValue / 5;
+
+                return 0;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                MessageBox.Show("Step 5 Error!\r\n" + e.ToString());
+                return 4;
             }
-            
+
         }
         
         #region  解压文件 包括.rar 和zip
@@ -452,7 +477,7 @@ namespace AdvanInstaller
 
         private void timer1_Tick(object sender, EventArgs e)
         {            
-            this.skinProgressBar1.Value = processValue;
+            this.progressBar1.Value = processValue;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -467,7 +492,7 @@ namespace AdvanInstaller
             RegistryKey software = hkml.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy", true);
             processValue += 4;
 
-            //初始化设置
+            //初始化设置---Step One
             string[] rootDir = { "Motion Studio", "Libraries", "Example", "Documents" };
             InitAction(rootDir);
             processValue += 5;
@@ -476,20 +501,20 @@ namespace AdvanInstaller
             string sourcePath = StudioPath + "studio.zip";
             string targetPaht = StudioPath;
 
-            //复制studio压缩包
+            //复制studio压缩包---Step Two
             FileStream writer = new FileStream(sourcePath, FileMode.OpenOrCreate);
             writer.Write(Properties.Resources.studio1, 0, Properties.Resources.studio1.Length);
             writer.Dispose();
             processValue += 15;
 
-            //解压studio
+            //解压studio---Step Three
             UnpackFileRarOrZip(sourcePath, targetPaht);
             System.IO.File.Delete(sourcePath);
             processValue += 15;
 
-            //判断系统32位还是64位，用于下一步对应系统的压缩包解压
+            //判断系统32位还是64位，用于下一步对应系统的压缩包解压---Step Four
             checkWin32Or64(16);
-            //判断系统简中还是繁中，用于下一步对应系统的文件复制
+            //判断系统简中还是繁中，用于下一步对应系统的文件复制---Step Five
             checkSampleOrTradition(25);
             #endregion
 
@@ -683,7 +708,7 @@ namespace AdvanInstaller
             }
             flag_png_times++;
 
-            this.skinProgressBar1.Value = processValue;
+            this.progressBar1.Value = processValue;
             switch (flag_text)
             {
                 case 0:
@@ -691,7 +716,7 @@ namespace AdvanInstaller
                     label1.Visible = false;
                     break;
                 case 1:
-                    skinProgressBar1.Visible = true;
+                    progressBar1.Visible = true;
                     label1.Visible = true;
                     label1.Text = "正在安装.   ";
                     flag_text += 1;
@@ -709,7 +734,7 @@ namespace AdvanInstaller
             if (processValue == 100)
             {
                 //进度条到顶，进度条不可见
-                skinProgressBar1.Visible = false;
+                progressBar1.Visible = false;
                 pictureBox2.Visible = false;
                 timer1.Enabled = false;
 
@@ -790,7 +815,7 @@ namespace AdvanInstaller
             pictureBox3.Image = Properties.Resources.finish_out;
             pictureBox3.SizeMode = PictureBoxSizeMode.Normal;
 
-            skinProgressBar1.Visible = false;
+            progressBar1.Visible = false;
             timer1.Enabled = false;
             pictureBox2.Visible = true;
             pictureBox3.Visible = false;

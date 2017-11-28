@@ -112,21 +112,17 @@ namespace StudioUninst
         public void UninstallDriver()
         {
             Process t = null;
-            string[] fileName = { "install.bat", "uninstallall.bat" };
-            for (int i = 0; i < fileName.Length; i++)
+            if (File.Exists(RuntimePath + @"Motion_Runtime\Motion_Runtime\uninstallall\uninstallall.bat"))
             {
-                if (File.Exists(RuntimePath + @"Motion_Runtime\Motion_Runtime\uninstallall\" + fileName[i]))
-                {
-                    t = new Process();
-                    t.StartInfo.FileName = RuntimePath + @"Motion_Runtime\Motion_Runtime\uninstallall\" + fileName[i];
-                    t.StartInfo.UseShellExecute = false;
-                    t.StartInfo.CreateNoWindow = true;
+                t = new Process();
+                t.StartInfo.FileName = RuntimePath + @"Motion_Runtime\Motion_Runtime\uninstallall\uninstallall.bat";
+                t.StartInfo.UseShellExecute = false;
+                t.StartInfo.CreateNoWindow = true;
 
-                    t.Start();
-                    t.WaitForExit();
-                    t.Close();
-                    t.Dispose();
-                }
+                t.Start();
+                t.WaitForExit();
+                t.Close();
+                t.Dispose();
             }
 
         }

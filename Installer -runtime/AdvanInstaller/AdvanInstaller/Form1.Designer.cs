@@ -36,7 +36,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.skinProgressBar1 = new CCWin.SkinControl.SkinProgressBar();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
@@ -119,20 +119,13 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "正在安装.";
             // 
-            // skinProgressBar1
+            // progressBar1
             // 
-            this.skinProgressBar1.Back = null;
-            this.skinProgressBar1.BackColor = System.Drawing.Color.Transparent;
-            this.skinProgressBar1.BarBack = null;
-            this.skinProgressBar1.BarRadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinProgressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.skinProgressBar1.Location = new System.Drawing.Point(0, 386);
-            this.skinProgressBar1.Name = "skinProgressBar1";
-            this.skinProgressBar1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinProgressBar1.Size = new System.Drawing.Size(633, 10);
-            this.skinProgressBar1.TabIndex = 10;
-            this.skinProgressBar1.TrackBack = System.Drawing.Color.White;
-            this.skinProgressBar1.TrackFore = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(149)))), ((int)(((byte)(221)))));
+            this.progressBar1.BackColor = System.Drawing.Color.White;
+            this.progressBar1.Location = new System.Drawing.Point(0, 385);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(633, 10);
+            this.progressBar1.TabIndex = 10;
             // 
             // Form1
             // 
@@ -140,7 +133,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::AdvanInstaller.Properties.Resources.xy;
             this.ClientSize = new System.Drawing.Size(633, 395);
-            this.Controls.Add(this.skinProgressBar1);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
@@ -166,7 +159,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label1;
-        private CCWin.SkinControl.SkinProgressBar skinProgressBar1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

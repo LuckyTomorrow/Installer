@@ -83,6 +83,16 @@ namespace AdvanInstaller.Properties {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
+        internal static byte[] DAQNavi {
+            get {
+                object obj = ResourceManager.GetObject("DAQNavi", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
         internal static byte[] Dll_Sys {
             get {
                 object obj = ResourceManager.GetObject("Dll_Sys", resourceCulture);
@@ -171,16 +181,6 @@ namespace AdvanInstaller.Properties {
         }
         
         /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] runtime_basic {
-            get {
-                object obj = ResourceManager.GetObject("runtime_basic", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap runtime01 {
@@ -227,6 +227,16 @@ namespace AdvanInstaller.Properties {
             get {
                 object obj = ResourceManager.GetObject("runtime05", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        internal static byte[] Runtime1 {
+            get {
+                object obj = ResourceManager.GetObject("Runtime1", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
