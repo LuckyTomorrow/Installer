@@ -355,6 +355,10 @@ namespace AdvanInstaller
             {
                 System.IO.File.Delete(iconpath);
             }
+            if (System.IO.File.Exists(@"C:\Users\Public\Desktop\Motion Studio.lnk"))
+            {
+                System.IO.File.Delete(@"C:\Users\Public\Desktop\Motion Studio.lnk");
+            }
 
             //实例化WshShell对象 
             WshShell shell = new WshShell();
