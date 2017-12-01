@@ -136,12 +136,6 @@
   <data name="finish_out" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\finish_out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ICSharpCode_SharpZipLib" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ICSharpCode.SharpZipLib.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Interop_IWshRuntimeLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Interop.IWshRuntimeLibrary.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Runtime.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

@@ -7,8 +7,6 @@ C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller
 C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csproj.GenerateResource.Cache
 C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.exe
 C:\Users\Administrator\Desktop\Installer\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.pdb
-C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Release\ICSharpCode.SharpZipLib.dll
-C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Release\Interop.IWshRuntimeLibrary.dll
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\Interop.VBA.dll
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csproj.ResolveComReference.cache
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.endBox.resources
@@ -21,4 +19,3 @@ C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Relea
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\bin\Release\Motion Studio V1.6.pdb
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\Motion Studio V1.6.exe
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\Motion Studio V1.6.pdb
-C:\Users\Administrator\Desktop\Installer\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csprojResolveAssemblyReference.cache

@@ -133,21 +133,21 @@ namespace StudioUninst
             RegistryKey hkml = Registry.LocalMachine;
             //清除注册表--advantech
             RegistryKey software = hkml.OpenSubKey(@"SOFTWARE\Advantech\", true);
-            if (software.OpenSubKey("Public") != null)
+            if (software.OpenSubKey("Public",true) != null)
             {
-                software.DeleteSubKey("Public");
+                software.DeleteSubKey("Public",false);
             }
-            if (software.OpenSubKey("Motion_Runtime") != null)
+            if (software.OpenSubKey("Motion_Runtime", true) != null)
             {
-                software.DeleteSubKey("Motion_Runtime");
+                software.DeleteSubKey("Motion_Runtime",false);
             }
             processValue += 5;
 
             //删除卸载面板的注册表信息
             software  = hkml.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\", true);
-            if (software.OpenSubKey("Motion Runtime") != null)
+            if (software.OpenSubKey("Motion Runtime", true) != null)
             {
-                software.DeleteSubKey("Motion Runtime");
+                software.DeleteSubKey("Motion Runtime",false);
             }
             processValue += 5;
 

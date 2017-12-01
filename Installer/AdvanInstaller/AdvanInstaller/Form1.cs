@@ -638,9 +638,9 @@ namespace AdvanInstaller
 
             //将卸载程序加入控制面板/程序卸载
             software = hkml.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\", true);
-            if (software.OpenSubKey("Motion Studio") != null)
+            if (software.OpenSubKey("Motion Studio",true) != null)
             {
-                software.DeleteSubKey("Motion Studio");
+                software.DeleteSubKey("Motion Studio",false);
             }
             software.CreateSubKey("Motion Studio");
             software = software.OpenSubKey("Motion Studio", true);
@@ -662,25 +662,9 @@ namespace AdvanInstaller
             
             //software.SetValue("NoModify", 1);
             //software.SetValue("NoRepair", 1);
-
             processValue += 5;
-
-            #region 删除解压缩dll
-            string dir = Environment.GetFolderPath(Environment.SpecialFolder.CommonTemplates) + DateTime.Now.ToString("yyyy-MM-dd");
-            if (Directory.Exists(dir))
-            {
-                Directory.Delete(dir, true);
-                
-            }
-            Directory.CreateDirectory(dir);
             
-            string path = Path.GetDirectoryName(Application.ExecutablePath) + @"\ICSharpCode.SharpZipLib.dll";
-            System.IO.File.Move(path, dir+ @"\ICSharpCode.SharpZipLib.dll");
-            path = Path.GetDirectoryName(Application.ExecutablePath) + @"\Interop.IWshRuntimeLibrary.dll";
-            System.IO.File.Move(path, dir + @"\Interop.IWshRuntimeLibrary.dll");            
-
             SHChangeNotify(0x8000000, 0, IntPtr.Zero, IntPtr.Zero);
-            #endregion
             processValue += 5;
 
         }
@@ -826,17 +810,7 @@ namespace AdvanInstaller
             label1.Text = "";
             label1.Visible = false;
             flag_png = 0;
-            flag_png_times = 0;        
-
-            string path = Path.GetDirectoryName(Application.ExecutablePath) + @"\ICSharpCode.SharpZipLib.dll";
-            FileStream writer = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite);
-            writer.Write(Properties.Resources.ICSharpCode_SharpZipLib, 0, Properties.Resources.ICSharpCode_SharpZipLib.Length);
-            writer.Dispose();
-
-            path = Path.GetDirectoryName(Application.ExecutablePath) + @"\Interop.IWshRuntimeLibrary.dll";
-            writer = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite);
-            writer.Write(Properties.Resources.Interop_IWshRuntimeLibrary, 0, Properties.Resources.Interop_IWshRuntimeLibrary.Length);
-            writer.Dispose();
+            flag_png_times = 0; 
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)

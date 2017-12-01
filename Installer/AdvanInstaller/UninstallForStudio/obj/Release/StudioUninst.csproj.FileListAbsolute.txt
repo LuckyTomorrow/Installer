@@ -7,4 +7,3 @@ C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\R
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.exe
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.pdb
 C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.JudgeForm.resources
-C:\Users\Administrator\Desktop\Installer\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.csprojResolveAssemblyReference.cache

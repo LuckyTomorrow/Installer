@@ -1005,9 +1005,9 @@ namespace AdvanInstaller
             //将卸载程序加入控制面板/程序卸载---Step Night  
             RegistryKey hkml = Registry.LocalMachine;
             RegistryKey software = hkml.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\", true);
-            if (software.OpenSubKey("Motion Runtime") != null)
+            if (software.OpenSubKey("Motion Runtime",true) != null)
             {
-                software.DeleteSubKey("Motion Runtime");
+                software.DeleteSubKey("Motion Runtime",false);
             }
             software.CreateSubKey("Motion Runtime");
             software = software.OpenSubKey("Motion Runtime", true);
@@ -1028,7 +1028,7 @@ namespace AdvanInstaller
             //software.SetValue("NoRepair", 1);
             processValue += 2;
 
-            removeDll();
+            SHChangeNotify(0x8000000, 0, IntPtr.Zero, IntPtr.Zero);
             processValue += 2;
 
         }
@@ -1139,7 +1139,6 @@ namespace AdvanInstaller
                 t.ShowDialog();
                 if (publicVar.endflag ==1)
                 {
-                    removeDll();
                     Application.Exit();
                 }
             }
@@ -1155,7 +1154,6 @@ namespace AdvanInstaller
             ds.ShowDialog();
             if (publicVar.endflag == 1)
             {
-                removeDll();
                 this.Close();
                 return;
             }
@@ -1203,16 +1201,6 @@ namespace AdvanInstaller
             flag_png_times = 0;
             label1.Text = "";
             label1.Visible = false;
-
-            string path = Path.GetDirectoryName(Application.ExecutablePath) + @"\ICSharpCode.SharpZipLib.dll";
-            FileStream writer = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite);
-            writer.Write(Properties.Resources.ICSharpCode_SharpZipLib, 0, Properties.Resources.ICSharpCode_SharpZipLib.Length);
-            writer.Dispose();
-
-            path = Path.GetDirectoryName(Application.ExecutablePath) + @"\Interop.IWshRuntimeLibrary.dll";
-            writer = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite);
-            writer.Write(Properties.Resources.Interop_IWshRuntimeLibrary, 0, Properties.Resources.Interop_IWshRuntimeLibrary.Length);
-            writer.Dispose();
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -1295,27 +1283,7 @@ namespace AdvanInstaller
         //刷新桌面
         [DllImport("shell32.dll")]
         public static extern void SHChangeNotify(uint wEventId, uint uFlags, IntPtr dwItem1, IntPtr dwItem2);
-        
-        //移除解压缩和生成快捷方式的dll
-        public void removeDll()
-        {
-            #region 删除解压缩dll
-            string dir = Environment.GetFolderPath(Environment.SpecialFolder.CommonTemplates) + DateTime.Now.ToString("yyyy-MM-dd");
-            if (Directory.Exists(dir))
-            {
-                Directory.Delete(dir, true);
-
-            }
-            Directory.CreateDirectory(dir);
-
-            string path = Path.GetDirectoryName(Application.ExecutablePath) + @"\ICSharpCode.SharpZipLib.dll";
-            System.IO.File.Move(path, dir + @"\ICSharpCode.SharpZipLib.dll");
-            path = Path.GetDirectoryName(Application.ExecutablePath) + @"\Interop.IWshRuntimeLibrary.dll";
-            System.IO.File.Move(path, dir + @"\Interop.IWshRuntimeLibrary.dll");
-
-            SHChangeNotify(0x8000000, 0, IntPtr.Zero, IntPtr.Zero);
-            #endregion
-        }
+                
 
         /// <summary>
         /// 为文件添加users，everyone用户组的完全控制权限

@@ -115,20 +115,12 @@ namespace StudioUninst
             RegistryKey hkml = Registry.LocalMachine;
             RegistryKey software = hkml.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy", true);
             software = hkml.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\", true);
-            if (software.OpenSubKey("Motion Studio") != null)
+            if (software.OpenSubKey("Motion Studio",true) != null)
             {
-                software.DeleteSubKey("Motion Studio");
+                software.DeleteSubKey("Motion Studio",false);
             }
 
             processValue += 10;
-
-            #region 删除安装时移动的解压缩dll
-            string dlltemp = Environment.GetFolderPath(Environment.SpecialFolder.CommonTemplates) + @"\ICSharpCode.SharpZipLib.dll";
-            if (System.IO.File.Exists(dlltemp))
-            {
-                System.IO.File.Delete(dlltemp);
-            }
-            #endregion
 
             //先删除开始菜单快捷键
             string path = StartMenu + @"Advantech Automation\Motion_Studio\";
