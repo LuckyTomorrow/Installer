@@ -129,85 +129,76 @@ namespace StudioUninst
 
         public void sleepT()
         {
-            //清除注册表
-            RegistryKey hkml = Registry.LocalMachine;
-            //清除注册表--advantech
-            RegistryKey software = hkml.OpenSubKey(@"SOFTWARE\Advantech\", true);
-            if (software.OpenSubKey("Public",true) != null)
+            try
             {
-                software.DeleteSubKey("Public",false);
-            }
-            if (software.OpenSubKey("Motion_Runtime", true) != null)
-            {
-                software.DeleteSubKey("Motion_Runtime",false);
-            }
-            processValue += 5;
-
-            //删除卸载面板的注册表信息
-            software  = hkml.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\", true);
-            if (software.OpenSubKey("Motion Runtime", true) != null)
-            {
-                software.DeleteSubKey("Motion Runtime",false);
-            }
-            processValue += 5;
-
-            //先删除开始菜单快捷键
-            string path = StartMenu + @"Advantech Automation\Motion_Studio\Motion_Runtime.lnk";
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-            path = StartMenu + @"Advantech Automation\Motion_Studio\RuntimeUninst.lnk";
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-            processValue += 5;
-
-            //删除开始菜单卸载快捷键
-            path = StartMenu + @"Advantech Automation\Motion_Studio\RuntimeUninst.lnk";
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-            processValue += 5;
-
-            //删除启动菜单快捷键
-            path = BeginMenu + @"Motion_Runtime.lnk";
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-            processValue += 5;
-
-            //删除虚拟轴卡
-            UninstallDriver();
-            processValue += 15;
-
-            //删除system32\drivers文件夹下的sys文件
-            string[] ss = {"PCI1245L.sys","PCI1265s.sys", "PCI1285s.sys", "MVP3245s.sys", "Bio1750s.sys", "Bio1756s.sys", "BioGPDCs.sys" };
-            string driverFolder = @"C:\Windows\System32\drivers\";
-            for (int i = 0; i < ss.Length; i++)
-            {
-                if (File.Exists(driverFolder + ss[i]))
+                //清除注册表
+                RegistryKey hkml = Registry.LocalMachine;
+                //清除注册表--advantech
+                RegistryKey software = hkml.OpenSubKey("SOFTWARE\\Advantech\\", true);
+                if (software.OpenSubKey("Public", true) != null)
                 {
-                    File.Delete(driverFolder + ss[i]);
+                    software.DeleteSubKeyTree("Public");
                 }
-            }
-            //删除system32文件夹下的文件
-            string[] sa = {"PCI1265.dll","PCI1285.dll", "MVP3245.dll","PCI1245L.dll","Bio1750.dll","Bio1756.dll" ,"BioGPDC.dll", "AdvAMIBasic.dll", "ADVMOT.dll", "BDaqOcx.dll", "biodaq.dll", "biodaqutil.dll", "biosysteminfo.dll", "AdvVirtualMotionCardSvc.exe", "AdvVMCard.dll","simulatore.exe" };
-            driverFolder = @"C:\Windows\System32\";
-            for (int i = 0; i < sa.Length; i++)
-            {
-                if (File.Exists(driverFolder + sa[i]))
+                if (software.OpenSubKey("Motion_Runtime", true) != null)
                 {
-                    File.Delete(driverFolder + sa[i]);
+                    software.DeleteSubKeyTree("Motion_Runtime");
                 }
-            }
-            //如果为64位系统，还需删除SySWOW文件夹下的文件
-            if (Environment.Is64BitOperatingSystem)
-            {
-                driverFolder = @"C:\Windows\SysWOW64\";
+                processValue += 5;
+
+                //删除卸载面板的注册表信息
+                software = hkml.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\", true);
+                if (software.OpenSubKey("Motion Runtime", true) != null)
+                {
+                    software.DeleteSubKeyTree("Motion Runtime");
+                }
+                processValue += 5;
+
+                //先删除开始菜单快捷键
+                string path = StartMenu + @"Advantech Automation\Motion_Studio\Motion_Runtime.lnk";
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+                path = StartMenu + @"Advantech Automation\Motion_Studio\RuntimeUninst.lnk";
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+                processValue += 5;
+
+                //删除开始菜单卸载快捷键
+                path = StartMenu + @"Advantech Automation\Motion_Studio\RuntimeUninst.lnk";
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+                processValue += 5;
+
+                //删除启动菜单快捷键
+                path = BeginMenu + @"Motion_Runtime.lnk";
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+                processValue += 5;
+
+                //删除虚拟轴卡
+                UninstallDriver();
+                processValue += 15;
+
+                //删除system32\drivers文件夹下的sys文件
+                string[] ss = { "PCI1245L.sys", "PCI1265s.sys", "PCI1285s.sys", "MVP3245s.sys", "Bio1750s.sys", "Bio1756s.sys", "BioGPDCs.sys" };
+                string driverFolder = @"C:\Windows\System32\drivers\";
+                for (int i = 0; i < ss.Length; i++)
+                {
+                    if (File.Exists(driverFolder + ss[i]))
+                    {
+                        File.Delete(driverFolder + ss[i]);
+                    }
+                }
+                //删除system32文件夹下的文件
+                string[] sa = { "PCI1265.dll", "PCI1285.dll", "MVP3245.dll", "PCI1245L.dll", "Bio1750.dll", "Bio1756.dll", "BioGPDC.dll", "AdvAMIBasic.dll", "ADVMOT.dll", "BDaqOcx.dll", "biodaq.dll", "biodaqutil.dll", "biosysteminfo.dll", "AdvVirtualMotionCardSvc.exe", "AdvVMCard.dll", "simulatore.exe" };
+                driverFolder = @"C:\Windows\System32\";
                 for (int i = 0; i < sa.Length; i++)
                 {
                     if (File.Exists(driverFolder + sa[i]))
@@ -215,78 +206,95 @@ namespace StudioUninst
                         File.Delete(driverFolder + sa[i]);
                     }
                 }
-            }
-            processValue += 15;
-
-            /*
-            //删除 除Motion_Runtime外的对应的文件夹
-            if (Directory.Exists(RuntimePath + "DAQNavi"))
-            {
-                Directory.Delete(RuntimePath + "DAQNavi", true);
-            }
-            processValue += 15;
-            */
-
-            //删除Motion_Runtime文件夹下的除Motion_Runtime之外的所有文件夹和文件
-            if (Directory.Exists(RuntimePath + "Motion_Runtime"))
-            {
-                //删除Motion_Runtime文件夹下的除Motion_Runtime之外的所有文件夹
-                if (Directory.GetDirectories(RuntimePath + "Motion_Runtime") != null)
+                //如果为64位系统，还需删除SySWOW文件夹下的文件
+                if (Environment.Is64BitOperatingSystem)
                 {
-                    string[] cc = Directory.GetDirectories(RuntimePath + "Motion_Runtime");
-                    for (int i = 0; i < cc.Length; i++)
+                    driverFolder = @"C:\Windows\SysWOW64\";
+                    for (int i = 0; i < sa.Length; i++)
                     {
-                        if (cc[i].Contains(@"Motion_Runtime\Motion_Runtime"))
+                        if (File.Exists(driverFolder + sa[i]))
                         {
-                            continue;
+                            File.Delete(driverFolder + sa[i]);
                         }
-                        Directory.Delete(cc[i], true);
-                    }
-                 }
-
-                //删除Motion_Runtime文件夹下的所有文件
-                if (Directory.GetFiles(RuntimePath + @"Motion_Runtime") != null)
-                {
-                    string[] cc = Directory.GetFiles(RuntimePath + @"Motion_Runtime");
-                    for (int i = 0; i < cc.Length; i++)
-                    {
-                        File.Delete(cc[i]);
                     }
                 }
-            }
-            processValue += 25;
+                processValue += 15;
 
-            //删除Motion_Runtime\Motion_Runtime文件夹下的所有文件夹和文件
-            if (Directory.Exists(RuntimePath + @"Motion_Runtime\Motion_Runtime"))
-            {
-                //删除Motion_Runtime\Motion_Runtime文件夹下的所有文件夹
-                if (Directory.GetDirectories(RuntimePath + @"Motion_Runtime\Motion_Runtime") != null)
+                /*
+                //删除 除Motion_Runtime外的对应的文件夹
+                if (Directory.Exists(RuntimePath + "DAQNavi"))
                 {
-                    string[] cc = Directory.GetDirectories(RuntimePath + @"Motion_Runtime\Motion_Runtime");
-                    for (int i = 0; i < cc.Length; i++)
-                    {
-                        Directory.Delete(cc[i], true);
-                    }
-                }            
-
-                //删除除Motion_Runtime\Motion_Runtime文件夹下的文件，如果为Uninstall程序本身，先跳过
-                if (Directory.GetFiles(RuntimePath + @"Motion_Runtime\Motion_Runtime") != null)
-                {
-                    string[] cc = Directory.GetFiles(RuntimePath + @"Motion_Runtime\Motion_Runtime");
-                    for (int i = 0; i < cc.Length; i++)
-                    {
-                        if (cc[i].Contains("RuntimeUninst.exe"))
-                        {
-                            continue;
-                        }
-
-                        File.Delete(cc[i]);
-                    }
-                    //删除程序本身
-                    DeleteItselfByCMD();
+                    Directory.Delete(RuntimePath + "DAQNavi", true);
                 }
+                processValue += 15;
+                */
+
+                //删除Motion_Runtime文件夹下的除Motion_Runtime之外的所有文件夹和文件
+                if (Directory.Exists(RuntimePath + "Motion_Runtime"))
+                {
+                    //删除Motion_Runtime文件夹下的除Motion_Runtime之外的所有文件夹
+                    if (Directory.GetDirectories(RuntimePath + "Motion_Runtime") != null)
+                    {
+                        string[] cc = Directory.GetDirectories(RuntimePath + "Motion_Runtime");
+                        for (int i = 0; i < cc.Length; i++)
+                        {
+                            if (cc[i].Contains(@"Motion_Runtime\Motion_Runtime"))
+                            {
+                                continue;
+                            }
+                            Directory.Delete(cc[i], true);
+                        }
+                    }
+
+                    //删除Motion_Runtime文件夹下的所有文件
+                    if (Directory.GetFiles(RuntimePath + @"Motion_Runtime") != null)
+                    {
+                        string[] cc = Directory.GetFiles(RuntimePath + @"Motion_Runtime");
+                        for (int i = 0; i < cc.Length; i++)
+                        {
+                            File.Delete(cc[i]);
+                        }
+                    }
+                }
+                processValue += 25;
+
+                //删除Motion_Runtime\Motion_Runtime文件夹下的所有文件夹和文件
+                if (Directory.Exists(RuntimePath + @"Motion_Runtime\Motion_Runtime"))
+                {
+                    //删除Motion_Runtime\Motion_Runtime文件夹下的所有文件夹
+                    if (Directory.GetDirectories(RuntimePath + @"Motion_Runtime\Motion_Runtime") != null)
+                    {
+                        string[] cc = Directory.GetDirectories(RuntimePath + @"Motion_Runtime\Motion_Runtime");
+                        for (int i = 0; i < cc.Length; i++)
+                        {
+                            Directory.Delete(cc[i], true);
+                        }
+                    }
+
+                    //删除除Motion_Runtime\Motion_Runtime文件夹下的文件，如果为Uninstall程序本身，先跳过
+                    if (Directory.GetFiles(RuntimePath + @"Motion_Runtime\Motion_Runtime") != null)
+                    {
+                        string[] cc = Directory.GetFiles(RuntimePath + @"Motion_Runtime\Motion_Runtime");
+                        for (int i = 0; i < cc.Length; i++)
+                        {
+                            if (cc[i].Contains("RuntimeUninst.exe"))
+                            {
+                                continue;
+                            }
+
+                            File.Delete(cc[i]);
+                        }
+                        //删除程序本身
+                        DeleteItselfByCMD();
+                    }
+                }
+                processValue += 20;
             }
-            processValue += 20;
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {

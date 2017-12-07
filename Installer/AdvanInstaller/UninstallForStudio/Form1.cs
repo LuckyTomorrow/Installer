@@ -117,7 +117,7 @@ namespace StudioUninst
             software = hkml.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\", true);
             if (software.OpenSubKey("Motion Studio",true) != null)
             {
-                software.DeleteSubKey("Motion Studio",false);
+                software.DeleteSubKeyTree("Motion Studio");
             }
 
             processValue += 10;

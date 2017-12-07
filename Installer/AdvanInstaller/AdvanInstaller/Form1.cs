@@ -640,7 +640,7 @@ namespace AdvanInstaller
             software = hkml.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\", true);
             if (software.OpenSubKey("Motion Studio",true) != null)
             {
-                software.DeleteSubKey("Motion Studio",false);
+                software.DeleteSubKeyTree("Motion Studio");
             }
             software.CreateSubKey("Motion Studio");
             software = software.OpenSubKey("Motion Studio", true);

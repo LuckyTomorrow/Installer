@@ -50,3 +50,4 @@ C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\
 C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.judgeRunning.resources
 C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.Properties.Resources.resources
 C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\AdvanInstaller\obj\Release\AdvanInstaller.csprojResolveAssemblyReference.cache

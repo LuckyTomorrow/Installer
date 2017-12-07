@@ -15,3 +15,4 @@ C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\
 C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\RuntimeUninst.exe
 C:\Users\Advantech\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\RuntimeUninst.pdb
 C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\StudioUninst.JudgeForm.resources
+C:\Users\Administrator\Desktop\Installer -runtime\AdvanInstaller\UninstallForStudio\obj\Release\RuntimeUninst.csprojResolveAssemblyReference.cache

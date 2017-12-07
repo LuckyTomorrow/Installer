@@ -71,10 +71,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\..\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\..\..\Installer\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Interop.IWshRuntimeLibrary">
-      <HintPath>..\..\..\Interop.IWshRuntimeLibrary.dll</HintPath>
+      <HintPath>..\..\..\Installer\Interop.IWshRuntimeLibrary.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />

@@ -71,10 +71,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\..\Installer -runtime\AdvanInstaller\AdvanInstaller\Resources\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\..\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Interop.IWshRuntimeLibrary">
-      <HintPath>..\..\..\Installer -runtime\AdvanInstaller\AdvanInstaller\Resources\Interop.IWshRuntimeLibrary.dll</HintPath>
+      <HintPath>..\..\Interop.IWshRuntimeLibrary.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
